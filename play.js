@@ -1,9 +1,10 @@
 var http = require('http');
+var config = require('./config');
 
 function checkConnection(callback) {
   var options = {
-    hostname: 'localhost',
-    port: 9200,
+    hostname: config.host,
+    port: config.port,
     method: 'GET'
   };
 
