@@ -7,7 +7,12 @@
     "test": "test"
   },
   "scripts": {
-    "test": "tape"
+    "dev": "nodemon test/followers.js",
+    "quick": "./node_modules/tape/bin/tape ./test/*.js",
+    "test": "./node_modules/.bin/istanbul cover ./node_modules/tape/bin/tape ./test/*.js",
+    "coverage": "./node_modules/.bin/istanbul cover ./node_modules/tape/bin/tape ./test/*.js && istanbul check-coverage --statements 100 --functions 100 --lines 100 --branches 100",
+    "coveralls": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
+    "jshint": "./node_modules/jshint/bin/jshint -c .jshintrc --exclude-path .gitignore ."
   },
   "repository": {
     "type": "git",
@@ -16,7 +21,8 @@
   "keywords": [
     "ElasticSearch",
     "Client",
-    "Node"
+    "Node",
+    "Zero Dependencies"
   ],
   "author": "nelsonic <nodecoder@gmail.com> (https://github.com/nelsonic)",
   "license": "ISC",
@@ -26,6 +32,14 @@
   "homepage": "https://github.com/nelsonic/este",
   "devDependencies": {
     "chalk": "^0.5.1",
+    "coveralls": "^2.11.2",
+    "jshint": "^2.5.10",
+    "pre-commit": "0.0.9",
     "tape": "^3.0.3"
-  }
+  },
+  "pre-commit": [
+    "jshint",
+    "coverage",
+    "coveralls"
+  ]
 }
