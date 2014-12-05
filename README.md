@@ -13,6 +13,7 @@ Zero external dependencies (3rd party modules).
 
 [![Build Status](https://travis-ci.org/nelsonic/este.svg)](https://travis-ci.org/nelsonic/este)
 [![Coverage Status](https://img.shields.io/coveralls/nelsonic/este.svg)](https://coveralls.io/r/nelsonic/este?branch=master)
+[![Code Climate](https://codeclimate.com/github/nelsonic/este/badges/gpa.svg)](https://codeclimate.com/github/nelsonic/este)
 
 ## Methods
 
