@@ -33,6 +33,7 @@
   "devDependencies": {
     "chalk": "^0.5.1",
     "coveralls": "^2.11.2",
+    "istanbul": "^0.3.4",
     "jshint": "^2.5.10",
     "pre-commit": "0.0.9",
     "tape": "^3.0.3"
