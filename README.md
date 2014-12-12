@@ -47,11 +47,14 @@ invites contribution from the community.
 
 ## Code Quality
 
+If you are looking for a module you can *trust*, these are the
+"badges" you are looking for:
+
 [![Build Status](https://travis-ci.org/nelsonic/este.svg)](https://travis-ci.org/nelsonic/este)
 [![Coverage Status](https://img.shields.io/coveralls/nelsonic/este.svg)](https://coveralls.io/r/nelsonic/este?branch=master)
 [![Code Climate](https://codeclimate.com/github/nelsonic/este/badges/gpa.svg)](https://codeclimate.com/github/nelsonic/este)
 
-If you are looking for a module you can *trust*, there are the symbols you'll want to find.
+
 
 ## Contributing
 
@@ -68,6 +71,7 @@ The choice of module name was the *answer* to the question:
 **A**: https://translate.google.com/#auto/en/este
 
 
+
 ### [Promises](http://youtu.be/llDikI2hTtk?t=21s) (Rant?)
 
 I love the *theory* behind Promises:  
@@ -76,10 +80,11 @@ The *justification* for using them is quite convincing:
 https://github.com/petkaantonov/bluebird#what-are-promises-and-why-should-i-use-them  
 
 But I've not yet found a situation where I *needed* to use them.  
-When I see junior developers using
-[Q](https://www.npmjs.org/package/q),  [when](https://github.com/cujojs/when)
-[Bluebird](https://github.com/petkaantonov/bluebird) I can't help
-but think:  
+When I see *junior* developers using
+[Q](https://www.npmjs.org/package/q),  [when](https://github.com/cujojs/when),  
+[promise](https://github.com/then/promise),
+[Bluebird](https://github.com/petkaantonov/bluebird), etc.
+I can't help but think:  
 what are you *doing* that was ***too complicated for callbacks***?  
 
 So when a module *forces* me to use them "***its a no from me***."
