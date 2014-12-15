@@ -10,7 +10,7 @@ este
 ## Methods
 
 - [x] connection to ES Cluster
-- [ ] saving/creating a record
+- [x] saving/creating a record
 - [ ] reading a record
 - [ ] update a record
 - [ ] **upsert** (*convenience* method)
