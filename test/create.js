@@ -12,7 +12,6 @@ test(chalk.yellow('Create a record'), function (t) {
     message: faker.hacker.phrase()
   }
 
-  // console.log(record);
   C.create(record, function (err, res) {
     t.equal(err, null, chalk.green("✓ No Errors"));
     t.equal(res.created, true, chalk.green("✓ Record Created"));
@@ -25,7 +24,6 @@ test(chalk.yellow('Create a record without specifying index, type or id!'), func
     message: faker.hacker.phrase()
   }
 
-  // console.log(record);
   C.create(record, function (err, res) {
     t.equal(err, null, chalk.green("✓ No Errors"));
     t.equal(res.created, true, chalk.green("✓ Record Created"));

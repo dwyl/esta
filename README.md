@@ -9,12 +9,17 @@ este
 
 ## Methods
 
-- [x] connection to ES Cluster
-- [x] saving/creating a record
-- [ ] reading a record
-- [ ] update a record
-- [ ] **upsert** (*convenience* method)
-- [ ] delete (hard)
+### Basic [CRUD](http://en.wikipedia.org/wiki/Create,_read,_update_and_delete)
+
+- [x] Connect to ES Cluster (confirm we can *access* ES)
+- [x] Create/Save a record (basic POST request)
+- [ ] Read a record
+- [ ] Update a record
+- [ ] Delete (hard)
+
+### Advanced
+
+- [ ] **Upsert** (*convenience* method)
 - [ ] delete (soft = archive)
 - [ ] search :-)
 
