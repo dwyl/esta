@@ -60,7 +60,6 @@ If you are looking for a module you can *trust*, these are the
 [![Code Climate](https://codeclimate.com/github/nelsonic/esta/badges/gpa.svg)](https://codeclimate.com/github/nelsonic/esta)
 
 
-
 ## Contributing
 
 ***All*** *contributions* are *welcome*.  
