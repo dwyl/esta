@@ -19,12 +19,8 @@ test(chalk.yellow('Read a record'), function (t) {
       rec[key] = record[key];
     }
   }
-  // console.log(' - - - ');
-  // console.log(record);
   C.create(record, function(err, res) {
     t.equal(res.created, true, chalk.green("✓ Record Created " +rec.id));
-    // console.log(' - - - ');
-    // console.log(rec);
     E.read(rec, function (err2, res2) {
       t.equal(err2, null, chalk.green("✓ No Errors"));
       // console.log(res2)
