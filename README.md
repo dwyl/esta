@@ -1,11 +1,11 @@
-este
+esta
 ====
 
 **The *Simplest* ElasticSearch Node.js Client**
 
 ## Install
 
-- [ ] Publish module to NPM
+- [x] Publish module to NPM
 
 ## Methods
 
@@ -14,7 +14,7 @@ este
 - [x] Connect to ES Cluster (confirm we can *access* ES)
 - [x] Create/Save a record (basic POST request)
 - [x] Read a record
-- [ ] Update a record
+- [x] Update a record
 - [ ] Delete (hard)
 
 ### Advanced
