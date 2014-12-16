@@ -1,6 +1,6 @@
 {
-  "name": "este",
-  "version": "1.0.0",
+  "name": "esta",
+  "version": "1.0.1",
   "description": "The Simplest ElasticSearch Node.js Client'",
   "main": "index.js",
   "directories": {
@@ -16,7 +16,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/nelsonic/este.git"
+    "url": "https://github.com/nelsonic/esta.git"
   },
   "keywords": [
     "ElasticSearch",
@@ -24,12 +24,12 @@
     "Node",
     "Zero Dependencies"
   ],
-  "author": "nelsonic <nodecoder@gmail.com> (https://github.com/nelsonic)",
+  "author": "nelsonic <contact.nelsonic@gmail.com> (https://github.com/nelsonic)",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/nelsonic/este/issues"
+    "url": "https://github.com/nelsonic/esta/issues"
   },
-  "homepage": "https://github.com/nelsonic/este",
+  "homepage": "https://github.com/nelsonic/esta",
   "devDependencies": {
     "chalk": "^0.5.1",
     "coveralls": "^2.11.2",

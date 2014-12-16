@@ -3,7 +3,7 @@ var chalk = require('chalk');
 var faker = require('faker');
 
 var C = require('../lib/create.js');
-var E = require('../lib/read.js');
+var R = require('../lib/read.js');
 
 test(chalk.yellow('Read a record'), function (t) {
   var record = {
@@ -21,7 +21,7 @@ test(chalk.yellow('Read a record'), function (t) {
   }
   C.create(record, function(err, res) {
     t.equal(res.created, true, chalk.green("✓ Record Created " +rec.id));
-    E.read(rec, function (err2, res2) {
+    R.read(rec, function (err2, res2) {
       t.equal(err2, null, chalk.green("✓ No Errors"));
       // console.log(res2)
       t.equal(res2._source.message, rec.message, chalk.green("✓ Record fetched "+res2._id));

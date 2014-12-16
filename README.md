@@ -13,7 +13,7 @@ este
 
 - [x] Connect to ES Cluster (confirm we can *access* ES)
 - [x] Create/Save a record (basic POST request)
-- [ ] Read a record
+- [x] Read a record
 - [ ] Update a record
 - [ ] Delete (hard)
 
@@ -31,8 +31,8 @@ este
 
 *Zero* external dependencies (3rd party modules).
 
-[![Dependency Status](https://david-dm.org/nelsonic/este.svg)](https://david-dm.org/nelsonic/este)
-[![devDependency Status](https://david-dm.org/nelsonic/este/dev-status.svg)](https://david-dm.org/nelsonic/este#info=devDependencies)
+[![Dependency Status](https://david-dm.org/nelsonic/esta.svg)](https://david-dm.org/nelsonic/esta)
+[![devDependency Status](https://david-dm.org/nelsonic/esta/dev-status.svg)](https://david-dm.org/nelsonic/esta#info=devDependencies)
 
 There are *many* great modules in the
 [node ecosystem](https://www.npmjs.org/).
@@ -55,9 +55,9 @@ invites contribution from the community.
 If you are looking for a module you can *trust*, these are the
 "badges" you are looking for:
 
-[![Build Status](https://travis-ci.org/nelsonic/este.svg)](https://travis-ci.org/nelsonic/este)
-[![Coverage Status](https://img.shields.io/coveralls/nelsonic/este.svg)](https://coveralls.io/r/nelsonic/este?branch=master)
-[![Code Climate](https://codeclimate.com/github/nelsonic/este/badges/gpa.svg)](https://codeclimate.com/github/nelsonic/este)
+[![Build Status](https://travis-ci.org/nelsonic/esta.svg)](https://travis-ci.org/nelsonic/esta)
+[![Coverage Status](https://img.shields.io/coveralls/nelsonic/esta.svg)](https://coveralls.io/r/nelsonic/esta?branch=master)
+[![Code Climate](https://codeclimate.com/github/nelsonic/esta/badges/gpa.svg)](https://codeclimate.com/github/nelsonic/esta)
 
 
 
@@ -65,7 +65,7 @@ If you are looking for a module you can *trust*, these are the
 
 ***All*** *contributions* are *welcome*.  
 If anything is unclear please create an issue:
-https://github.com/nelsonic/este/issues
+https://github.com/nelsonic/esta/issues
 
 
 ## Module Name
@@ -73,7 +73,7 @@ https://github.com/nelsonic/este/issues
 The choice of module name was the *answer* to the question:
 
 **Q**: Which ElasticSearch Node Module should I use...?  
-**A**: https://translate.google.com/#auto/en/este
+**A**: https://translate.google.com/#auto/en/esta
 
 
 
