@@ -4,7 +4,7 @@ var faker = require('faker');
 
 var C = require('../lib/create.js');
 
-test(chalk.yellow('Create a record'), function (t) {
+test(chalk.yellow('CREATE a record'), function (t) {
   var record = {
     type: 'tweet',
     index: 'twitter',
@@ -19,7 +19,7 @@ test(chalk.yellow('Create a record'), function (t) {
   });
 });
 
-test(chalk.yellow('Create a record without specifying index, type or id!'), function (t) {
+test(chalk.yellow('CREATE a record without specifying index, type or id!'), function (t) {
   var record = {
     message: faker.hacker.phrase()
   }

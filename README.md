@@ -15,7 +15,7 @@ esta
 - [x] Create/Save a record (basic POST request)
 - [x] Read a record
 - [x] Update a record
-- [ ] Delete (hard)
+- [x] Delete (hard)
 
 ### Advanced
 

@@ -4,8 +4,9 @@ var faker = require('faker');
 
 var C = require('../lib/create.js');
 var R = require('../lib/read.js');
+var D = require('../lib/delete.js');
 
-test(chalk.yellow('READ a record'), function (t) {
+test(chalk.yellow('DELETE a Record'), function (t) {
   var record = {
     type: 'tweet',
     index: 'twitter',
@@ -20,12 +21,14 @@ test(chalk.yellow('READ a record'), function (t) {
     }
   }
   C.create(record, function(err, res) {
-    t.equal(res.created, true, chalk.green("✓ Record Created " +rec.id));
-    R.read(rec, function (err2, res2) {
-      t.equal(err2, null, chalk.green("✓ No Errors"));
-      // console.log(res2)
-      t.equal(res2._source.message, rec.message, chalk.green("✓ Record fetched "+res2._id));
-      t.end();
+    D.del(rec, function(err3, res3) {
+        t.equal(res3.found, true, chalk.green("✓ Record Existed - So Delete it!"));
+        t.equal(err3, null, chalk.green("✓ No Errors Deleting"));
+      // attempt to read record - it should fail
+      R.read(rec, function(err4, res4){
+        t.equal(res4.found, false, chalk.green("✓ Record Deleted"));
+        t.end();
+      })
     });
   });
 });
