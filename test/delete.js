@@ -6,7 +6,7 @@ var C = require('../lib/create.js');
 var R = require('../lib/read.js');
 var D = require('../lib/delete.js');
 
-test(chalk.yellow('DELETE a Record'), function (t) {
+test(chalk.cyan('DELETE a Record'), function (t) {
   var record = {
     type: 'tweet',
     index: 'twitter',

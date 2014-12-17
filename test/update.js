@@ -6,7 +6,7 @@ var C = require('../lib/create.js');
 var R = require('../lib/read.js');
 var U = require('../lib/update.js');
 
-test(chalk.yellow('UPDATE a record'), function (t) {
+test(chalk.cyan('UPDATE a record'), function (t) {
   var record = {
     type: 'tweet',
     index: 'twitter',

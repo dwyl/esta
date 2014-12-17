@@ -5,7 +5,7 @@ var faker = require('faker');
 var C = require('../lib/create.js');
 var R = require('../lib/read.js');
 
-test(chalk.yellow('READ a record'), function (t) {
+test(chalk.cyan('READ a record'), function (t) {
   var record = {
     type: 'tweet',
     index: 'twitter',
@@ -24,8 +24,22 @@ test(chalk.yellow('READ a record'), function (t) {
     R.read(rec, function (err2, res2) {
       t.equal(err2, null, chalk.green("✓ No Errors"));
       // console.log(res2)
-      t.equal(res2._source.message, rec.message, chalk.green("✓ Record fetched "+res2._id));
+      t.equal(res2._source.message, rec.message, chalk.green("✓ Record fetched " + res2._id + " " + res2._source.message));
       t.end();
     });
+  });
+});
+
+test(chalk.cyan('READ a record that does not exist (expect fail)'), function (t) {
+  var record = {
+    type: 'tweet',
+    index: 'twitter',
+    id: Math.floor(Math.random() * (1000000)),
+    message: faker.hacker.phrase()
+  }
+  R.read(record, function (err2, res2) {
+    t.equal(err2, null, chalk.green("✓ No Errors"));
+    t.equal(res2.found, false, chalk.green("✓ Record " + res2._id + " Not Found (as expected)"));
+    t.end();
   });
 });
