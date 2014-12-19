@@ -13,7 +13,6 @@ test(chalk.cyan('CREATE a record'), function (t) {
   }
 
   C.create(record, function (err, res) {
-    t.equal(err, null, chalk.green("✓ No Errors"));
     t.equal(res.created, true, chalk.green("✓ Record Created"));
     t.end();
   });
@@ -25,7 +24,6 @@ test(chalk.cyan('CREATE a record without specifying index, type or id!'), functi
   }
 
   C.create(record, function (err, res) {
-    t.equal(err, null, chalk.green("✓ No Errors"));
     t.equal(res.created, true, chalk.green("✓ Record Created"));
     t.end();
   });

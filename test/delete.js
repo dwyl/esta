@@ -23,7 +23,6 @@ test(chalk.cyan('DELETE a Record'), function (t) {
   C.create(record, function(err, res) {
     D.del(rec, function(err3, res3) {
         t.equal(res3.found, true, chalk.green("✓ Record Existed - So Delete it!"));
-        t.equal(err3, null, chalk.green("✓ No Errors Deleting"));
       // attempt to read record - it should fail
       R.read(rec, function(err4, res4){
         t.equal(res4.found, false, chalk.green("✓ Record Deleted"));
