@@ -4,7 +4,7 @@ var faker = require('faker');
 
 var C = require('../lib/create.js');
 var R = require('../lib/read.js');
-var D = require('../lib/delete.js');
+var DELETE = require('../lib/delete.js');
 
 test(chalk.cyan('DELETE a Record'), function (t) {
   var record = {
@@ -21,7 +21,7 @@ test(chalk.cyan('DELETE a Record'), function (t) {
     }
   }
   C.create(record, function(err, res) {
-    D.del(rec, function(err3, res3) {
+    DELETE(rec, function(err3, res3) {
         t.equal(res3.found, true, chalk.green("✓ Record Existed - So Delete it!"));
       // attempt to read record - it should fail
       R.read(rec, function(err4, res4){
