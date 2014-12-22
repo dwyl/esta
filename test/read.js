@@ -2,7 +2,7 @@ var test  = require('tape');
 var chalk = require('chalk');
 var faker = require('faker');
 
-var C = require('../lib/create.js');
+var CREATE = require('../lib/create.js');
 var R = require('../lib/read.js');
 
 test(chalk.cyan('READ a record'), function (t) {
@@ -19,7 +19,7 @@ test(chalk.cyan('READ a record'), function (t) {
       rec[key] = record[key];
     }
   }
-  C.create(record, function(err, res) {
+  CREATE(record, function(err, res) {
     t.equal(res.created, true, chalk.green("✓ Record Created " +rec.id));
     R.read(rec, function (err2, res2) {
       // console.log(res2)
