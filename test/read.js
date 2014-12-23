@@ -3,7 +3,7 @@ var chalk = require('chalk');
 var faker = require('faker');
 
 var CREATE = require('../lib/create.js');
-var R = require('../lib/read.js');
+var READ = require('../lib/read.js');
 
 test(chalk.cyan('READ a record'), function (t) {
   var record = {
@@ -21,7 +21,7 @@ test(chalk.cyan('READ a record'), function (t) {
   }
   CREATE(record, function(err, res) {
     t.equal(res.created, true, chalk.green("✓ Record Created " +rec.id));
-    R.read(rec, function (err2, res2) {
+    READ(rec, function (err2, res2) {
       // console.log(res2)
       t.equal(res2._source.message, rec.message, chalk.green("✓ Record fetched " + res2._id + " " + res2._source.message));
       t.end();
@@ -36,7 +36,7 @@ test(chalk.cyan('READ a record that does not exist (expect found === false)'), f
     id: Math.floor(Math.random() * (1000000)),
     message: faker.hacker.phrase()
   }
-  R.read(record, function (err2, res2) {
+  READ(record, function (err2, res2) {
     t.equal(res2.found, false, chalk.green("✓ Record " + res2._id + " Not Found (as expected)"));
     t.end();
   });

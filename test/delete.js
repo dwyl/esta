@@ -3,7 +3,7 @@ var chalk = require('chalk');
 var faker = require('faker');
 
 var CREATE = require('../lib/create.js');
-var R = require('../lib/read.js');
+var READ = require('../lib/read.js');
 var DELETE = require('../lib/delete.js');
 
 test(chalk.cyan('DELETE a Record'), function (t) {
@@ -24,7 +24,7 @@ test(chalk.cyan('DELETE a Record'), function (t) {
     DELETE(rec, function(err3, res3) {
         t.equal(res3.found, true, chalk.green("✓ Record Existed - So Delete it!"));
       // attempt to read record - it should fail
-      R.read(rec, function(err4, res4){
+      READ(rec, function(err4, res4){
         t.equal(res4.found, false, chalk.green("✓ Record Deleted"));
         t.end();
       })
