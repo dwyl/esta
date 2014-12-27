@@ -91,6 +91,7 @@ When I see *junior* developers using
 I can't help but think:  
 what are you *doing* that was ***too complicated for callbacks***?  
 
-So when a module *forces* me to use them "***its a no from me***."
+So when a module *forces* me to use them
+["***its a no from me***"](http://i.imgur.com/TgTX9Kf.jpg)
 
 ![promises broken](http://i.imgur.com/3bzRW8y.jpg)
