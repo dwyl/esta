@@ -4,7 +4,7 @@ var faker = require('faker');
 
 var CREATE = require('../lib/create.js');
 var READ = require('../lib/read.js');
-var U = require('../lib/update.js');
+var UPDATE = require('../lib/update.js');
 
 test(chalk.cyan('UPDATE a record'), function (t) {
   var record = {
@@ -26,7 +26,7 @@ test(chalk.cyan('UPDATE a record'), function (t) {
     READ(rec, function (err2, res2) {
       rec.message = "my new message"; // change message
       // update record in ES
-      U.update(rec, function(err3, res3) {
+      UPDATE(rec, function(err3, res3) {
         t.equal(res3._version, 2, chalk.green("✓ Record updated (version: "+res3._version +")"));
         // read back the record to confirm it was updated:
         READ(rec, function(err4, res4){
