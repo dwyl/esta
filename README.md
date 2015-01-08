@@ -56,7 +56,7 @@ If you are looking for a module you can *trust*, these are the
 "badges" you are looking for:
 
 [![Build Status](https://travis-ci.org/nelsonic/esta.svg)](https://travis-ci.org/nelsonic/esta)
-[![Coverage Status](https://img.shields.io/coveralls/nelsonic/esta.svg)](https://coveralls.io/r/nelsonic/esta?branch=master)
+[![Coverage Status](https://img.shields.io/coveralls/nelsonic/esta.svg?style=flat)](https://coveralls.io/r/nelsonic/esta?branch=master)
 [![Code Climate](https://codeclimate.com/github/nelsonic/esta/badges/gpa.svg)](https://codeclimate.com/github/nelsonic/esta)
 
 
