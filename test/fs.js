@@ -61,19 +61,20 @@ test(chalk.cyan('Check if a FILE (record) exists'), function (t) {
     t.equal(exists, false, chalk.green("✓ ") + chalk.red('record did not exists'));
     FS.saveFile(record, function (err) {
       t.equal(err, null, chalk.green("✓ no error creating the file"));
-      t.end();
+      // delete the file
+      FS.deleteFile(record, function (err) {
+        t.equal(err, null, chalk.green("✓ file deleted, without issues"));
+        t.end();
+      })
     });
   });
 });
-
-
-
 
 test(chalk.cyan('TIDY UP TIME ( delete the ') + chalk.red('_data ') + chalk.cyan('directory )'), function (t) {
   FS.deleteDataDir(function (err, deleted) {
     t.equal(deleted, true, chalk.green("✓ ") + chalk.red('_data DELETED!'));
     FS.dataDirExists(function (err, exists) {
-      t.equal(exists, false, chalk.green("✓ ") + chalk.red('_data ') + chalk.green("dir exists cause we created it!"));
+      t.equal(exists, false, chalk.green("✓ ") + chalk.red('_data ') + chalk.green("dir should no longer exist!"));
       t.end();
     });
   });
