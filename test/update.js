@@ -5,6 +5,7 @@ var faker = require('faker');
 var CREATE = require('../lib/create.js');
 var READ = require('../lib/read.js');
 var UPDATE = require('../lib/update.js');
+var FS = require('../lib/fs.js');
 
 test(chalk.cyan('UPDATE a record'), function (t) {
   var record = {
@@ -29,6 +30,10 @@ test(chalk.cyan('UPDATE a record'), function (t) {
       UPDATE(rec, function(err3, res3) {
         t.equal(res3._version, 2, chalk.green("✓ Record updated (version: "+res3._version +")"));
         // read back the record to confirm it was updated:
+        FS.fileExists(record, function (err, exists) {
+          t.equal(exists, false, chalk.green("✓ ") + chalk.red('record did not exists'));
+        });
+
         READ(rec, function(err4, res4){
           t.equal(res4._source.message, rec.message, chalk.green("✓ Record message updated to: ")+chalk.cyan(rec.message));
           t.end();
