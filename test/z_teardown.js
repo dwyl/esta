@@ -33,12 +33,13 @@ test(chalk.cyan('Create dummy records to exercise ') + chalk.red('deleteDataDir 
   });
 });
 
-test(chalk.cyan('TIDY UP TIME ( delete all files in ') + chalk.red('_data ') + chalk.cyan('directory )'), function (t) {
-  D.deleteDataDir(function (err, deleted) {
-    t.equal(deleted, true, chalk.green("✓ ") + chalk.red('_data DELETED!'));
-    FS.dataDirExists(function (err, exists) {
-      t.equal(exists, false, chalk.green("✓ ") + chalk.red('_data ') + chalk.green("dir should no longer exist!"));
-      t.end();
-    });
-  });
-});
+// 
+// test(chalk.cyan('TIDY UP TIME ( delete all files in ') + chalk.red('_data ') + chalk.cyan('directory )'), function (t) {
+//   D.deleteDataDir(function (err, deleted) {
+//     t.equal(deleted, true, chalk.green("✓ ") + chalk.red('_data DELETED!'));
+//     FS.dataDirExists(function (err, exists) {
+//       t.equal(exists, false, chalk.green("✓ ") + chalk.red('_data ') + chalk.green("dir should no longer exist!"));
+//       t.end();
+//     });
+//   });
+// });
