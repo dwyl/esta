@@ -2,6 +2,7 @@ var test  = require('tape');
 var chalk = require('chalk');
 // var FS = require('../lib/fs.js');
 var FS = require('../lib/index.js').FS;
+var D  = require('../lib/fs_delete.js');
 
 test(chalk.cyan('CHECK if a ') + chalk.red('_data ') + chalk.cyan('directory exists'), function (t) {
   FS.dataDirExists(function (err, exists) {
@@ -23,7 +24,7 @@ test(chalk.cyan('CREATE the ') + chalk.red('_data ') + chalk.cyan('directory'), 
 });
 
 test(chalk.cyan('DELETE the ') + chalk.red('_data ') + chalk.cyan('directory'), function (t) {
-  FS.deleteDataDir(function (err, deleted) {
+  D.deleteDataDir(function (err, deleted) {
     t.equal(deleted, true, chalk.green("✓ ") + chalk.red('_data DELETED!'));
     FS.dataDirExists(function (err, exists) {
       t.equal(exists, false, chalk.green("✓ ") + chalk.red('_data ') + chalk.green("dir was deleted"));
@@ -58,21 +59,38 @@ var record = {
 
 test(chalk.cyan('Check if a FILE (record) exists'), function (t) {
   FS.fileExists(record, function (err, exists) {
+    t.equal(exists, false, chalk.green("✓ ") + chalk.red('record did not exists'));
+    t.end();
+  });
+});
 
+test(chalk.cyan('Create a FILE (record)'), function (t) {
+  FS.fileExists(record, function (err, exists) {
     t.equal(exists, false, chalk.green("✓ ") + chalk.red('record did not exists'));
     FS.saveFile(record, function (err) {
       t.equal(err, null, chalk.green("✓ no error creating the file"));
-      // delete the file
-      FS.deleteFile(record, function (err) {
-        t.equal(err, null, chalk.green("✓ file deleted, without issues"));
-        t.end();
-      })
+      t.end();
     });
   });
 });
 
-test(chalk.cyan('TIDY UP TIME ( delete the ') + chalk.red('_data ') + chalk.cyan('directory )'), function (t) {
-  FS.deleteDataDir(function (err, deleted) {
+// create another few files:
+test(chalk.cyan('Create dummy records to exercise ') + chalk.red('deleteDataDir ') + chalk.cyan('method )'), function (t) {
+  record.id = 12345;
+  FS.saveFile(record, function(){
+    console.log(' - - - - - - - ');
+    console.log(record.id);
+    record.id = 65432;
+    FS.saveFile(record, function(){
+      console.log(' - - - - - - - ');
+      console.log(record.id);
+      t.end();
+    });
+  });
+});
+
+test(chalk.cyan('TIDY UP TIME ( delete all files in ') + chalk.red('_data ') + chalk.cyan('directory )'), function (t) {
+  D.deleteDataDir(function (err, deleted) {
     t.equal(deleted, true, chalk.green("✓ ") + chalk.red('_data DELETED!'));
     FS.dataDirExists(function (err, exists) {
       t.equal(exists, false, chalk.green("✓ ") + chalk.red('_data ') + chalk.green("dir should no longer exist!"));
