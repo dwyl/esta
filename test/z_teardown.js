@@ -24,7 +24,11 @@ test(chalk.cyan('Create dummy records to exercise ') + chalk.red('deleteDataDir 
     FS.saveFile(record, function(){
       // console.log(' - - - - - - - ');
       // console.log(record.id);
-      t.end();
+      FS.fileExists(record, function (err, exists) {
+        t.equal(exists, true, chalk.green("✓ ") + chalk.red('record created'));
+        t.end();
+      });
+
     });
   });
 });
