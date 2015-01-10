@@ -1,6 +1,7 @@
 var test  = require('tape');
 var chalk = require('chalk');
-var FS = require('../lib/fs.js');
+// var FS = require('../lib/fs.js');
+var FS = require('../lib/index.js').FS;
 
 test(chalk.cyan('CHECK if a ') + chalk.red('_data ') + chalk.cyan('directory exists'), function (t) {
   FS.dataDirExists(function (err, exists) {
