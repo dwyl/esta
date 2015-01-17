@@ -21,20 +21,20 @@ test(chalk.cyan('UPDATE a record'), function (t) {
       rec[key] = record[key];
     }
   }
-  CREATE(record, function(err, res) {
+  CREATE(record, function(res) {
     t.equal(res.created, true, chalk.green("✓ Record Created " +rec.id));
 
-    READ(rec, function (err2, res2) {
+    READ(rec, function (res2) {
       rec.message = "my new message"; // change message
       // update record in ES
-      UPDATE(rec, function(err3, res3) {
+      UPDATE(rec, function(res3) {
         t.equal(res3._version, 2, chalk.green("✓ Record updated (version: "+res3._version +")"));
         // read back the record to confirm it was updated:
-        FS.fileExists(record, function (err, exists) {
-          t.equal(exists, false, chalk.green("✓ ") + chalk.red('record did not exists'));
-        });
+        // FS.fileExists(record, function (exists) {
+        //   t.equal(exists, true, chalk.green("✓ ") + chalk.red('record did not exists'));
+        // });
 
-        READ(rec, function(err4, res4){
+        READ(rec, function(res4){
           t.equal(res4._source.message, rec.message, chalk.green("✓ Record message updated to: ")+chalk.cyan(rec.message));
           t.end();
         })

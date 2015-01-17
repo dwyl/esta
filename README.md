@@ -20,7 +20,7 @@ esta
 ### Advanced
 
 - [ ] **Upsert** (*convenience* method)
-- [ ] delete (soft = archive)
+- [x] delete (soft = archive)
 - [ ] search :-)
 
 ![este train line graffiti](http://i.imgur.com/HBJ5JmX.jpg)

@@ -12,7 +12,7 @@ test(chalk.cyan('CREATE a record'), function (t) {
     message: faker.hacker.phrase()
   }
 
-  CREATE(record, function (err, res) {
+  CREATE(record, function (res) {
     t.equal(res.created, true, chalk.green("✓ Record Created"));
     t.end();
   });
@@ -23,7 +23,7 @@ test(chalk.cyan('CREATE a record without specifying index, type or id!'), functi
     message: faker.hacker.phrase()
   }
 
-  CREATE(record, function (err, res) {
+  CREATE(record, function (res) {
     t.equal(res.created, true, chalk.green("✓ Record Created"));
     t.end();
   });
