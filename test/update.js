@@ -30,9 +30,11 @@ test(chalk.cyan('UPDATE a record'), function (t) {
       UPDATE(rec, function(res3) {
         t.equal(res3._version, 2, chalk.green("✓ Record updated (version: "+res3._version +")"));
         // read back the record to confirm it was updated:
-        // FS.fileExists(record, function (exists) {
-        //   t.equal(exists, true, chalk.green("✓ ") + chalk.red('record did not exists'));
-        // });
+        // console.log(rec);
+        FS.fileExists(rec, function (exists) {
+          // console.log(exists);
+          t.equal(exists, true, chalk.green("✓ Record (backup) exists"));
+        });
 
         READ(rec, function(res4){
           t.equal(res4._source.message, rec.message, chalk.green("✓ Record message updated to: ")+chalk.cyan(rec.message));

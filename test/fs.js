@@ -58,14 +58,14 @@ var record = {
 }
 
 test(chalk.cyan('Check if a FILE (record) exists'), function (t) {
-  FS.fileExists(record, function (err, exists) {
+  FS.fileExists(record, function (exists) {
     t.equal(exists, false, chalk.green("✓ ") + chalk.red('record did not exists'));
     t.end();
   });
 });
 
 test(chalk.cyan('Create a FILE (record)'), function (t) {
-  FS.fileExists(record, function (err, exists) {
+  FS.fileExists(record, function (exists) {
     t.equal(exists, false, chalk.green("✓ ") + chalk.red('record did not exists'));
     FS.saveFile(record, function (err) {
       t.equal(err, null, chalk.green("✓ no error creating the file"));
@@ -76,18 +76,18 @@ test(chalk.cyan('Create a FILE (record)'), function (t) {
 
 test(chalk.cyan('Create a NEW Version of a record'), function (t) {
   record.id = '987654';
-  FS.fileExists(record, function (err, exists) {
+  FS.fileExists(record, function (exists) {
     // t.equal(exists, false, chalk.green("✓ ") + chalk.red('record did not exists'));
     FS.saveFile(record, function (err) {
       // attempt to save it a second time to see if it creates a new version
       FS.saveFile(record, function (err2) {
         record.id = '987654-1'; // revision 1
-        FS.fileExists(record, function(err, exists) {
+        FS.fileExists(record, function(exists) {
           t.equal(exists, true, chalk.green("✓ revision 1 exists"));
           record.id = '987654'; // reset id back to original
           FS.saveFile(record, function (err2) {
             record.id = '987654-2'; // revision 2
-            FS.fileExists(record, function(err, exists) {
+            FS.fileExists(record, function(exists) {
               t.equal(exists, true, chalk.green("✓ second revision exists"));
               t.end();
             });

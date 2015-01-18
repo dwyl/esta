@@ -24,7 +24,7 @@ test(chalk.cyan('Create dummy records to exercise ') + chalk.red('deleteDataDir 
     FS.saveFile(record, function(){
       // console.log(' - - - - - - - ');
       // console.log(record.id);
-      FS.fileExists(record, function (err, exists) {
+      FS.fileExists(record, function (exists) {
         t.equal(exists, true, chalk.green("✓ ") + chalk.red('record created'));
         t.end();
       });
