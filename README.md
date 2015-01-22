@@ -1,11 +1,13 @@
 esta
 ====
 
-**The *Simplest* ElasticSearch Node.js Client**
+**The *Simplest* ElasticSearch Node.js Module**
 
 ## Install
 
-- [x] Publish module to NPM
+```sh
+npm install esta --save
+```
 
 ## Methods
 
@@ -23,19 +25,16 @@ esta
 - [x] delete (soft = archive)
 - [ ] search :-)
 
-![este train line graffiti](http://i.imgur.com/HBJ5JmX.jpg)
 
 # Philosophy / Background / Detail
 
-## Core Modules Only
+## *Only* Core Modules [![Dependency Status](https://david-dm.org/nelsonic/esta.svg)](https://david-dm.org/nelsonic/esta)
 
-*Zero* external dependencies (3rd party modules).
+***Zero external dependencies*** (3rd party modules).
 
-[![Dependency Status](https://david-dm.org/nelsonic/esta.svg)](https://david-dm.org/nelsonic/esta)
-[![devDependency Status](https://david-dm.org/nelsonic/esta/dev-status.svg)](https://david-dm.org/nelsonic/esta#info=devDependencies)
-
-There are *many* great modules in the
-[node ecosystem](https://www.npmjs.org/).
+There are quite a few modules in the
+[node ecosystem](https://www.npmjs.org/) for
+use with ElasticSearch.
 When I saw how many dependencies the "Official" ElasticSearch
 Node.js Module
 https://github.com/elasticsearch/elasticsearch-js
@@ -45,22 +44,32 @@ it made it hard to
 [*contribute*](https://github.com/elasticsearch/elasticsearch-js/issues/158)
 to the project...
 
-My aim is to build something that only uses *core* modules,
+My aim is to build something that only uses *core* modules with *frozen* APIs,
 so I *never* have to *think* about upgrading - it also makes it a
 *lot* easier for others to learn how the module works, which
-invites contribution from the community.
+*invites contribution* from the community.
 
-## Code Quality
+### Dev Dependencies [![devDependency Status](https://david-dm.org/nelsonic/esta/dev-status.svg)](https://david-dm.org/nelsonic/esta#info=devDependencies)
+
+We *carefully* select and only use *well-maintained* "*pure*" JavaScript modules
+in oure development toolchain:
+
++ **Tape** for testing: https://github.com/substack/tape
++ **Istanbul** for Code Coverage: https://github.com/nelsonic/learn-istanbul
++ **Chalk** for colors in test output (readability)
++ **Faker** for creating *fake* records in tests: https://github.com/marak/Faker.js/
++ **Pre-commit** for ensuring all commits pass strict quality checks before being pushed to GitHub. see: https://github.com/nelsonic/learn-pre-commit
++ **jshint** checks code style is consistent:
+https://github.com/nelsonic/learn-jshint
+
+
+## Code Quality [![Build Status](https://travis-ci.org/nelsonic/esta.svg)](https://travis-ci.org/nelsonic/esta) [![Coverage Status](https://img.shields.io/coveralls/nelsonic/esta.svg?style=flat)](https://coveralls.io/r/nelsonic/esta?branch=master) [![Code Climate](https://codeclimate.com/github/nelsonic/esta/badges/gpa.svg)](https://codeclimate.com/github/nelsonic/esta)
 
 If you are looking for a module you can *trust*, these are the
-"badges" you are looking for:
-
-[![Build Status](https://travis-ci.org/nelsonic/esta.svg)](https://travis-ci.org/nelsonic/esta)
-[![Coverage Status](https://img.shields.io/coveralls/nelsonic/esta.svg?style=flat)](https://coveralls.io/r/nelsonic/esta?branch=master)
-[![Code Climate](https://codeclimate.com/github/nelsonic/esta/badges/gpa.svg)](https://codeclimate.com/github/nelsonic/esta)
+"badges" you are looking for.
 
 
-## Contributing
+## Contributing [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/nelsonic/esta/fork)
 
 ***All*** *contributions* are *welcome*.  
 If anything is unclear please create an issue:
