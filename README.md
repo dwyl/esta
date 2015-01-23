@@ -61,6 +61,7 @@ in our development toolchain:
 + **Pre-commit** for ensuring all commits pass strict quality checks before being pushed to GitHub. see: https://github.com/nelsonic/learn-pre-commit
 + **jshint** checks code style is consistent:
 https://github.com/nelsonic/learn-jshint
++ **CodeClimate** for tracking code quality and test coverage.
 
 
 ## Code Quality [![Build Status](https://travis-ci.org/nelsonic/esta.svg)](https://travis-ci.org/nelsonic/esta) [![Coverage Status](https://img.shields.io/coveralls/nelsonic/esta.svg?style=flat)](https://coveralls.io/r/nelsonic/esta?branch=master) [![Code Climate](https://codeclimate.com/github/nelsonic/esta/badges/gpa.svg)](https://codeclimate.com/github/nelsonic/esta)
