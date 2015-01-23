@@ -21,7 +21,7 @@ npm install esta --save
 
 ### Advanced
 
-- [ ] **Upsert** (*convenience* method)
+- [x] **Upsert** (*convenience* method)
 - [x] delete (soft = archive)
 - [ ] search :-)
 
@@ -52,7 +52,7 @@ so I *never* have to *think* about upgrading - it also makes it a
 ### Dev Dependencies [![devDependency Status](https://david-dm.org/nelsonic/esta/dev-status.svg)](https://david-dm.org/nelsonic/esta#info=devDependencies)
 
 We *carefully* select and only use *well-maintained* "*pure*" JavaScript modules
-in oure development toolchain:
+in our development toolchain:
 
 + **Tape** for testing: https://github.com/substack/tape
 + **Istanbul** for Code Coverage: https://github.com/nelsonic/learn-istanbul
