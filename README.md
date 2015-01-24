@@ -93,7 +93,7 @@ to isolate ElasticSearch and only install Java in the VM.
 
 The other obvious benefit of using Vagrant is that all your fellow developers
 will have exactly the same (latest) build so there's no risk of version
-incompatability. Learn more at: https://github.com/nelsonic/learn-vagrant
+incompatibility. Learn more at: https://github.com/nelsonic/learn-vagrant
 
 I've included a **Vagrantfile** in this repo which will get you
 up-and-running with Ubuntu, Node.js & ElasticSearch with a single command.
