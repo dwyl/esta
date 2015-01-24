@@ -61,14 +61,14 @@ in our development toolchain:
 + **Pre-commit** for ensuring all commits pass strict quality checks before being pushed to GitHub. see: https://github.com/nelsonic/learn-pre-commit
 + **jshint** checks code style is consistent:
 https://github.com/nelsonic/learn-jshint
-+ **CodeClimate** for tracking code quality and test coverage.
++ **CodeClimate** for tracking code quality and test coverage:
+https://github.com/nelsonic/learn-codeclimate
 
 
 ## Code Quality [![Build Status](https://travis-ci.org/nelsonic/esta.svg)](https://travis-ci.org/nelsonic/esta) [![Test Coverage](https://codeclimate.com/github/nelsonic/esta/badges/coverage.svg)](https://codeclimate.com/github/nelsonic/esta) [![Code Climate](https://codeclimate.com/github/nelsonic/esta/badges/gpa.svg)](https://codeclimate.com/github/nelsonic/esta)
 
 If you are looking for a module you can *trust*, these are the
 "badges" you are looking for.
-
 
 ## Contributing [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/nelsonic/esta/fork)
 
@@ -84,7 +84,21 @@ The choice of module name was the *answer* to the question:
 **Q**: Which ElasticSearch Node Module should I use...?  
 **A**: https://translate.google.com/#auto/en/esta
 
+## (Optional) Use *Vagrant* to Run ElasticSearch on your Dev Environment [![vagrant up](https://img.shields.io/badge/vagrant-up-brightgreen.svg?style=flat)](https://github.com/nelsonic/learn-vagrant)
 
+If, like me you prefer not to have Java running on your dev machine
+(because its [*chronically* insecure](http://krebsonsecurity.com/2014/04/critical-java-update-plugs-37-security-holes/))
+I *highly* recommend using **Vagrant** to run a light-weight virtual machine
+to isolate ElasticSearch and only install Java in the VM.
+
+The other obvious benefit of using Vagrant is that all your fellow developers
+will have exactly the same (latest) build so there's no risk of version
+incompatability. Learn more at: https://github.com/nelsonic/learn-vagrant
+
+I've included a **Vagrantfile** in this repo which will get you
+up-and-running with Ubuntu, Node.js & ElasticSearch with a single command.
+
+If you have any questions, just ***ask***!
 
 ### [Promises](http://youtu.be/llDikI2hTtk?t=21s) (Rant?)
 

@@ -1,5 +1,5 @@
 # New to Vagrant? Read: https://github.com/nelsonic/learn-vagrant
-# detailed instructions for installing
+# This script creates a VM with Ubuntu, Node.js, Java & ElasticSearch
 $script = <<SCRIPT
 
 sudo -i
