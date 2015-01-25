@@ -1,30 +1,43 @@
-var KEYWORDS = "exited, amazing"; // add keywords separated by spaces.
-// KEYWORDS = "katie, justin, kim, beyonce, 1DWorld, OMG, FML, news, breaking"; // LOTS of tweets!
-var POST_COUNT = 100;
+var ES = require('../lib/index');
+var fs = require('fs');
+var chalk = require('chalk');
+var fixtures = __dirname + '/fixtures';
+// start timer
+var start = new Date().getTime();
+var count = 0;
 
-var twitter = require('twitter');
-var tw = new twitter({
-  consumer_key: 'U8N2QzFu6Hv4BB3BjObIy9HDF',
-  consumer_secret: 'rJWtj5NneVWmfT8STB7YN6IBkLreke9JoJhP3nIe0ffnBq91Xv',
-  access_token_key: '2389016353-4tCDaVgRFkkNsWOj1sb6fZQ8s0bINqD5jJGmqRC',
-  access_token_secret: 'OEFnemh9FlSkOX5YuNP46XsDh3EutbHiiKq6q8wV2Pwko'
-});
-
-var FS = require('../lib/fs');
-
-tw.stream("statuses/filter", {
-  track: KEYWORDS, 'lang':'en'
-}, function(stream) {
-  stream.on('data', function(data) {
-    if(data.lang === 'en') {
-      console.log(data);
-      data.type = 'tweet';
-      data.index = 'twitter';
-      FS.saveFile(data, function(err) {
-        if(err){
-          console.log(err);
+fs.readdir(fixtures, function(err, files) {
+  var filecount = files.length;
+  // console.log(' >> '+filecount);
+  for(var i in files) {
+    var file = fixtures +'/' +files[i];
+    // console.log(file);
+    fs.readFile(file, function(err, data) {
+      if(err){
+        return console.log('Error obtaining data.', err);
+      }
+      var str = data.toString();
+      try {
+        JSON.parse(str);
+      } catch (e) {
+        return false;
+      }
+      var record = JSON.parse(str);
+      ES.CREATE(record, function(res) {
+        // if(res.created == true){
+          count++;
+        // }
+        // console.log(count + ' of ' + filecount);
+        if(filecount === count+1){
+          var end  = new Date().getTime();
+          var elapsed = (end-start)/1000;
+          var writerate = Math.round((filecount / elapsed), -1);
+          var log = chalk.black.bgGreen.bold('PERFORMANCE >>>> ') + chalk.cyan(' ' + filecount) + chalk.green(' Records Inserted in ');
+          log = log + chalk.cyan(elapsed) + chalk.green(' seconds ') + chalk.yellow(' ~ ');
+          log = log + chalk.cyan(writerate) + chalk.green(' records per second');
+          console.log(log)
         }
       });
-    }
-  }); // end .on('data') listener
+    });
+  }
 });
