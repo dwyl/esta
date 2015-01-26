@@ -24,6 +24,7 @@ npm install esta --save
 - [x] **Upsert** (*convenience* method)
 - [x] delete (soft = archive)
 - [ ] search :-)
+- [x] Stats
 
 
 # Philosophy / Background / Detail
