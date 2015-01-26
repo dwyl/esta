@@ -44,7 +44,7 @@ test(chalk.cyan('TIDY UP TIME ( delete all files in ') + chalk.red('_data ') + c
 });
 
 // NOT Exposing this method in the module because "DROP DATABASE" is too much power!
-var DROP  = require('../lib/z_dropindex.js');
+var DROP  = require('../lib/z_teardown.js');
 var STATS = require('../lib/stats.js');
 
 test( chalk.yellow.bgRed.bold(' - DROP ALL INDEXes so ES is Clean for Next Time - '), function (t) {
