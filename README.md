@@ -23,7 +23,7 @@ npm install esta --save
 
 - [x] **Upsert** (*convenience* method)
 - [x] delete (soft = archive)
-- [ ] search :-)
+- [x] Search!!
 - [x] Stats (see: [#31](https://github.com/nelsonic/esta/issues/31) for sample output)
 
 
