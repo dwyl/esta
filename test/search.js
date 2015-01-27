@@ -53,7 +53,7 @@ test(chalk.cyan('Query ES for string that is NOT in the index'), function (t) {
   SEARCH(query, function(res) {
     // console.log(res);
     t.equal(res.hits.total === 0, true,
-      chalk.green("✓ Search results found: "+ res.hits.total + " (as expected)"));
+      chalk.green("✓ ZERO Search results found: "+ res.hits.total + " (as expected)"));
     t.end();
   });
 });
@@ -61,12 +61,20 @@ test(chalk.cyan('Query ES for string that is NOT in the index'), function (t) {
 
 test(chalk.cyan('Search without supplying any params'), function (t) {
   // setup query:
-  var query = {};
+  var query = {}; // this will look for the string "hello" (default)
 
   SEARCH(query, function(res) {
     // console.log(res);
-    t.equal(res.hits.total === 0, true,
-      chalk.green("✓ Search results found: "+ res.hits.total + " (as expected)"));
+    t.equal(res.hits.total > 0, true,
+      chalk.green("✓ Found: "+ res.hits.total));
+    t.end();
+  });
+});
+
+test(chalk.cyan('Simulate actual usage: search for "Thanks"'), function (t) {
+  SEARCH({"text":"thanks"}, function(res) {
+    t.equal(res.hits.total > 0, true,
+      chalk.green("✓ Search results found: "+ res.hits.total ));
     t.end();
   });
 });
