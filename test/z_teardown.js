@@ -42,3 +42,18 @@ test(chalk.cyan('TIDY UP TIME ( delete all files in ') + chalk.red('_data ') + c
     });
   });
 });
+
+// NOT Exposing this method in the module because "DROP DATABASE" is too much power!
+var DROP  = require('../lib/z_teardown.js');
+var STATS = require('../lib/stats.js');
+
+test( chalk.yellow.bgRed.bold(' - DROP ALL INDEXes so ES is Clean for Next Time - '), function (t) {
+  DROP(record, function (res) {
+    // console.dir(res);
+    STATS(function (res) {
+      console.dir(res._shards);
+      t.deepEqual(res._all.primaries, {}, chalk.green.bold("✓ ALL Indexes DELETED"));
+      t.end();
+    });
+  });
+});

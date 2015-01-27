@@ -23,7 +23,8 @@ npm install esta --save
 
 - [x] **Upsert** (*convenience* method)
 - [x] delete (soft = archive)
-- [ ] search :-)
+- [x] Search!!
+- [x] Stats (see: [#31](https://github.com/nelsonic/esta/issues/31) for sample output)
 
 
 # Philosophy / Background / Detail
@@ -33,9 +34,9 @@ npm install esta --save
 ***Zero external dependencies*** (3rd party modules).
 
 There are quite a few modules in the
-[node ecosystem](https://www.npmjs.org/) for
+[node ecosystem](https://www.npmjs.com/search?q=elasticsearch) for
 use with ElasticSearch.
-When I saw how many dependencies the "Official" ElasticSearch
+However, when I saw how *many* dependencies the "Official" ElasticSearch
 Node.js Module
 https://github.com/elasticsearch/elasticsearch-js
 had and *especially* the number of
@@ -44,7 +45,7 @@ it made it hard to
 [*contribute*](https://github.com/elasticsearch/elasticsearch-js/issues/158)
 to the project...
 
-My aim is to build something that only uses *core* modules with *frozen* APIs,
+Our aim is to build something that only uses *core* modules with *frozen* APIs,
 so I *never* have to *think* about upgrading - it also makes it a
 *lot* easier for others to learn how the module works, which
 *invites contribution* from the community.
@@ -76,15 +77,7 @@ If you are looking for a module you can *trust*, these are the
 If anything is unclear please create an issue:
 https://github.com/nelsonic/esta/issues
 
-
-## Module Name
-
-The choice of module name was the *answer* to the question:
-
-**Q**: Which ElasticSearch Node Module should I use...?  
-**A**: https://translate.google.com/#auto/en/esta
-
-## (Optional) Use *Vagrant* to Run ElasticSearch on your Dev Environment [![vagrant up](https://img.shields.io/badge/vagrant-up-brightgreen.svg?style=flat)](https://github.com/nelsonic/learn-vagrant)
+## (*Optional*) Use *Vagrant* to Run ElasticSearch [![vagrant up](https://img.shields.io/badge/vagrant-up-brightgreen.svg?style=flat)](https://github.com/nelsonic/learn-vagrant)
 
 If, like me you prefer not to have Java running on your dev machine
 (because its [*chronically* insecure](http://krebsonsecurity.com/2014/04/critical-java-update-plugs-37-security-holes/))
@@ -99,6 +92,15 @@ I've included a **Vagrantfile** in this repo which will get you
 up-and-running with Ubuntu, Node.js & ElasticSearch with a single command.
 
 If you have any questions, just ***ask***!
+
+
+## Module Name
+
+The choice of module name was the *answer* to the question:
+
+**Q**: Which ElasticSearch Node Module should I use...?  
+**A**: https://translate.google.com/#auto/en/esta
+
 
 ### [Promises](http://youtu.be/llDikI2hTtk?t=21s) (Rant?)
 

@@ -1,18 +1,12 @@
 var test  = require('tape');
 var chalk = require('chalk');
-var faker = require('faker');
+var RECORD = require('./fake_record.js');
 
 var CREATE = require('../lib/create.js');
 var READ = require('../lib/read.js');
 
 test(chalk.cyan('READ a record'), function (t) {
-  var record = {
-    type: 'tweet',
-    index: 'twitter',
-    id: Math.floor(Math.random() * (1000000)),
-    message: faker.hacker.phrase()
-  }
-
+  var record = RECORD();
   var rec = {}; // make a copy of rec for later.
   for(var key in record) {
     if(record.hasOwnProperty(key)) {
@@ -30,12 +24,7 @@ test(chalk.cyan('READ a record'), function (t) {
 });
 
 test(chalk.cyan('READ a record that does not exist (expect found === false)'), function (t) {
-  var record = {
-    type: 'tweet',
-    index: 'twitter',
-    id: Math.floor(Math.random() * (1000000)),
-    message: faker.hacker.phrase()
-  }
+  var record = RECORD();
   READ(record, function (res2) {
     t.equal(res2.found, false, chalk.green("✓ Record " + res2._id + " Not Found (as expected)"));
     t.end();
