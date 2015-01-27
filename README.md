@@ -24,7 +24,7 @@ npm install esta --save
 - [x] **Upsert** (*convenience* method)
 - [x] delete (soft = archive)
 - [ ] search :-)
-- [x] Stats
+- [x] Stats (see: [#31](https://github.com/nelsonic/esta/issues/31) for sample output)
 
 
 # Philosophy / Background / Detail
@@ -34,9 +34,9 @@ npm install esta --save
 ***Zero external dependencies*** (3rd party modules).
 
 There are quite a few modules in the
-[node ecosystem](https://www.npmjs.org/) for
+[node ecosystem](https://www.npmjs.com/search?q=elasticsearch) for
 use with ElasticSearch.
-When I saw how many dependencies the "Official" ElasticSearch
+However, when I saw how *many* dependencies the "Official" ElasticSearch
 Node.js Module
 https://github.com/elasticsearch/elasticsearch-js
 had and *especially* the number of

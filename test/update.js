@@ -1,6 +1,6 @@
 var test  = require('tape');
 var chalk = require('chalk');
-var faker = require('faker');
+var record = require('./fake_record.js')(); // fake record
 
 var CREATE = require('../lib/create.js');
 var READ = require('../lib/read.js');
@@ -8,14 +8,7 @@ var UPDATE = require('../lib/update.js');
 var FS = require('../lib/fs.js');
 
 test(chalk.cyan('UPDATE a record'), function (t) {
-  var record = {
-    type: 'tweet',
-    index: 'twitter',
-    id: Math.floor(Math.random() * (1000000)),
-    message: faker.hacker.phrase()
-  }
-
-  var rec = {}; // make a copy of rec for later.
+  var rec = {}; // make a copy of record for later.
   for(var key in record) {
     if(record.hasOwnProperty(key)) {
       rec[key] = record[key];

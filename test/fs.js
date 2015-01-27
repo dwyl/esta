@@ -49,13 +49,7 @@ test(chalk.cyan('CREATE the ') + chalk.red('_data ') + chalk.cyan('directory if 
 
 });
 
-// fake record
-var record = {
-  type: 'tweet',
-  index: 'twitter',
-  id: Math.floor(Math.random() * (1000000)),
-  message: "what evs"
-}
+var record = require('../test/fake_record.js')(); // fake record
 
 test(chalk.cyan('Check if a FILE (record) exists'), function (t) {
   FS.fileExists(record, function (exists) {
