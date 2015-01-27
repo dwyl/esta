@@ -1,21 +1,13 @@
 var test  = require('tape');
 var chalk = require('chalk');
-var faker = require('faker');
+var RECORD = require('../test/fake_record.js'); // fake record
 
 var CREATE = require('../lib/create.js');
 var READ = require('../lib/read.js');
 var UPSERT = require('../lib/upsert.js');
 
-
-
 test(chalk.cyan('UPSERT a *NEW* Record'), function (t) {
-  var record = {
-    type: 'tweet',
-    index: 'twitter',
-    id: Math.floor(Math.random() * (1000000)),
-    message: faker.hacker.phrase()
-  }
-
+  var record = RECORD();
   var rec = {}; // make a copy of rec for later.
   for(var key in record) {
     if(record.hasOwnProperty(key)) {
@@ -29,12 +21,7 @@ test(chalk.cyan('UPSERT a *NEW* Record'), function (t) {
 });
 
 test(chalk.cyan('UPSERT *Existing* Record'), function (t) {
-  var record = {
-    type: 'tweet',
-    index: 'twitter',
-    id: Math.floor(Math.random() * (1000000)),
-    message: faker.hacker.phrase()
-  }
+  var record = RECORD();
   var rec = {}; // make a copy of rec for later.
   for(var key in record) {
     if(record.hasOwnProperty(key)) {
@@ -44,9 +31,6 @@ test(chalk.cyan('UPSERT *Existing* Record'), function (t) {
 
   CREATE(record, function (res) {
     t.equal(res.created, true, chalk.green("✓ Record " + res._id + " Created"));
-    // console.log(' - - - - - ');
-    // console.log(record);
-    // console.log(' - - - - - ');
     rec.message = 'new message';
 
     UPSERT(rec, function (res) {
