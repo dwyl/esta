@@ -5,6 +5,7 @@ var record = require('./fake_record.js')();
 var CREATE = require('../lib/create.js');
 var READ = require('../lib/read.js');
 var DELETE = require('../lib/delete.js');
+var FS     = require('../lib/fs.js');
 
 test(chalk.cyan('DELETE a Record'), function (t) {
   var rec = {}; // make a copy of rec for later.
@@ -19,7 +20,13 @@ test(chalk.cyan('DELETE a Record'), function (t) {
       // attempt to read record - it should fail
       READ(rec, function(res4){
         t.equal(res4.found, false, chalk.green("✓ Record Deleted"));
-        t.end();
+        console.log(' - - - ')
+        console.log(rec);
+        console.log(' - - - ')
+        FS.fileExists(rec, function(exists) {
+          t.equal(exists, true, chalk.green("✓ Record was backed up"));
+          t.end();
+        });
       })
     });
   });
