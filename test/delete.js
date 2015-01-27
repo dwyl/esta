@@ -16,13 +16,13 @@ test(chalk.cyan('DELETE a Record'), function (t) {
   }
   CREATE(record, function(res) {
     DELETE(rec, function(res3) {
-        t.equal(res3.found, true, chalk.green("✓ Record Existed - So Delete it!"));
+        t.equal(res3.found, true, chalk.green("✓ Record Existed - So DELETE it!"));
       // attempt to read record - it should fail
       READ(rec, function(res4){
         t.equal(res4.found, false, chalk.green("✓ Record Deleted"));
-        console.log(' - - - ')
-        console.log(rec);
-        console.log(' - - - ')
+        // console.log(' - - - ')
+        // console.log(rec);
+        // console.log(' - - - ')
         FS.fileExists(rec, function(exists) {
           t.equal(exists, true, chalk.green("✓ Record was backed up"));
           t.end();
