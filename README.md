@@ -89,7 +89,7 @@ will have exactly the same (latest) build so there's no risk of version
 incompatibility. Learn more at: https://github.com/nelsonic/learn-vagrant
 
 I've included a **Vagrantfile** in this repo which will get you
-up-and-running with Ubuntu, Node.js & ElasticSearch with a single command.
+up-and-running with Ubuntu, Node.js & ElasticSearch with a single command: [**vagrant up**](https://github.com/nelsonic/learn-vagrant)
 
 If you have any questions, just ***ask***!
 
@@ -111,13 +111,13 @@ https://github.com/petkaantonov/bluebird#what-are-promises-and-why-should-i-use-
 
 But I've not yet found a situation where I *needed* to use them.  
 When I see *junior* developers using
-[Q](https://www.npmjs.org/package/q),  [when](https://github.com/cujojs/when),  
+[Q](https://www.npmjs.org/package/q),  [when](https://github.com/cujojs/when),
 [promise](https://github.com/then/promise),
 [Bluebird](https://github.com/petkaantonov/bluebird), etc.
-I can't help but think:  
-what are you *doing* that was ***too complicated for callbacks***?  
+I can't help but think:
+*what* are you *doing* that was ***too complicated for callbacks***?  
 
-So when a module *forces* me to use them
+So when a module *forces* me to use Promises,
 ["***its a no from me***"](http://i.imgur.com/TgTX9Kf.jpg)
 
 ![promises broken](http://i.imgur.com/3bzRW8y.jpg)
