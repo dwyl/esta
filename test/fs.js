@@ -4,10 +4,20 @@ var chalk = require('chalk');
 var FS = require('../lib/index.js').FS;
 var D  = require('../lib/fs_delete.js');
 
+test(chalk.cyan('Create and Delete ') + chalk.red('_data ') + chalk.cyan(' (no files)'), function (t) {
+  FS.dataDirExists(function (err, exists) {
+    console.log('>> _data exists: '+exists);
+    D.deleteDataDir(function (err, deleted) {
+      t.equal(deleted, true, chalk.green("✓ ") + chalk.red('_data ') + chalk.green("deleted"));
+      t.end();
+    });
+  });
+});
+
 test(chalk.cyan('CHECK if a ') + chalk.red('_data ') + chalk.cyan('directory exists'), function (t) {
   FS.dataDirExists(function (err, exists) {
     // console.log(exists);
-    t.equal(exists, true, chalk.green("✓ ") + chalk.red('_data ') + chalk.green("dir does NOT exist on startup"));
+    t.equal(exists, false, chalk.green("✓ ") + chalk.red('_data ') + chalk.green("dir does NOT exist on startup"));
     t.end();
   });
 });
@@ -25,6 +35,9 @@ test(chalk.cyan('CREATE the ') + chalk.red('_data ') + chalk.cyan('directory'), 
 
 test(chalk.cyan('DELETE the ') + chalk.red('_data ') + chalk.cyan('directory'), function (t) {
   D.deleteDataDir(function (err, deleted) {
+    console.log(' - - - - - - - ');
+    console.log(err, deleted);
+    console.log(' - - - - - - - ');
     t.equal(deleted, true, chalk.green("✓ ") + chalk.red('_data DELETED!'));
     FS.dataDirExists(function (err, exists) {
       t.equal(exists, false, chalk.green("✓ ") + chalk.red('_data ') + chalk.green("dir was deleted"));
@@ -88,6 +101,18 @@ test(chalk.cyan('Create a NEW Version of a record'), function (t) {
           });
         });
       });
+    });
+  });
+});
+
+test(chalk.cyan('CHECK the FILE(record) contains expected content'), function(t) {
+  record.id = 14092112;
+  record.message = "Testing to check the file contains expected content - this string"
+  FS.saveFile(record, function (err) {
+    FS.readFile(record, function (err, res) {
+      // t.equal(err, null, chalk.green("✓ No Errors"));
+      t.equal(res.message, record.message, chalk.green("✓ Record contains expected content"));
+      t.end();
     });
   });
 });
