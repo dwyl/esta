@@ -12,7 +12,7 @@ function endTest(t){
   var end  = new Date().getTime();
   var elapsed = (end-start)/1000;
   var writerate = Math.round((FILECOUNT / elapsed), -1);
-  var log = chalk.black.bgGreen.bold(' PERFORMANCE >>>> ')
+  var log = chalk.black.bgGreen.bold(' READ PERFORMANCE >>>> ')
   log = log + chalk.cyan(' ' + FILECOUNT) + chalk.green(' Records READ in ');
   log = log + chalk.cyan(elapsed) + chalk.green(' seconds ') + chalk.yellow(' ~ ');
   log = log + chalk.cyan(writerate) + chalk.green(' records per second');
