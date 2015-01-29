@@ -7,7 +7,7 @@ var SEARCH = require('../lib/search');
 
 test(chalk.cyan('Query ES for string: "amazing"'), function (t) {
   loadFixtures( function() {
-    console.log(chalk.black.bgGreen.bold(' Fixtures Loaded. Lets Search! '));
+    // console.log(chalk.black.bgGreen.bold(' Fixtures Loaded. Lets Search! '));
     // twitter_tweet_559464234510471200
     var record = {
       type: 'tweet',

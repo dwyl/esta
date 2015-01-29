@@ -34,7 +34,7 @@ function processFile(filename, callback) {
         var end  = new Date().getTime();
         var elapsed = (end-start)/1000;
         var writerate = Math.round((filecount / elapsed), -1);
-        var log = chalk.black.bgGreen.bold(' PERFORMANCE >>>> ') + chalk.cyan(' ' + filecount) + chalk.green(' Records Inserted in ');
+        var log = chalk.black.bgGreen.bold(' WRITE PERFORMANCE >>>> ') + chalk.cyan(' ' + filecount) + chalk.green(' Records Inserted in ');
         log = log + chalk.cyan(elapsed) + chalk.green(' seconds ') + chalk.yellow(' ~ ');
         log = log + chalk.cyan(writerate) + chalk.green(' records per second');
         console.log(log);
