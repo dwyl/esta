@@ -35,9 +35,6 @@ test(chalk.cyan('CREATE the ') + chalk.red('_data ') + chalk.cyan('directory'), 
 
 test(chalk.cyan('DELETE the ') + chalk.red('_data ') + chalk.cyan('directory'), function (t) {
   D.deleteDataDir(function (err, deleted) {
-    console.log(' - - - - - - - ');
-    console.log(err, deleted);
-    console.log(' - - - - - - - ');
     t.equal(deleted, true, chalk.green("✓ ") + chalk.red('_data DELETED!'));
     FS.dataDirExists(function (err, exists) {
       t.equal(exists, false, chalk.green("✓ ") + chalk.red('_data ') + chalk.green("dir was deleted"));

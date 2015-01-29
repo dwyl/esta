@@ -30,6 +30,7 @@ function handler (filename, t) {
     try {
       json = JSON.parse(str);
     } catch (e) {
+      GLOBAL_COUNTER--;
       return false;
     }
 
@@ -41,8 +42,9 @@ function handler (filename, t) {
     // READ the record from ES and confirm the text is identical
     ES.READ(record, function(res){
       GLOBAL_COUNTER--;
-
+      // console.log(' >> '+GLOBAL_COUNTER);
       if(GLOBAL_COUNTER === 1) {
+
         t.equal(json.text, res._source.text, 'ES Record === Fixture Record');
         endTest(t);
       }
@@ -56,7 +58,7 @@ test(chalk.cyan("READ Performance test"), function(t) {
   fs.readdir(fixtures, function(err, files) {
     // filecount = files.length;
     GLOBAL_COUNTER = FILECOUNT = files.length;
-    // console.log(' >> '+GLOBAL_COUNTER);
+    console.log(' >> '+GLOBAL_COUNTER);
     for(var i in files) {
       var filename = fixtures +'/' +files[i];
       // open the file and extract contents
