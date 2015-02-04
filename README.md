@@ -58,7 +58,6 @@ in our development toolchain:
 + **Tape** for testing: https://github.com/substack/tape
 + **Istanbul** for Code Coverage: https://github.com/nelsonic/learn-istanbul
 + **Chalk** for colors in test output (readability)
-+ **Faker** for creating *fake* records in tests: https://github.com/marak/Faker.js/
 + **Pre-commit** for ensuring all commits pass strict quality checks before being pushed to GitHub. see: https://github.com/nelsonic/learn-pre-commit
 + **jshint** checks code style is consistent:
 https://github.com/nelsonic/learn-jshint
