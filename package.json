@@ -1,6 +1,6 @@
 {
   "name": "esta",
-  "version": "1.0.8",
+  "version": "1.0.11",
   "description": "The Simplest ElasticSearch Node.js Client'",
   "main": "lib/index.js",
   "directories": {
