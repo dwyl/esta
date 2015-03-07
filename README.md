@@ -3,29 +3,86 @@
 
 **The *Simplest* ElasticSearch Node.js Module**
 
-## Install
+## Usage
+
+### Install from [NPM](https://www.npmjs.com/package/esta)
 
 ```sh
 npm install esta --save
 ```
 
-## Methods
+### [CRUD](http://en.wikipedia.org/wiki/Create,_read,_update_and_delete) Methods
 
-### Basic [CRUD](http://en.wikipedia.org/wiki/Create,_read,_update_and_delete)
+#### Connect to ES Cluster
 
-- [x] Connect to ES Cluster (confirm we can *access* ES)
-- [x] Create/Save a record (basic POST request)
+
+- [x] Create/Save a (new) record
 - [x] Read a record
 - [x] Update a record
-- [x] Delete (hard)
 
-### Advanced
 
-- [x] **Upsert** (*convenience* method)
-- [x] delete (soft = archive)
+### Search & Stats
+
 - [x] Search!!
 - [x] Stats (see: [#31](https://github.com/nelsonic/esta/issues/31) for sample output)
 
+### Convenience Method: Upsert
+
+Under the hood this just does a **READ** and
+if the record already exists, **UPDATE** it,
+otherwise **CREATE** it.
+
+<br />
+<br />
+
+## *Required*: Use *Environment Variables* for HOST & PORT [![12 Factor App](https://img.shields.io/badge/twelve%20factor-passing-brightgreen.svg?style=flat)](http://12factor.net/config)
+
+We need to move away from using **config** ***files***.  
+Read: http://12factor.net/config (Store config in the environment - *no more config.json*!)
+
+### Local/Dev Machine
+
+To use environment variables for HOST & PORT on your local machine:
+you will need to run the following **Shell Commands**:
+
+```sh
+export ES_HOST="127.0.0.1"
+export ES_PORT=9200
+```
+
+### (Travis) CI
+
+Sample .travis.yml file:
+
+```sh
+language: node_js
+node_js:
+  - 0.10
+services:
+  - elasticsearch
+env:
+  - ES_HOST="127.0.0.1" ES_PORT=9200
+```
+if you are *new* to Travis-CI see: https://github.com/docdis/learn-travis
+
+## (*Optional*) Use *Vagrant* to Run ElasticSearch [![vagrant up](https://img.shields.io/badge/vagrant-up-brightgreen.svg?style=flat)](https://github.com/nelsonic/learn-vagrant)
+
+If, like me you prefer not to have Java running on your dev machine
+(because its [*chronically* insecure](http://krebsonsecurity.com/2014/04/critical-java-update-plugs-37-security-holes/))
+I *highly* recommend using **Vagrant** to run a light-weight virtual machine
+to isolate ElasticSearch and only install Java in the VM.
+
+The other obvious benefit of using Vagrant is that all your fellow developers
+will have exactly the same (latest) build so there's no risk of version
+incompatibility. Learn more at: https://github.com/nelsonic/learn-vagrant
+
+I've included a **Vagrantfile** in this repo which will get you
+up-and-running with Ubuntu, Node.js & ElasticSearch with a single command: [**vagrant up**](https://github.com/nelsonic/learn-vagrant)
+
+If you have any questions, just ***ask***!
+
+<br />
+<br />
 
 # Philosophy / Background / Detail
 
@@ -75,54 +132,6 @@ If you are looking for a module you can *trust*, these are the
 ***All*** *contributions* are *welcome*.  
 If anything is unclear please create an issue:
 https://github.com/nelsonic/esta/issues
-
-## *Required*: Use *Environment Variables* for HOST & PORT [![12 Factor App](https://img.shields.io/badge/twelve%20factor-passing-brightgreen.svg?style=flat)](http://12factor.net/config)
-
-We need to move away from using **config** ***files***.  
-Read: http://12factor.net/config (Store config in the environment - *no more config.json*!)
-
-### Local/Dev Machine
-
-To use environment variables for HOST & PORT on your local machine:
-you will need to run the following **Shell Commands**:
-
-```sh
-export ES_HOST="127.0.0.1"
-export ES_PORT=9200
-```
-
-### (Travis) CI
-
-Sample .travis.yml file:
-
-````sh
-language: node_js
-node_js:
-  - 0.10
-services:
-  - elasticsearch
-env:
-  global:
-    - ES_HOST="127.0.0.1" ES_PORT=9200
-```
-
-
-## (*Optional*) Use *Vagrant* to Run ElasticSearch [![vagrant up](https://img.shields.io/badge/vagrant-up-brightgreen.svg?style=flat)](https://github.com/nelsonic/learn-vagrant)
-
-If, like me you prefer not to have Java running on your dev machine
-(because its [*chronically* insecure](http://krebsonsecurity.com/2014/04/critical-java-update-plugs-37-security-holes/))
-I *highly* recommend using **Vagrant** to run a light-weight virtual machine
-to isolate ElasticSearch and only install Java in the VM.
-
-The other obvious benefit of using Vagrant is that all your fellow developers
-will have exactly the same (latest) build so there's no risk of version
-incompatibility. Learn more at: https://github.com/nelsonic/learn-vagrant
-
-I've included a **Vagrantfile** in this repo which will get you
-up-and-running with Ubuntu, Node.js & ElasticSearch with a single command: [**vagrant up**](https://github.com/nelsonic/learn-vagrant)
-
-If you have any questions, just ***ask***!
-
 
 
 ## Module Name
