@@ -10,3 +10,9 @@ test(chalk.cyan('CONNECT to ES on 127.0.0.1:9200'), function (t) {
     t.end();
   });
 });
+
+
+process.on('uncaughtException', function(err) {
+  console.log('Database FAIL ... ' + err);
+  console.log('Tip: Remember to start the Vagrant VM and Elasticsearch DB!')
+});

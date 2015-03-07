@@ -76,6 +76,18 @@ If you are looking for a module you can *trust*, these are the
 If anything is unclear please create an issue:
 https://github.com/nelsonic/esta/issues
 
+## *Required*: Use *Environment Variables* for HOST & PORT
+
+To use environment variables for HOST & PORT
+you will need to run the following **Shell Commands**:
+
+```sh
+export ES_HOST="127.0.0.1"
+export ES_PORT=9200
+```
+
+> Read: http://12factor.net/config (Store config in the environment - no more config.json files!)
+
 ## (*Optional*) Use *Vagrant* to Run ElasticSearch [![vagrant up](https://img.shields.io/badge/vagrant-up-brightgreen.svg?style=flat)](https://github.com/nelsonic/learn-vagrant)
 
 If, like me you prefer not to have Java running on your dev machine
@@ -91,6 +103,7 @@ I've included a **Vagrantfile** in this repo which will get you
 up-and-running with Ubuntu, Node.js & ElasticSearch with a single command: [**vagrant up**](https://github.com/nelsonic/learn-vagrant)
 
 If you have any questions, just ***ask***!
+
 
 
 ## Module Name
