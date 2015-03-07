@@ -68,6 +68,6 @@ module.exports = loadFixtures;
 // });
 
 process.on('uncaughtException', function(err) {
-  console.log('Database FAIL ... ' + err);
+  console.log('FAILED TO LOAD FIXTURE DATA ... ' + err);
   console.log('Tip: Remember to start the Vagrant VM and Elasticsearch DB!')
 });
