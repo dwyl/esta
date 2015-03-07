@@ -1,5 +1,10 @@
 language: node_js
 node_js:
   - 0.10
+  - 0.12
 services:
   - elasticsearch
+env:
+  global:
+    - CAMPFIRE_TOKEN=abc123
+    - TIMEOUT=1000
