@@ -76,7 +76,7 @@ If you are looking for a module you can *trust*, these are the
 If anything is unclear please create an issue:
 https://github.com/nelsonic/esta/issues
 
-## *Required*: Use *Environment Variables* for HOST & PORT
+## *Required*: Use *Environment Variables* for HOST & PORT [![12 Factor App](https://img.shields.io/badge/twelve%20factor-passing-brightgreen.svg?style=flat)](http://12factor.net/config)
 
 To use environment variables for HOST & PORT
 you will need to run the following **Shell Commands**:
@@ -85,6 +85,8 @@ you will need to run the following **Shell Commands**:
 export ES_HOST="127.0.0.1"
 export ES_PORT=9200
 ```
+
+
 
 > Read: http://12factor.net/config (Store config in the environment - no more config.json files!)
 
