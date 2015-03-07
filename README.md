@@ -78,7 +78,12 @@ https://github.com/nelsonic/esta/issues
 
 ## *Required*: Use *Environment Variables* for HOST & PORT [![12 Factor App](https://img.shields.io/badge/twelve%20factor-passing-brightgreen.svg?style=flat)](http://12factor.net/config)
 
-To use environment variables for HOST & PORT
+We need to move away from using **config** ***files***.  
+Read: http://12factor.net/config (Store config in the environment - *no more config.json*!)
+
+### Local/Dev Machine
+
+To use environment variables for HOST & PORT on your local machine:
 you will need to run the following **Shell Commands**:
 
 ```sh
@@ -86,9 +91,21 @@ export ES_HOST="127.0.0.1"
 export ES_PORT=9200
 ```
 
+### (Travis) CI
 
+Sample .travis.yml file:
 
-> Read: http://12factor.net/config (Store config in the environment - no more config.json files!)
+````sh
+language: node_js
+node_js:
+  - 0.10
+services:
+  - elasticsearch
+env:
+  global:
+    - ES_HOST="127.0.0.1" ES_PORT=9200
+```
+
 
 ## (*Optional*) Use *Vagrant* to Run ElasticSearch [![vagrant up](https://img.shields.io/badge/vagrant-up-brightgreen.svg?style=flat)](https://github.com/nelsonic/learn-vagrant)
 
