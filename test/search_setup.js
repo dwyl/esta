@@ -17,6 +17,8 @@ function processFile(filename, callback) {
     try {
       JSON.parse(str);
     } catch (e) {
+      console.log("ERROR: "+e)
+      console.log("BAD FILE >>>>> "+filename);
       return false;
     }
     var record = JSON.parse(str);
@@ -24,6 +26,9 @@ function processFile(filename, callback) {
       if(record.hasOwnProperty(key) && record[key] === null) {
         delete record[key];
       }
+    }
+    if(!record.text) {
+      console.log(" >>>>> "+filename);
     }
     ES.CREATE(record, function(res) {
       // if(res.created == true){
@@ -44,7 +49,7 @@ function processFile(filename, callback) {
   });
 }
 
-module.exports = function loadFixtures(callback){
+function loadFixtures(callback){
   fs.readdir(fixtures, function(err, files) {
     filecount = files.length;
     // console.log(' >> '+filecount);
@@ -54,3 +59,15 @@ module.exports = function loadFixtures(callback){
     }
   });
 }
+
+module.exports = loadFixtures;
+
+// console.log(' - - - - LOADING DATA - - - - -');
+// loadFixtures(function() {
+//     console.log('done loading');
+// });
+
+process.on('uncaughtException', function(err) {
+  console.log('Database FAIL ... ' + err);
+  console.log('Tip: Remember to start the Vagrant VM and Elasticsearch DB!')
+});
