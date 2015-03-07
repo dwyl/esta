@@ -6,5 +6,5 @@ services:
   - elasticsearch
 env:
   global:
-    - CAMPFIRE_TOKEN=abc123
-    - TIMEOUT=1000
+    - ES_HOST="127.0.0.1"
+    - ES_PORT=9200
