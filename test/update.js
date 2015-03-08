@@ -21,9 +21,10 @@ test(chalk.cyan('UPDATE a record'), function (t) {
       rec.message = "my new message"; // change message
       // update record in ES
       UPDATE(rec, function(res3) {
+
         t.equal(res3._version, 2, chalk.green("✓ Record updated (version: "+res3._version +")"));
         // read back the record to confirm it was updated:
-        // console.log(rec);
+        console.log(res3);
         FS.fileExists(rec, function (exists) {
           // console.log(exists);
           t.equal(exists, true, chalk.green("✓ Record (backup) exists"));

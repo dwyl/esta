@@ -3,3 +3,5 @@ node_js:
   - 0.10
 services:
   - elasticsearch
+env:
+  - ES_HOST="127.0.0.1" ES_PORT=9200

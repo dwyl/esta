@@ -1,31 +1,409 @@
-*esta*  [![Node.js Version][node-version-image]][node-version-url] [![NPM Version][npm-image]][npm-url]  [![Build Status][travis-image]][travis-url] [![Test Coverage][coveralls-image]][coveralls-url] [![Dependency Status](https://david-dm.org/nelsonic/esta.svg)](https://david-dm.org/nelsonic/esta)
+*esta*  
 ====
+[![Node.js Version][node-version-image]][node-version-url] [![NPM Version][npm-image]][npm-url]  [![Build Status][travis-image]][travis-url] [![Test Coverage][coveralls-image]][coveralls-url]
+[![Code Climate](https://codeclimate.com/github/nelsonic/esta/badges/gpa.svg)](https://codeclimate.com/github/nelsonic/esta)
+[![Dependency Status](https://david-dm.org/nelsonic/esta.svg)](https://david-dm.org/nelsonic/esta)
+
 
 **The *Simplest* ElasticSearch Node.js Module**
 
-## Install
+## Usage
+
+### Install from [NPM](https://www.npmjs.com/package/esta)
 
 ```sh
 npm install esta --save
 ```
 
-## Methods
+### [CRUD](http://en.wikipedia.org/wiki/Create,_read,_update_and_delete) Methods
 
-### Basic [CRUD](http://en.wikipedia.org/wiki/Create,_read,_update_and_delete)
+#### CONNECT to ElasticSearch Cluster >  ES.CONNECT(calback(response))
 
-- [x] Connect to ES Cluster (confirm we can *access* ES)
-- [x] Create/Save a record (basic POST request)
-- [x] Read a record
-- [x] Update a record
-- [x] Delete (hard)
+If you need to check the connection status to the ElasticSearch Instance/Cluster
+we expose the handy `ES.CONNECT` method:
 
-### Advanced
+```js
+var ES = require('../lib/index');
 
-- [x] **Upsert** (*convenience* method)
-- [x] delete (soft = archive)
-- [x] Search!!
-- [x] Stats (see: [#31](https://github.com/nelsonic/esta/issues/31) for sample output)
+ES.CONNECT(function (response) {
+  console.log(response);
+});
+```
+example `ES.CONNECT` [response](https://travis-ci.org/nelsonic/esta/jobs/53533613#L158):
 
+```js
+{ status: 200,
+  name: 'Ultragirl',
+  cluster_name: 'elasticsearch',
+  version:
+   { number: '1.4.2',
+     build_hash: '927caff6f05403e936c20bf4529f144f0c89fd8c',
+     build_timestamp: '2014-12-16T14:11:12Z',
+     build_snapshot: false,
+     lucene_version: '4.10.2' },
+  tagline: 'You Know, for Search' }
+```
+***Note***: **Esta** *expects* you to have environment variables set up for
+**ES_HOST** and **ES_PORT** (see below)
+
+<br />
+
+#### CREATE (Save) a (new) record > ES.CREATE(record, callback(response))
+
+Creating a new record is *easy*:
+
+```js
+// define the record you want to store:
+var record = {
+  type: 'tweet',
+  index: 'twitter',
+  id: Math.floor(Math.random() * (100000)), // or what ever GUID you want
+  message: 'Your amazing message goes here'
+};
+ES.CREATE(record, function(response) {
+ // do what ever you like with the response
+});
+```
+A typical *successful* `ES.CREATE` response:
+```js
+{ _index: 'twitter',
+  _type: 'tweet',
+  _id: '112669114721',
+  _version: 1,
+  created: true }
+```
+
+##### *Required Fields* for a *New Record*:
+
+- `index` can be compared to a ***Database*** in **SQL**
+see: http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/glossary.html#glossary-index
+- `type` is *like* the ***table*** in **SQL**-world or a *collection* in other NoSQL systems.
+see: http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/glossary.html#glossary-type
+- `id` is the ***unique key*** for your record. equivalent to the primary-key in a **SQL**-world
+
+<br />
+
+#### READ a record > ES.READ(record, callback(response))
+
+READing your record:
+
+```js
+// define the record you want to retrieve:
+var record = {
+  type: 'tweet',
+  index: 'twitter',
+  id: 1234, // or what ever GUID you want to lookup
+};
+ES.READ(record, function(response) {
+ // do what ever you like with the response
+});
+```
+A typical *successful* `ES.READ` response:
+```js
+{ _index: 'twitter',
+  _type: 'tweet',
+  _id: '735981868114',
+  _version: 1,
+  found: true,
+  _source: { message: 'My Awesome Message' }
+}
+```
+Here **_source** is the original data you inserted as the **record**.
+
+##### Record NOT Found
+
+When a record does not exist `response.found` is `false`. e.g:
+
+```js
+{ _index: 'twitter',
+  _type: 'tweet',
+  _id: '804164689732',
+  found: false }
+```
+
+##### *Required Fields* for a READing a Record
+
+- `index` we need to know which "[database](http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/glossary.html#glossary-index)" our record is in
+- `type` "[table](http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/glossary.html#glossary-type)"
+- `id` the ***unique key*** for the record you are looking up.
+
+<br />
+
+
+#### UPDATE an (existing) record > ES.UPDATE(record, callback(response))
+
+UPDATE an existing record:
+
+```js
+// define the record you want to store:
+var record = {
+  type: 'tweet',
+  index: 'twitter',
+  id: 1234, // or what ever GUID you want
+  message: 'Revised message'
+};
+ES.UPDATE(record, function(response) {
+ // do what ever you like with the response
+});
+```
+A typical *successful* `ES.UPDATE` response:
+```js
+{ _index: 'twitter',
+  _type: 'tweet',
+  _id: '639403095701',
+  _version: 2,
+  created: false }
+```
+Notice how the **_version** gets incremented to **2**
+
+##### *Required Fields* for a *Updating* an *Existing Record*:
+
+- `index` we need to know which "[database](http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/glossary.html#glossary-index)" our record is in
+- `type` "[table](http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/glossary.html#glossary-type)"
+- `id` the ***unique key*** for the record you are updating.
+
+<br />
+
+#### DELETE a record > ES.DELETE(record, callback(response))
+
+```js
+// define the record you want to store:
+var record = {
+  type: 'tweet',
+  index: 'twitter',
+  id: 1234, // or what ever GUID you want
+  message: 'Revised message'
+};
+ES.DELETE(record, function(response) {
+ // do what ever you like with the response
+});
+```
+A typical *successful* `ES.DELETE` response:
+```js
+{ found: true,
+  _index: 'twitter',
+  _type: 'tweet',
+  _id: '137167415115',
+  _version: 2,
+  deleted: true }
+```
+Notice how the **deleted** is **true**
+
+##### *Required Fields* for a *Deleting* an *Existing Record*:
+
+- `index` we need to know which "[database](http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/glossary.html#glossary-index)" our record is in
+- `type` "[table](http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/glossary.html#glossary-type)"
+- `id` the ***unique key*** for the record you are updating.
+
+***Obviously*** if the record is ***NOT Found***, there is nothing to delete.
+In that case, the response look like this: (**found** is ***false***)
+```js
+{ found: false,
+  _index: 'twitter',
+  _type: 'tweet',
+  _id: '951078315032',
+  _version: 1 }
+```
+
+
+<br />
+
+### Search for Record(s) > ES.SEARCH(query, callback(response))
+
+Searching is super easy:
+
+```js
+// setup query:
+var query = {
+  type:  'tweet',
+  index: 'twitter',
+  field: 'text',     // the field we want to search in
+  text:  'amazing'   // string we are searching for
+};
+
+SEARCH(query, function(response) {
+  // console.log(res);
+  t.equal(res.hits.total > 0, true,
+    chalk.green("✓ Search results found: "+ res.hits.total));
+  t.end();
+});
+```
+A typical *successful* `ES.SEARCH` response:
+```js
+{ took: 8,
+  timed_out: false,
+  _shards: { total: 5, successful: 5, failed: 0 },
+  hits:
+   { total: 924,
+     max_score: 0.6355637,
+     hits:
+      [ [Object],
+        [Object],
+        etc...
+  }
+}
+```
+The **response.hits.total** is **924**
+(the number of records that matched our SEARCH query)
+
+##### *Required Fields* for a *SEARCHing*:
+
+- `index` we need to know which "[database](http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/glossary.html#glossary-index)" our record is in
+- `type` "[table](http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/glossary.html#glossary-type)"
+- `field` the field in the record you want to search in.
+- `text` the text you are searching for.
+
+
+When ***NO RECORDS*** are **FOUND** the **response** will look this:
+
+```js
+{ took: 2,
+  timed_out: false,
+  _shards: { total: 5, successful: 5, failed: 0 },
+  hits: { total: 0, max_score: null, hits: [] } }
+```
+We check for `if(response.hits.total > 0) { /* use/display results */ } else { /* show sad face */}`  
+Here's the image we use:
+
+![no results](http://i.imgur.com/zHuBUbs.png)
+
+<br />
+
+
+### STATS > ES.STATS(callback(response))
+
+The ES.**STATS** method exposes the ElasticSearch Instance/Cluster `_stats`
+see: http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/indices-stats.html
+
+```js
+STATS(function (response) {
+  // do something awesome response
+});
+```
+ElasticSearch returns *rich* information on cluster health, document count etc.
+see: [#31](https://github.com/nelsonic/esta/issues/31) for *complete* STATS output
+
+<br />
+
+
+### UPSERT (Convenience Method)
+
+**UPSERT** = **UP**date record if *exists* or inSERT (create) if its new.
+(Seems like an *obvious* thing to have, yet ElasticSearch does not provide it,
+so we built it.)
+
+**UPSERT** a record:
+
+```js
+// define the record you want to store:
+var record = {
+  type: 'tweet',
+  index: 'twitter',
+  id: 1234, // or what ever GUID you want
+  message: 'Revised message'
+};
+ES.UPSERT(record, function(response) {
+ // do what ever you like with the response
+});
+```
+A typical *successful* `ES.UPSERT` response:
+```js
+{ _index: 'twitter',
+  _type: 'tweet',
+  _id: '639403095701',
+  _version: 2,
+  created: false }
+```
+
+Under the hood this just does a **READ** and
+if the record already exists, **UPDATE** it,
+otherwise **CREATE** it.
+
+<br />
+
+### Error Handling
+
+#### *Warning*: Contains *Opinion* (based on *experience*)
+
+Most of the Node.js developers I've worked with, don't handle errors well.  
+A typical (*bad*) example:
+```js
+if(error) {
+  console.log(error); // this is worse than useless!
+}
+```
+So instead of having of having code full of `if(err) ...`
+we have *deliberately* cut out errors
+from callback functions *completely*.
+
+Thus, *all* the methods in this module have the *simplified* signature:
+```js
+ES.METHOD(record, function(response){
+  // do something with response
+});
+```
+
+Instead, we propose using a *central* error catcher. e.g:
+```js
+process.on('uncaughtException', function(err) {
+  console.log('ERROR: ' + err); // preferably handle errors appropriately
+});
+```
+or, if you are using [**Hapi.js**](http://hapijs.com/) use https://github.com/hapijs/poop
+
+For more on Errors, please read: https://www.joyent.com/developers/node/design/errors
+
+<br />
+<br />
+
+## *Required*: Use *Environment Variables* for HOST & PORT [![12 Factor App](https://img.shields.io/badge/twelve%20factor-passing-brightgreen.svg?style=flat)](http://12factor.net/config)
+
+We need to move away from using **config** ***files***.  
+Read: http://12factor.net/config (Store config in the environment - *no more config.json*!)
+
+### Local/Dev Machine
+
+To use environment variables for HOST & PORT on your local machine:
+you will need to run the following **Shell Commands**:
+
+```sh
+export ES_HOST="127.0.0.1"
+export ES_PORT=9200
+```
+
+### (Travis) CI
+
+Sample .travis.yml file:
+
+```sh
+language: node_js
+node_js:
+  - 0.10
+services:
+  - elasticsearch
+env:
+  - ES_HOST="127.0.0.1" ES_PORT=9200
+```
+if you are *new* to Travis-CI see: https://github.com/docdis/learn-travis
+
+## (*Optional*) Use *Vagrant* to Run ElasticSearch [![vagrant up](https://img.shields.io/badge/vagrant-up-brightgreen.svg?style=flat)](https://github.com/nelsonic/learn-vagrant)
+
+If, like me you prefer not to have Java running on your dev machine
+(because its [*chronically* insecure](http://krebsonsecurity.com/2014/04/critical-java-update-plugs-37-security-holes/))
+I *highly* recommend using **Vagrant** to run a light-weight virtual machine
+to isolate ElasticSearch and only install Java in the VM.
+
+The other obvious benefit of using Vagrant is that all your fellow developers
+will have exactly the same (latest) build so there's no risk of version
+incompatibility. Learn more at: https://github.com/nelsonic/learn-vagrant
+
+I've included a **Vagrantfile** in this repo which will get you
+up-and-running with Ubuntu, Node.js & ElasticSearch with a single command: [**vagrant up**](https://github.com/nelsonic/learn-vagrant)
+
+If you have any questions, just ***ask***!
+
+<br />
+<br />
 
 # Philosophy / Background / Detail
 
@@ -76,22 +454,9 @@ If you are looking for a module you can *trust*, these are the
 If anything is unclear please create an issue:
 https://github.com/nelsonic/esta/issues
 
-## (*Optional*) Use *Vagrant* to Run ElasticSearch [![vagrant up](https://img.shields.io/badge/vagrant-up-brightgreen.svg?style=flat)](https://github.com/nelsonic/learn-vagrant)
-
-If, like me you prefer not to have Java running on your dev machine
-(because its [*chronically* insecure](http://krebsonsecurity.com/2014/04/critical-java-update-plugs-37-security-holes/))
-I *highly* recommend using **Vagrant** to run a light-weight virtual machine
-to isolate ElasticSearch and only install Java in the VM.
-
-The other obvious benefit of using Vagrant is that all your fellow developers
-will have exactly the same (latest) build so there's no risk of version
-incompatibility. Learn more at: https://github.com/nelsonic/learn-vagrant
-
-I've included a **Vagrantfile** in this repo which will get you
-up-and-running with Ubuntu, Node.js & ElasticSearch with a single command: [**vagrant up**](https://github.com/nelsonic/learn-vagrant)
-
-If you have any questions, just ***ask***!
-
+**Note**: at *present* **DELETE** does ***not work*** on **Heroku**.
+We have an issue to fix this: https://github.com/nelsonic/esta/issues/49
+If you have time to help, let us know! [![Heroku Support](https://img.shields.io/badge/heroku%20support-work%20in%20progress-yellow.svg?style=flat)](https://github.com/nelsonic/esta/issues/49)
 
 ## Module Name
 
@@ -100,26 +465,6 @@ The choice of module name was the *answer* to the question:
 **Q**: Which ElasticSearch Node Module should I use...?  
 **A**: https://translate.google.com/#auto/en/esta
 
-
-### [Promises](http://youtu.be/llDikI2hTtk?t=21s) (Rant?)
-
-I love the *theory* behind Promises:  
-https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Promise  
-The *justification* for using them is quite convincing:  
-https://github.com/petkaantonov/bluebird#what-are-promises-and-why-should-i-use-them  
-
-But I've not yet found a situation where I *needed* to use them.  
-When I see *junior* developers using
-[Q](https://www.npmjs.org/package/q),  [when](https://github.com/cujojs/when),
-[promise](https://github.com/then/promise),
-[Bluebird](https://github.com/petkaantonov/bluebird), etc.
-I can't help but think:
-*what* are you *doing* that was ***too complicated for callbacks***?  
-
-So when a module *forces* me to use Promises,
-["***its a no from me***"](http://i.imgur.com/TgTX9Kf.jpg)
-
-![promises broken](http://i.imgur.com/3bzRW8y.jpg)
 
 ## License
 

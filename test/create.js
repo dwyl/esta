@@ -6,6 +6,7 @@ var CREATE = require('../lib/create.js');
 
 test(chalk.cyan('CREATE a record'), function (t) {
   CREATE(record, function (res) {
+    console.log(res)
     t.equal(res.created, true, chalk.green("✓ Record Created"));
     t.end();
   });
