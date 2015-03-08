@@ -13,13 +13,156 @@ npm install esta --save
 
 ### [CRUD](http://en.wikipedia.org/wiki/Create,_read,_update_and_delete) Methods
 
-#### Connect to ES Cluster
+#### CONNECT to ElasticSearch Cluster
+
+If you need to check the connection status to the ElasticSearch Instance/Cluster
+we expose the handy `ES.CONNECT` method:
+
+```js
+var ES = require('../lib/index');
+
+ES.CONNECT(function (response) {
+  console.log(response);
+});
+```
+example `ES.CONNECT` [response](https://travis-ci.org/nelsonic/esta/jobs/53533613#L158):
+
+```js
+{ status: 200,
+  name: 'Ultragirl',
+  cluster_name: 'elasticsearch',
+  version:
+   { number: '1.4.2',
+     build_hash: '927caff6f05403e936c20bf4529f144f0c89fd8c',
+     build_timestamp: '2014-12-16T14:11:12Z',
+     build_snapshot: false,
+     lucene_version: '4.10.2' },
+  tagline: 'You Know, for Search' }
+```
+***Note***: **Esta** *expects* you to have environment variables set up for
+**ES_HOST** and **ES_PORT** (see below)
+
+<br />
+
+#### CREATE (Save) a (new) record
+
+Creating a new record is *easy*:
+
+```js
+// define the record you want to store:
+var record = {
+  type: 'tweet',
+  index: 'twitter',
+  id: Math.floor(Math.random() * (100000)), // or what ever GUID you want
+  message: 'Your amazing message goes here'
+};
+ES.CREATE(record, function(response) {
+ // do what ever you like with the response
+});
+```
+A typical *successful* `ES.CREATE` response:
+```js
+{ _index: 'twitter',
+  _type: 'tweet',
+  _id: '112669114721',
+  _version: 1,
+  created: true }
+```
+
+##### *Required Fields* for a *New Record*:
+
+- `index` can be compared to a ***Database*** in **SQL**
+see: http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/glossary.html#glossary-index
+- `type` is *like* the ***table*** in **SQL**-world or a *collection* in other NoSQL systems.
+see: http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/glossary.html#glossary-type
+- `id` is the ***unique key*** for your record. equivalent to the primary-key in a **SQL**-world
+
+<br />
+
+#### READ a record
+
+READing your record:
+
+```js
+// define the record you want to retrieve:
+var record = {
+  type: 'tweet',
+  index: 'twitter',
+  id: 1234, // or what ever GUID you want to lookup
+};
+ES.READ(record, function(response) {
+ // do what ever you like with the response
+});
+```
+A typical *successful* `ES.READ` response:
+```js
+{ _index: 'twitter',
+  _type: 'tweet',
+  _id: '735981868114',
+  _version: 1,
+  found: true,
+  _source: { message: 'My Awesome Message' }
+}
+```
+Here **_source** is the original data you inserted as the **record**.
+
+##### Record NOT Found
+
+When a record does not exist `response.found` is `false`. e.g:
+
+```js
+{ _index: 'twitter',
+  _type: 'tweet',
+  _id: '804164689732',
+  found: false }
+```
+
+##### *Required Fields* for a READing a Record
+
+- `index` we need to know which "[database](http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/glossary.html#glossary-index)" our record is in
+- `type` "[table](http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/glossary.html#glossary-type)"
+- `id` the ***unique key*** for the record you are looking up.
+
+<br />
 
 
-- [x] Create/Save a (new) record
-- [x] Read a record
-- [x] Update a record
+#### UPDATE an (existing) record
 
+UPDATE an existing record:
+
+```js
+// define the record you want to store:
+var record = {
+  type: 'tweet',
+  index: 'twitter',
+  id: 1234, // or what ever GUID you want
+  message: 'Revised message'
+};
+ES.UPDATE(record, function(response) {
+ // do what ever you like with the response
+});
+```
+A typical *successful* `ES.UPDATE` response:
+```js
+{ _index: 'twitter',
+  _type: 'tweet',
+  _id: '639403095701',
+  _version: 2,
+  created: false }
+```
+Notice how the **_version** gets incremented to **2**
+
+##### *Required Fields* for a *Updating* an *Existing Record*:
+
+- `index` we need to know which "[database](http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/glossary.html#glossary-index)" our record is in
+- `type` "[table](http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/glossary.html#glossary-type)"
+- `id` the ***unique key*** for the record you are updating.
+
+<br />
+
+
+**Note**: at the moment **DELETE** does not work on Heroku.
+We have an issue to fix this: https://github.com/nelsonic/esta/issues/49
 
 ### Search & Stats
 
@@ -31,6 +174,38 @@ npm install esta --save
 Under the hood this just does a **READ** and
 if the record already exists, **UPDATE** it,
 otherwise **CREATE** it.
+
+### Error Handling
+
+#### *Warning*: Contains *Opinion* (based on *experience*)
+
+Most of the Node.js developers I've worked with, don't handle errors well.  
+A typical (*bad*) example:
+```js
+if(error) {
+  console.log(error); // this is worse than useless!
+}
+```
+So instead of having of having code full of `if(err) ...`
+we have *deliberately* cut out errors
+from callback functions *completely*.
+
+Thus, *all* the methods in this module have the signature:
+```js
+ES.METHOD(record, function(response){
+  // do something with response
+});
+```
+
+Instead, we propose using a *central* error catcher. e.g:
+```js
+process.on('uncaughtException', function(err) {
+  console.log('ERROR: ' + err); // preferably handle errors appropriately
+});
+```
+or, if you are using [**Hapi.js**](http://hapijs.com/) use https://github.com/hapijs/poop
+
+For more on Errors, please read: https://www.joyent.com/developers/node/design/errors
 
 <br />
 <br />
