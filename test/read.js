@@ -26,6 +26,7 @@ test(chalk.cyan('READ a record'), function (t) {
 test(chalk.cyan('READ a record that does not exist (expect found === false)'), function (t) {
   var record = RECORD();
   READ(record, function (res2) {
+    // console.log(res2)
     t.equal(res2.found, false, chalk.green("✓ Record " + res2._id + " Not Found (as expected)"));
     t.end();
   });

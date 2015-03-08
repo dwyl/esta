@@ -160,20 +160,162 @@ Notice how the **_version** gets incremented to **2**
 
 <br />
 
+#### DELETE a record:
 
-**Note**: at the moment **DELETE** does not work on Heroku.
-We have an issue to fix this: https://github.com/nelsonic/esta/issues/49
+```js
+// define the record you want to store:
+var record = {
+  type: 'tweet',
+  index: 'twitter',
+  id: 1234, // or what ever GUID you want
+  message: 'Revised message'
+};
+ES.DELETE(record, function(response) {
+ // do what ever you like with the response
+});
+```
+A typical *successful* `ES.DELETE` response:
+```js
+{ found: true,
+  _index: 'twitter',
+  _type: 'tweet',
+  _id: '137167415115',
+  _version: 2,
+  deleted: true }
+```
+Notice how the **deleted** is **true**
 
-### Search & Stats
+##### *Required Fields* for a *Deleting* an *Existing Record*:
 
-- [x] Search!!
-- [x] Stats (see: [#31](https://github.com/nelsonic/esta/issues/31) for sample output)
+- `index` we need to know which "[database](http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/glossary.html#glossary-index)" our record is in
+- `type` "[table](http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/glossary.html#glossary-type)"
+- `id` the ***unique key*** for the record you are updating.
 
-### Convenience Method: Upsert
+***Obviously*** if the record is ***NOT Found***, there is nothing to delete.
+In that case, the response look like this: (**found** is ***false***)
+```js
+{ found: false,
+  _index: 'twitter',
+  _type: 'tweet',
+  _id: '951078315032',
+  _version: 1 }
+```
+
+
+<br />
+
+### Search for Record(s):
+
+Searching is super easy:
+
+```js
+// setup query:
+var query = {
+  type:  'tweet',
+  index: 'twitter',
+  field: 'text',     // the field we want to search in
+  text:  'amazing'   // string we are searching for
+};
+
+SEARCH(query, function(response) {
+  // console.log(res);
+  t.equal(res.hits.total > 0, true,
+    chalk.green("✓ Search results found: "+ res.hits.total));
+  t.end();
+});
+```
+A typical *successful* `ES.SEARCH` response:
+```js
+{ took: 8,
+  timed_out: false,
+  _shards: { total: 5, successful: 5, failed: 0 },
+  hits:
+   { total: 924,
+     max_score: 0.6355637,
+     hits:
+      [ [Object],
+        [Object],
+        etc...
+  }
+}
+```
+The **response.hits.total** is **924**
+(the number of records that matched our SEARCH query)
+
+##### *Required Fields* for a *SEARCHing*:
+
+- `index` we need to know which "[database](http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/glossary.html#glossary-index)" our record is in
+- `type` "[table](http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/glossary.html#glossary-type)"
+- `field` the field in the record you want to search in.
+- `text` the text you are searching for.
+
+
+When ***NO RECORDS*** are **FOUND** the **response** will look this:
+
+```js
+{ took: 2,
+  timed_out: false,
+  _shards: { total: 5, successful: 5, failed: 0 },
+  hits: { total: 0, max_score: null, hits: [] } }
+```
+We check for `if(response.hits.total > 0) { /* use/display results */ } else { /* show sad face */}`  
+Here's the image we use:
+
+![no results](http://i.imgur.com/zHuBUbs.png)
+
+<br />
+
+
+### STATS
+
+The ES.**STATS** method exposes the ElasticSearch Instance/Cluster `_stats`
+see: http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/indices-stats.html
+
+```js
+STATS(function (response) {
+  // do something awesome response
+});
+```
+ElasticSearch returns *rich* information on cluster health, document count etc.
+see: [#31](https://github.com/nelsonic/esta/issues/31) for *complete* STATS output
+
+<br />
+
+
+### UPSERT (Convenience Method)
+
+**UPSERT** = **UP**date record if *exists* or inSERT (create) if its new.
+(Seems like an *obvious* thing to have, yet ElasticSearch does not provide it,
+so we built it.)
+
+**UPSERT** a record:
+
+```js
+// define the record you want to store:
+var record = {
+  type: 'tweet',
+  index: 'twitter',
+  id: 1234, // or what ever GUID you want
+  message: 'Revised message'
+};
+ES.UPSERT(record, function(response) {
+ // do what ever you like with the response
+});
+```
+A typical *successful* `ES.UPSERT` response:
+```js
+{ _index: 'twitter',
+  _type: 'tweet',
+  _id: '639403095701',
+  _version: 2,
+  created: false }
+```
 
 Under the hood this just does a **READ** and
 if the record already exists, **UPDATE** it,
 otherwise **CREATE** it.
+
+<br />
 
 ### Error Handling
 
@@ -190,7 +332,7 @@ So instead of having of having code full of `if(err) ...`
 we have *deliberately* cut out errors
 from callback functions *completely*.
 
-Thus, *all* the methods in this module have the signature:
+Thus, *all* the methods in this module have the *simplified* signature:
 ```js
 ES.METHOD(record, function(response){
   // do something with response
@@ -308,6 +450,9 @@ If you are looking for a module you can *trust*, these are the
 If anything is unclear please create an issue:
 https://github.com/nelsonic/esta/issues
 
+**Note**: at *present* **DELETE** does ***not work*** on **Heroku**.
+We have an issue to fix this: https://github.com/nelsonic/esta/issues/49
+If you have time to help, let us know! [![Heroku Support](https://img.shields.io/badge/heroku%20support-work%20in%20progress-yellow.svg?style=flat)](https://github.com/nelsonic/esta/issues/49)
 
 ## Module Name
 

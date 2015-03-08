@@ -51,7 +51,7 @@ test(chalk.cyan('Query ES for string that is NOT in the index'), function (t) {
   };
 
   SEARCH(query, function(res) {
-    // console.log(res);
+    console.log(res);
     t.equal(res.hits.total === 0, true,
       chalk.green("✓ ZERO Search results found: "+ res.hits.total + " (as expected)"));
     t.end();
