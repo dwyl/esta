@@ -1,5 +1,9 @@
-*esta*  [![Node.js Version][node-version-image]][node-version-url] [![NPM Version][npm-image]][npm-url]  [![Build Status][travis-image]][travis-url] [![Test Coverage][coveralls-image]][coveralls-url] [![Dependency Status](https://david-dm.org/nelsonic/esta.svg)](https://david-dm.org/nelsonic/esta)
+*esta*  
 ====
+[![Node.js Version][node-version-image]][node-version-url] [![NPM Version][npm-image]][npm-url]  [![Build Status][travis-image]][travis-url] [![Test Coverage][coveralls-image]][coveralls-url]
+[![Code Climate](https://codeclimate.com/github/nelsonic/esta/badges/gpa.svg)](https://codeclimate.com/github/nelsonic/esta)
+[![Dependency Status](https://david-dm.org/nelsonic/esta.svg)](https://david-dm.org/nelsonic/esta)
+
 
 **The *Simplest* ElasticSearch Node.js Module**
 
@@ -13,7 +17,7 @@ npm install esta --save
 
 ### [CRUD](http://en.wikipedia.org/wiki/Create,_read,_update_and_delete) Methods
 
-#### CONNECT to ElasticSearch Cluster
+#### CONNECT to ElasticSearch Cluster >  ES.CONNECT(calback(response))
 
 If you need to check the connection status to the ElasticSearch Instance/Cluster
 we expose the handy `ES.CONNECT` method:
@@ -44,7 +48,7 @@ example `ES.CONNECT` [response](https://travis-ci.org/nelsonic/esta/jobs/5353361
 
 <br />
 
-#### CREATE (Save) a (new) record
+#### CREATE (Save) a (new) record > ES.CREATE(record, callback(response))
 
 Creating a new record is *easy*:
 
@@ -79,7 +83,7 @@ see: http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/gloss
 
 <br />
 
-#### READ a record
+#### READ a record > ES.READ(record, callback(response))
 
 READing your record:
 
@@ -126,7 +130,7 @@ When a record does not exist `response.found` is `false`. e.g:
 <br />
 
 
-#### UPDATE an (existing) record
+#### UPDATE an (existing) record > ES.UPDATE(record, callback(response))
 
 UPDATE an existing record:
 
@@ -160,7 +164,7 @@ Notice how the **_version** gets incremented to **2**
 
 <br />
 
-#### DELETE a record:
+#### DELETE a record > ES.DELETE(record, callback(response))
 
 ```js
 // define the record you want to store:
@@ -204,7 +208,7 @@ In that case, the response look like this: (**found** is ***false***)
 
 <br />
 
-### Search for Record(s):
+### Search for Record(s) > ES.SEARCH(query, callback(response))
 
 Searching is super easy:
 
@@ -266,7 +270,7 @@ Here's the image we use:
 <br />
 
 
-### STATS
+### STATS > ES.STATS(callback(response))
 
 The ES.**STATS** method exposes the ElasticSearch Instance/Cluster `_stats`
 see: http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/indices-stats.html
