@@ -7,16 +7,47 @@
 
 **The *Simplest* ElasticSearch Node.js Module**
 
+##Guide to _esta_ Documentation
+
+**Usage:**
+* [Installation](#install)
+* [CRUD](#crud)
+  * [CONNECT to ElasticSearch Cluster](#connect)
+  * [CREATE (Save) a (new) record](#create)
+  * [READ a record](#read)
+  * [UPDATE an (existing) record](#update)
+  * [DELETE a record](#delete)
+* [Search for Record(s)](#search)
+* [STATS](#stats)
+* [UPSERT (Convenience Method)](#upsert)
+* [Error handling](#error-handling)
+* [Local/Dev Machine](#local)
+* [(Travis) CI](#CI)
+* [(*Optional*) Use *Vagrant* to Run ElasticSearch](#vagrant)
+
+**Philosophy / Background / Detail:**
+* [*Only* Core Modules](#core-only)
+  * [Dev Dependencies](#dev-dependencies)
+* [Code Quality](#code-quality)
+* [Contributing](#contributing)
+* [Module Name](#name)
+* [License](#license)
+
+<a name="usage"/>
 ## Usage
 
+[Installation](#installation)
+
+<a name="install"/>
 ### Install from [NPM](https://www.npmjs.com/package/esta)
 
 ```sh
 npm install esta --save
 ```
+<a name="crud"/>
+###[CRUD](http://en.wikipedia.org/wiki/Create,_read,_update_and_delete) Methods
 
-### [CRUD](http://en.wikipedia.org/wiki/Create,_read,_update_and_delete) Methods
-
+<a name="connect"/>
 #### CONNECT to ElasticSearch Cluster >  ES.CONNECT(calback(response))
 
 If you need to check the connection status to the ElasticSearch Instance/Cluster
@@ -48,6 +79,7 @@ example `ES.CONNECT` [response](https://travis-ci.org/nelsonic/esta/jobs/5353361
 
 <br />
 
+<a name="create"/>
 #### CREATE (Save) a (new) record > ES.CREATE(record, callback(response))
 
 Creating a new record is *easy*:
@@ -83,6 +115,7 @@ see: http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/gloss
 
 <br />
 
+<a name="read"/>
 #### READ a record > ES.READ(record, callback(response))
 
 READing your record:
@@ -129,7 +162,7 @@ When a record does not exist `response.found` is `false`. e.g:
 
 <br />
 
-
+<a name="update"/>
 #### UPDATE an (existing) record > ES.UPDATE(record, callback(response))
 
 UPDATE an existing record:
@@ -164,6 +197,7 @@ Notice how the **_version** gets incremented to **2**
 
 <br />
 
+<a name="delete"/>
 #### DELETE a record > ES.DELETE(record, callback(response))
 
 ```js
@@ -208,6 +242,7 @@ In that case, the response look like this: (**found** is ***false***)
 
 <br />
 
+<a name="search"/>
 ### Search for Record(s) > ES.SEARCH(query, callback(response))
 
 Searching is super easy:
@@ -269,7 +304,7 @@ Here's the image we use:
 
 <br />
 
-
+<a name="stats"/>
 ### STATS > ES.STATS(callback(response))
 
 The ES.**STATS** method exposes the ElasticSearch Instance/Cluster `_stats`
@@ -285,7 +320,7 @@ see: [#31](https://github.com/nelsonic/esta/issues/31) for *complete* STATS outp
 
 <br />
 
-
+<a name="upsert"/>
 ### UPSERT (Convenience Method)
 
 **UPSERT** = **UP**date record if *exists* or inSERT (create) if its new.
@@ -320,7 +355,7 @@ if the record already exists, **UPDATE** it,
 otherwise **CREATE** it.
 
 <br />
-
+<a name="error-handling"/>
 ### Error Handling
 
 #### *Warning*: Contains *Opinion* (based on *experience*)
@@ -361,6 +396,7 @@ For more on Errors, please read: https://www.joyent.com/developers/node/design/e
 We need to move away from using **config** ***files***.  
 Read: http://12factor.net/config (Store config in the environment - *no more config.json*!)
 
+<a name="local"/>
 ### Local/Dev Machine
 
 To use environment variables for HOST & PORT on your local machine:
@@ -370,7 +406,7 @@ you will need to run the following **Shell Commands**:
 export ES_HOST="127.0.0.1"
 export ES_PORT=9200
 ```
-
+<a name="CI"/>
 ### (Travis) CI
 
 Sample .travis.yml file:
@@ -386,6 +422,7 @@ env:
 ```
 if you are *new* to Travis-CI see: https://github.com/docdis/learn-travis
 
+<a name="vagrant"/>
 ## (*Optional*) Use *Vagrant* to Run ElasticSearch [![vagrant up](https://img.shields.io/badge/vagrant-up-brightgreen.svg?style=flat)](https://github.com/nelsonic/learn-vagrant)
 
 If, like me you prefer not to have Java running on your dev machine
@@ -407,6 +444,7 @@ If you have any questions, just ***ask***!
 
 # Philosophy / Background / Detail
 
+<a name="core-only"/>
 ## *Only* Core Modules [![Dependency Status](https://david-dm.org/nelsonic/esta.svg)](https://david-dm.org/nelsonic/esta)
 
 ***Zero external dependencies*** (3rd party modules).
@@ -428,6 +466,7 @@ so I *never* have to *think* about upgrading - it also makes it a
 *lot* easier for others to learn how the module works, which
 *invites contribution* from the community.
 
+<a name="dev-dependencies"/>
 ### Dev Dependencies [![devDependency Status](https://david-dm.org/nelsonic/esta/dev-status.svg)](https://david-dm.org/nelsonic/esta#info=devDependencies)
 
 We *carefully* select and only use *well-maintained* "*pure*" JavaScript modules
@@ -442,12 +481,13 @@ https://github.com/nelsonic/learn-jshint
 + **CodeClimate** for tracking code quality and test coverage:
 https://github.com/nelsonic/learn-codeclimate
 
-
+<a name="code-quality"/>
 ## Code Quality [![Build Status](https://travis-ci.org/nelsonic/esta.svg)](https://travis-ci.org/nelsonic/esta) [![Test Coverage](https://codeclimate.com/github/nelsonic/esta/badges/coverage.svg)](https://codeclimate.com/github/nelsonic/esta) [![Code Climate](https://codeclimate.com/github/nelsonic/esta/badges/gpa.svg)](https://codeclimate.com/github/nelsonic/esta)
 
 If you are looking for a module you can *trust*, these are the
 "badges" you are looking for.
 
+<a name="contributing"/>
 ## Contributing [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/nelsonic/esta/fork)
 
 ***All*** *contributions* are *welcome*.  
@@ -458,6 +498,7 @@ https://github.com/nelsonic/esta/issues
 We have an issue to fix this: https://github.com/nelsonic/esta/issues/49
 If you have time to help, let us know! [![Heroku Support](https://img.shields.io/badge/heroku%20support-work%20in%20progress-yellow.svg?style=flat)](https://github.com/nelsonic/esta/issues/49)
 
+<a name="name"/>
 ## Module Name
 
 The choice of module name was the *answer* to the question:
@@ -465,7 +506,7 @@ The choice of module name was the *answer* to the question:
 **Q**: Which ElasticSearch Node Module should I use...?  
 **A**: https://translate.google.com/#auto/en/esta
 
-
+<a name="license"/>
 ## License
 
 [MIT](LICENSE)
