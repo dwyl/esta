@@ -2,21 +2,15 @@ var test  = require('tape');
 var chalk = require('chalk');
 var record = require('./fake_record.js')(); // fake record
 var UPDATE = require('../lib/update.js');
+var CREATE = require('../lib/create.js');
+var READ = require('../lib/read.js');
 
 test(chalk.cyan('UPDATE a Non-Existant Record (>>UPSERT<<)'), function (t) {
   UPDATE(record, function(response) {
-      console.log("UPDATE response:")
-      console.log(response);
-      console.log(" - - - - - - - - - ")
       t.equal(response.created, true, chalk.green("✓ Record not found, create it"));
       t.end();
   });
 });
-
-
-var CREATE = require('../lib/create.js');
-var READ = require('../lib/read.js');
-// var FS = require('../lib/fs.js');
 
 test(chalk.cyan('UPDATE a record'), function (t) {
   record.id = 1234
@@ -46,14 +40,10 @@ test(chalk.cyan('UPDATE a record'), function (t) {
         bak.id   = rec.id   + "_1";   // with backup id
 
         READ(bak, function (res5) {
-          // console.log("  > > > > res5: ")
-          // console.log(res5);
           t.equal(res5.found, true, chalk.green("✓ Record (backup) exists"));
         });
 
         READ(rec, function(res4) {
-          // console.log("  > > > > res4: ")
-          // console.log(res4);
           t.equal(res4._source.message, newmsg,
             chalk.green("✓ Record message updated to: ")+chalk.cyan(res4._source.message));
           t.end();

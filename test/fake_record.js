@@ -3,6 +3,6 @@ module.exports = function() { // fake record
     type: 'tweet',
     index: 'twitter',
     id: Math.floor(Math.random() * (1000000000000)),
-    message: 'My Random Message '+this.id
+    message: 'My Random Message'
   }
 }

@@ -31,10 +31,7 @@ function processFile(filename, callback) {
       console.log(" >>>>> "+filename);
     }
     ES.CREATE(record, function(res) {
-      // if(res.created == true){
       count++;
-      // }
-      // console.log(count + ' of ' + filecount);
       if(filecount === count+1){
         var end  = new Date().getTime();
         var elapsed = (end-start)/1000;
