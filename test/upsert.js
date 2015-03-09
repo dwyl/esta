@@ -22,20 +22,22 @@ test(chalk.cyan('UPSERT a *NEW* Record'), function (t) {
 
 test(chalk.cyan('UPSERT *Existing* Record'), function (t) {
   var record = RECORD();
-  var rec = {}; // make a copy of rec for later.
+  var rec = {}, bak = {}; // make a copy of rec for later.
   for(var key in record) {
     if(record.hasOwnProperty(key)) {
       rec[key] = record[key];
+      bak[key] = record[key];
     }
   }
 
   CREATE(record, function (res) {
     t.equal(res.created, true, chalk.green("✓ Record " + res._id + " Created"));
-    rec.message = 'new message';
+    var newmsg = 'new message'
+    rec.message = newmsg;
 
     UPSERT(rec, function (res) {
-      READ(rec, function(res4){
-        t.equal(res4._source.message, rec.message, chalk.green("✓ Record message updated to: ")+chalk.cyan(rec.message));
+      READ(bak, function(res4){
+        t.equal(res4._source.message, newmsg, chalk.green("✓ Record message updated to: ")+chalk.cyan(rec.message));
         t.end();
       })
     });
