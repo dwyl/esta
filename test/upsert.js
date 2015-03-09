@@ -4,7 +4,7 @@ var RECORD = require('../test/fake_record.js'); // fake record
 
 var CREATE = require('../lib/create.js');
 var READ = require('../lib/read.js');
-var UPSERT = require('../lib/upsert.js');
+var UPDATE = require('../lib/update.js');
 
 test(chalk.cyan('UPSERT a *NEW* Record'), function (t) {
   var record = RECORD();
@@ -14,7 +14,7 @@ test(chalk.cyan('UPSERT a *NEW* Record'), function (t) {
       rec[key] = record[key];
     }
   }
-  UPSERT(record, function(res){
+  UPDATE(record, function(res){
     t.equal(res.created, true, chalk.green("✓ Record " + res._id + " created > version: "+ res._version));
     t.end();
   });
@@ -35,7 +35,7 @@ test(chalk.cyan('UPSERT *Existing* Record'), function (t) {
     var newmsg = 'new message'
     rec.message = newmsg;
 
-    UPSERT(rec, function (res) {
+    UPDATE(rec, function (res) {
       READ(bak, function(res4){
         t.equal(res4._source.message, newmsg, chalk.green("✓ Record message updated to: ")+chalk.cyan(rec.message));
         t.end();
