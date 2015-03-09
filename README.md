@@ -17,7 +17,7 @@
   * [READ a record](#read)
   * [UPDATE an (existing) record](#update)
   * [DELETE a record](#delete)
-* [Search for Record(s)](#search)
+* [SEARCH for Record(s)](#search)
 * [STATS](#stats)
 * [Error handling](#error-handling)
 * [Local/Dev Machine](#local)
@@ -51,10 +51,11 @@ If you need to check the connection status to the ElasticSearch Instance/Cluster
 we expose the handy `ES.CONNECT` method:
 
 ```js
-var ES = require('../lib/index');
+var ES = require('esta');
 
 ES.CONNECT(function (response) {
   console.log(response);
+  // for more detailed stats see: STATS method below
 });
 ```
 example `ES.CONNECT` [response](https://travis-ci.org/nelsonic/esta/jobs/53533613#L158):
@@ -195,8 +196,8 @@ Notice how the **_version** gets incremented to **2**
 - `type` "[table](http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/glossary.html#glossary-type)"
 - `id` the ***unique key*** for the record you are updating.
 
-***Note***: **UPDATE** actually performs an **UPSERT**  
-**UP**date record if *exists* or inSERT (create) if its new.
+***Note***: **UPDATE** actually performs an [**UPSERT**](http://en.wiktionary.org/wiki/upsert)  
+**UP**date record if already *exists* or in**SERT** (create) if its new.
 
 <br />
 
@@ -246,7 +247,7 @@ In that case, the response look like this: (**found** is ***false***)
 <br />
 
 <a name="search"/>
-### Search for Record(s) > ES.SEARCH(query, callback(response))
+### SEARCH for Record(s) > ES.SEARCH(query, callback(response))
 
 Searching is super easy:
 
@@ -412,6 +413,22 @@ If you have any questions, just ***ask***!
 
 # Philosophy / Background / Detail
 
+## Why Create a New Library?
+
+We wanted something simpler.  
+Easier to understand (less than 200 lines of code!)
+and thus *much* easier to extend if you need to!
+
+### *Practical* Feature: *Recover Accidentally Deleted Data*
+
+We wanted a way of
+"[*soft-deleting*](http://stackoverflow.com/questions/2549839/are-soft-deletes-a-good-idea)"
+records (i.e. *avoiding data loss*.)
+If you *like* the idea of being able to * **recover accidentally deleted** data*,
+you will love our **DELETE** method see: **lib/delete.js**
+
+
+
 <a name="core-only"/>
 ## *Only* Core Modules [![Dependency Status](https://david-dm.org/nelsonic/esta.svg)](https://david-dm.org/nelsonic/esta)
 
@@ -462,6 +479,14 @@ If you are looking for a module you can *trust*, these are the
 If anything is unclear please create an issue:
 https://github.com/nelsonic/esta/issues
 
+## ALLCAPS MEHTOD NAMES?
+
+![all caps](http://i.imgur.com/KMZQhDL.png)
+
+We *prefer* to have the **METHOD** names **UPPERCASE**
+because it makes them *easy* to spot and *differentiate* from *your* code. 
+If you feel they are a bit "[*shouty*](http://www.newrepublic.com/article/117390/netiquette-capitalization-how-caps-became-code-yelling)"
+ **all methods** are ***available*** in ***lowercase*** too; take your pick!
 
 <a name="name"/>
 ## Module Name
