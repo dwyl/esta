@@ -11,15 +11,14 @@
 
 **Usage:**
 * [Installation](#install)
+* [CONNECT to ElasticSearch Cluster](#connect)
 * [CRUD](#crud)
-  * [CONNECT to ElasticSearch Cluster](#connect)
   * [CREATE (Save) a (new) record](#create)
   * [READ a record](#read)
   * [UPDATE an (existing) record](#update)
   * [DELETE a record](#delete)
 * [Search for Record(s)](#search)
 * [STATS](#stats)
-* [UPSERT (Convenience Method)](#upsert)
 * [Error handling](#error-handling)
 * [Local/Dev Machine](#local)
 * [(Travis) CI](#CI)
@@ -44,8 +43,6 @@
 ```sh
 npm install esta --save
 ```
-<a name="crud"/>
-###[CRUD](http://en.wikipedia.org/wiki/Create,_read,_update_and_delete) Methods
 
 <a name="connect"/>
 #### CONNECT to ElasticSearch Cluster >  ES.CONNECT(calback(response))
@@ -79,6 +76,9 @@ example `ES.CONNECT` [response](https://travis-ci.org/nelsonic/esta/jobs/5353361
 
 <br />
 
+<a name="crud"/>
+###[CRUD](http://en.wikipedia.org/wiki/Create,_read,_update_and_delete) Methods
+
 <a name="create"/>
 #### CREATE (Save) a (new) record > ES.CREATE(record, callback(response))
 
@@ -87,8 +87,8 @@ Creating a new record is *easy*:
 ```js
 // define the record you want to store:
 var record = {
-  type: 'tweet',
   index: 'twitter',
+  type: 'tweet',
   id: Math.floor(Math.random() * (100000)), // or what ever GUID you want
   message: 'Your amazing message goes here'
 };
@@ -123,8 +123,8 @@ READing your record:
 ```js
 // define the record you want to retrieve:
 var record = {
-  type: 'tweet',
   index: 'twitter',
+  type: 'tweet',
   id: 1234, // or what ever GUID you want to lookup
 };
 ES.READ(record, function(response) {
@@ -170,8 +170,8 @@ UPDATE an existing record:
 ```js
 // define the record you want to store:
 var record = {
-  type: 'tweet',
   index: 'twitter',
+  type: 'tweet',
   id: 1234, // or what ever GUID you want
   message: 'Revised message'
 };
@@ -194,6 +194,9 @@ Notice how the **_version** gets incremented to **2**
 - `index` we need to know which "[database](http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/glossary.html#glossary-index)" our record is in
 - `type` "[table](http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/glossary.html#glossary-type)"
 - `id` the ***unique key*** for the record you are updating.
+
+***Note***: **UPDATE** actually performs an **UPSERT**  
+**UP**date record if *exists* or inSERT (create) if its new.
 
 <br />
 
@@ -250,8 +253,8 @@ Searching is super easy:
 ```js
 // setup query:
 var query = {
-  type:  'tweet',
   index: 'twitter',
+  type:  'tweet',
   field: 'text',     // the field we want to search in
   text:  'amazing'   // string we are searching for
 };
@@ -320,41 +323,6 @@ see: [#31](https://github.com/nelsonic/esta/issues/31) for *complete* STATS outp
 
 <br />
 
-<a name="upsert"/>
-### UPSERT (Convenience Method)
-
-**UPSERT** = **UP**date record if *exists* or inSERT (create) if its new.
-(Seems like an *obvious* thing to have, yet ElasticSearch does not provide it,
-so we built it.)
-
-**UPSERT** a record:
-
-```js
-// define the record you want to store:
-var record = {
-  type: 'tweet',
-  index: 'twitter',
-  id: 1234, // or what ever GUID you want
-  message: 'Revised message'
-};
-ES.UPSERT(record, function(response) {
- // do what ever you like with the response
-});
-```
-A typical *successful* `ES.UPSERT` response:
-```js
-{ _index: 'twitter',
-  _type: 'tweet',
-  _id: '639403095701',
-  _version: 2,
-  created: false }
-```
-
-Under the hood this just does a **READ** and
-if the record already exists, **UPDATE** it,
-otherwise **CREATE** it.
-
-<br />
 <a name="error-handling"/>
 ### Error Handling
 
@@ -494,9 +462,6 @@ If you are looking for a module you can *trust*, these are the
 If anything is unclear please create an issue:
 https://github.com/nelsonic/esta/issues
 
-**Note**: at *present* **DELETE** does ***not work*** on **Heroku**.
-We have an issue to fix this: https://github.com/nelsonic/esta/issues/49
-If you have time to help, let us know! [![Heroku Support](https://img.shields.io/badge/heroku%20support-work%20in%20progress-yellow.svg?style=flat)](https://github.com/nelsonic/esta/issues/49)
 
 <a name="name"/>
 ## Module Name
