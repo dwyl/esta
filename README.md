@@ -17,7 +17,7 @@
   * [READ a record](#read)
   * [UPDATE an (existing) record](#update)
   * [DELETE a record](#delete)
-* [Search for Record(s)](#search)
+* [SEARCH for Record(s)](#search)
 * [STATS](#stats)
 * [Error handling](#error-handling)
 * [Local/Dev Machine](#local)
@@ -51,10 +51,11 @@ If you need to check the connection status to the ElasticSearch Instance/Cluster
 we expose the handy `ES.CONNECT` method:
 
 ```js
-var ES = require('../lib/index');
+var ES = require('esta');
 
 ES.CONNECT(function (response) {
   console.log(response);
+  // for more detailed stats see: STATS method below
 });
 ```
 example `ES.CONNECT` [response](https://travis-ci.org/nelsonic/esta/jobs/53533613#L158):
@@ -246,7 +247,7 @@ In that case, the response look like this: (**found** is ***false***)
 <br />
 
 <a name="search"/>
-### Search for Record(s) > ES.SEARCH(query, callback(response))
+### SEARCH for Record(s) > ES.SEARCH(query, callback(response))
 
 Searching is super easy:
 
@@ -462,6 +463,15 @@ If you are looking for a module you can *trust*, these are the
 If anything is unclear please create an issue:
 https://github.com/nelsonic/esta/issues
 
+## ALLCAPS MEHTOD NAMES
+
+![all caps](http://i.imgur.com/KMZQhDL.png)
+
+We prefer to have the **METHOD** names **UPPERCASE**
+because it makes them *easy* and *differentiate* from *your* code.
+If you feel they are a bit
+ "[*shouty*](http://www.newrepublic.com/article/117390/netiquette-capitalization-how-caps-became-code-yelling)"
+ all methods are available in ***lowercase*** too.
 
 <a name="name"/>
 ## Module Name
