@@ -3,7 +3,7 @@ var chalk = require('chalk');
 var record = require('./fake_record.js')(); // fake record
 var UPDATE = require('../lib/update.js');
 
-test(chalk.cyan('UPDATE a Non-Existant Record'), function (t) {
+test(chalk.cyan('UPDATE a Non-Existant Record (>>UPSERT<<)'), function (t) {
   UPDATE(record, function(response) {
       console.log("UPDATE response:")
       console.log(response);

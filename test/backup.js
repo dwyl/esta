@@ -36,8 +36,6 @@ test(chalk.cyan('BACKUP a Record (*Twice*!)'), function (t) {
         t.equal(response._source.message, newmsg, chalk.green("✓ Record updated: "+response._version));
       })
 
-      // console.log(" > > > > res2:")
-      // console.log(res2);
       t.equal(res2._version, 2, chalk.green("✓ Record updated to: "+res2._version));
       // check the backup record was created:
       bak.type  = rec.type + "_bak";
@@ -75,26 +73,7 @@ test(chalk.cyan('BACKUP a Record (*Twice*!)'), function (t) {
 
       }); // end READ
     }); // end UPDATE 1
-    // DELETE(rec, function(res3) {
-    //     // console.log(res3);
-    //     t.equal(res3.found, true, chalk.green("✓ Record Existed - So DELETE it!"));
-    //     t.equal(res3.deleted, true, chalk.green("✓ Record DELETEd"));
-    //   // attempt to read record - it should fail
-    //   READ(rec_bak, function(res4) {
-    //     console.log(" > > > > > > > > > > READ res4 :");
-    //     console.log(res4)
-    //     console.log(" < < < < < < < < < < < < < < < < ");
-    //     t.equal(res4.found, false, chalk.green("✓ Record Deletion CONFIRMED"));
-    //     console.log(' - - - ')
-    //
-    //     console.log(' - - - ')
-    //     READ(rec, function(res5) {
-    //       console.log(res5);
-    //       t.equal(res5.found, true, chalk.green("✓ Record was backed up"));
-    //       t.end();
-    //     });
-    //   })
-    // });
+
   });
 });
 
