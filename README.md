@@ -416,10 +416,10 @@ If you have any questions, just ***ask***!
 ## Why Create a New Library?
 
 We wanted something simpler.  
-Easier to understand (less than 200 lines of code!)
+Easier to understand (under 300 lines of code!)
 and thus *much* easier to extend if you need to!
 
-### *Practical* Feature: *Recover Accidentally Deleted Data*
+## *Practical* Feature: *Recover Accidentally Deleted Data*
 
 We wanted a way of
 "[*soft-deleting*](http://stackoverflow.com/questions/2549839/are-soft-deletes-a-good-idea)"
@@ -446,10 +446,14 @@ it made it hard to
 [*contribute*](https://github.com/elasticsearch/elasticsearch-js/issues/158)
 to the project...
 
-Our aim is to build something that only uses *core* modules with *frozen* APIs,
-so I *never* have to *think* about upgrading - it also makes it a
+Our aim is to build something that only uses ***core*** modules with
+[***Stable APIs***](https://nodejs.org/api/documentation.html#documentation_stability_index),
+so we *never* have to *think* about upgrading - it also makes it a
 *lot* easier for others to learn how the module works, which
-*invites contribution* from the community.
+*invites contribution* from the community.  
+Given that ElasticSearch has a **REST API** we are *only* using Node's **http** (*core*) module.
+and this is kept [**DRY**](http://en.wikipedia.org/wiki/Don%27t_repeat_yourself) (only in one file)
+see: [**lib/http_request.js**](https://github.com/nelsonic/esta/blob/master/lib/http_request.js)
 
 <a name="dev-dependencies"/>
 ### Dev Dependencies [![devDependency Status](https://david-dm.org/nelsonic/esta/dev-status.svg)](https://david-dm.org/nelsonic/esta#info=devDependencies)
@@ -484,7 +488,7 @@ https://github.com/nelsonic/esta/issues
 ![all caps](http://i.imgur.com/KMZQhDL.png)
 
 We *prefer* to have the **METHOD** names **UPPERCASE**
-because it makes them *easy* to spot and *differentiate* from *your* code. 
+because it makes them *easy* to spot and *differentiate* from *your* code.
 If you feel they are a bit "[*shouty*](http://www.newrepublic.com/article/117390/netiquette-capitalization-how-caps-became-code-yelling)"
  **all methods** are ***available*** in ***lowercase*** too; take your pick!
 
