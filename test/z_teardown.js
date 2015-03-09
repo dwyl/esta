@@ -3,9 +3,6 @@
 var test  = require('tape');
 var chalk = require('chalk');
 
-// var FS = require('../lib/index.js').FS;
-// var D  = require('../lib/fs_delete.js');
-
 // fake record
 var record = {
   type: 'tweet',
