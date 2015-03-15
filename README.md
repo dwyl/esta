@@ -491,6 +491,7 @@ We *prefer* to have the **METHOD** names **UPPERCASE**
 because it makes them *easy* to spot and *differentiate* from *your* code.
 If you feel they are a bit "[*shouty*](http://www.newrepublic.com/article/117390/netiquette-capitalization-how-caps-became-code-yelling)"
  **all methods** are ***available*** in ***lowercase*** too; take your pick!
+ see: http://git.io/pZ6t
 
 <a name="name"/>
 ## Module Name

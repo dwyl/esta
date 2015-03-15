@@ -41,6 +41,12 @@ test(chalk.cyan('DELETE a Record'), function (t) {
         bak.id   = rec.id   + "_" +res._version;
 
         READ(bak, function(res5) {
+          var now = new Date().getTime();
+          var deleted = res5._source.deleted;
+          var dt = new Date(deleted).getTime();
+          // console.log(dt);
+          t.equal(now - dt > 0, true, chalk.green("✓ Record was deleted at: "+res5._source.deleted))
+          // console.log(res5);
           t.equal(res5.found, true, chalk.green("✓ Record was backed up: "+res5._type +'/'+res5._id));
           t.end();
         });
