@@ -45,7 +45,7 @@ npm install esta --save
 ```
 
 <a name="connect"/>
-#### CONNECT to ElasticSearch Cluster >  ES.CONNECT(calback(response))
+#### CONNECT to ElasticSearch Cluster using  `ES.CONNECT(calback(response))`
 
 If you need to check the connection status to the ElasticSearch Instance/Cluster
 we expose the handy `ES.CONNECT` method:
@@ -81,7 +81,7 @@ example `ES.CONNECT` [response](https://travis-ci.org/nelsonic/esta/jobs/5353361
 ###[CRUD](http://en.wikipedia.org/wiki/Create,_read,_update_and_delete) Methods
 
 <a name="create"/>
-#### CREATE (Save) a (new) record > ES.CREATE(record, callback(response))
+#### CREATE (Save) a (new) record using `ES.CREATE(record, callback(response))`
 
 Creating a new record is *easy*:
 
@@ -117,7 +117,7 @@ see: http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/gloss
 <br />
 
 <a name="read"/>
-#### READ a record > ES.READ(record, callback(response))
+#### READ a record using `ES.READ(record, callback(response))`
 
 READing your record:
 
@@ -164,7 +164,7 @@ When a record does not exist `response.found` is `false`. e.g:
 <br />
 
 <a name="update"/>
-#### UPDATE an (existing) record > ES.UPDATE(record, callback(response))
+#### UPDATE an (existing) record using `ES.UPDATE(record, callback(response))`
 
 UPDATE an existing record:
 
@@ -202,7 +202,7 @@ Notice how the **_version** gets incremented to **2**
 <br />
 
 <a name="delete"/>
-#### DELETE a record > ES.DELETE(record, callback(response))
+#### DELETE a record using `ES.DELETE(record, callback(response))`
 
 ```js
 // define the record you want to store:
@@ -247,7 +247,7 @@ In that case, the response look like this: (**found** is ***false***)
 <br />
 
 <a name="search"/>
-### SEARCH for Record(s) > ES.SEARCH(query, callback(response))
+### SEARCH for Record(s) using `ES.SEARCH(query, callback(response))`
 
 Searching is super easy:
 
@@ -309,7 +309,7 @@ Here's the image we use:
 <br />
 
 <a name="stats"/>
-### STATS > ES.STATS(callback(response))
+### Get Cluster STATS using `ES.STATS(callback(response))`
 
 The ES.**STATS** method exposes the ElasticSearch Instance/Cluster `_stats`
 see: http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/indices-stats.html
