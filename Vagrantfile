@@ -9,21 +9,21 @@ apt-get update
 
 apt-get -y install g++ git git-core nodejs
 
-# nodejs
-apt-get -y install g++ git git-core nodejs npm
+# nodejs - most people running esta will already have node.js installed.
+# apt-get -y install g++ git git-core nodejs npm
 # use https://github.com/visionmedia/n to get latest node+npm
-npm install n -g
-n stable
-node -v
-npm install nodemon -g
+# npm install n -g
+# n stable
+# node -v
+# npm install nodemon -g
 
 # see: https://gist.github.com/wingdspur/2026107
 sudo apt-get install openjdk-7-jre-headless -y
 
 ### Check http://www.elasticsearch.org/download/ for latest version of ElasticSearch and replace wget link below
 
-wget https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-1.4.2.deb
-sudo dpkg -i elasticsearch-1.4.2.deb
+wget https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-1.5.1.deb
+sudo dpkg -i elasticsearch-1.5.1.deb
 
 curl -L http://github.com/elasticsearch/elasticsearch-servicewrapper/tarball/master | tar -xz
 sudo mkdir -p /usr/local/share/elasticsearch/bin/

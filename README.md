@@ -368,13 +368,21 @@ Read: http://12factor.net/config (Store config in the environment - *no more con
 <a name="local"/>
 ### Local/Dev Machine
 
-To use environment variables for HOST & PORT on your local machine:
-you will need to run the following **Shell Commands**:
+To use environment variables for the ElasticSearch URl on your local machine:
+you will need to run the following **Shell Command**:
 
 ```sh
 export ES_HOST="127.0.0.1"
 export ES_PORT=9200
 ```
+If you are using a ElasticSearch-as-a-Service provider
+such as SearchBox or Found
+simply set the above to:
+```sh
+export ES_HOST="https://ocweo8gq:6ekcklvyca0xp2m7@dogwood-8420631.eu-west-1.bonsai.io"
+export ES_PORT=443
+```
+
 <a name="CI"/>
 ### (Travis) CI
 
