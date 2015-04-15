@@ -3,11 +3,10 @@ var test  = require('tape');
 var chalk = require('chalk');
 var uncache = require('./uncache').uncache;
 
-test(chalk.cyan('CONNECT to ES on HEROKU!'), function (t) {
+test(chalk.cyan('CONNECT to SearchBox on HEROKU!'), function (t) {
   // please don't spam this SearchBox ElasticSearch account with Records!
   // Its JUST for Testing this module! thanks! :-)
   process.env.SEARCHBOX_SSL_URL = 'https://paas:177117314d80d98671aaffd7fb9a314b@kili-eu-west-1.searchly.com'
-  var ES_URL = process.env.SEARCHBOX_SSL_URL || '127.0.0.1:9200';
   // https://nodejs.org/docs/latest/api/globals.html#globals_require_cache
   uncache('../lib/index'); // reload http_request sans SSL! (localhost)
   var ES = require('../lib/index');
@@ -17,6 +16,22 @@ test(chalk.cyan('CONNECT to ES on HEROKU!'), function (t) {
     t.end();
   });
 });
+
+test(chalk.cyan('CONNECT to Bonsai on HEROKU!'), function (t) {
+  // please don't spam this Bonsai ElasticSearch account with Records!
+  // Its JUST for Testing this module! thanks! :-)
+  delete process.env.SEARCHBOX_SSL_URL; // unset SearchBox so we can test Bonsai
+  process.env.BONSAI_URL = 'https://e8um0j3p:qgmc5osvvjbzdp3a@birch-5096132.eu-west-1.bonsai.io'
+  // https://nodejs.org/docs/latest/api/globals.html#globals_require_cache
+  uncache('../lib/index'); // reload http_request sans SSL! (localhost)
+  var ES = require('../lib/index');
+  ES.CONNECT(function (res) {
+    console.log(res);
+    t.equal(res.status, 200, chalk.green("✓ Status 200 - OK"));
+    t.end();
+  });
+});
+
 
 test(chalk.cyan('Force HTTP Error with bad UN:PW'), function (t) {
   // please don't spam this SearchBox ElasticSearch account with Records!

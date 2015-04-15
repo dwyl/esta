@@ -356,21 +356,20 @@ For more on Errors, please read: https://www.joyent.com/developers/node/design/e
 <br />
 <br />
 
-## *Required*: Use *Environment Variables* for HOST & PORT [![12 Factor App](https://img.shields.io/badge/twelve%20factor-passing-brightgreen.svg?style=flat)](http://12factor.net/config)
+## "Just Works" (Defaults to 127.0.0.1:9200) [![12 Factor App](https://img.shields.io/badge/twelve%20factor-passing-brightgreen.svg?style=flat)](http://12factor.net/config)
 
-We need to move away from using **config** ***files***.  
-Read: http://12factor.net/config (Store config in the environment - *no more config.json*!)
+To help you get started as *fast* as possible,
+***esta*** defaults to using your local machine
+for ElasticSearch.
 
 <a name="local"/>
-### Local/Dev Machine
+### Local/Dev Machine [![Beginner Friendly](https://img.shields.io/badge/beginner%20friendly-yes-brightgreen.svg?style=flat)](http://en.wikipedia.org/wiki/Shoshin)
 
-To use environment variables for the ElasticSearch URl on your local machine:
-you will need to run the following **Shell Command**:
+Provided you already have ElasticSearch *installed* (we recommend using Vagrant, see below),
+there is ***nothing to setup or configure*** to use **esta** on your local machine!
 
-```sh
-export ES_HOST="127.0.0.1"
-export ES_PORT=9200
-```
+### Heroku
+
 If you are using a ElasticSearch-as-a-Service provider
 such as SearchBox or Found
 simply set the above to:
@@ -390,8 +389,6 @@ node_js:
   - 0.10
 services:
   - elasticsearch
-env:
-  - ES_HOST="127.0.0.1" ES_PORT=9200
 ```
 if you are *new* to Travis-CI see: https://github.com/docdis/learn-travis
 
