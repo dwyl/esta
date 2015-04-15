@@ -1,11 +1,37 @@
 *esta*  
 ====
-[![Node.js Version][node-version-image]][node-version-url] [![NPM Version][npm-image]][npm-url]  [![Build Status][travis-image]][travis-url] [![Test Coverage][coveralls-image]][coveralls-url]
+[![Build Status](https://travis-ci.org/nelsonic/esta.png?branch=master)](https://travis-ci.org/nelsonic/esta)
+[![Test Coverage](https://codeclimate.com/github/nelsonic/esta/badges/coverage.svg)](https://codeclimate.com/github/nelsonic/esta)
 [![Code Climate](https://codeclimate.com/github/nelsonic/esta/badges/gpa.svg)](https://codeclimate.com/github/nelsonic/esta)
-[![Dependency Status](https://david-dm.org/nelsonic/esta.svg)](https://david-dm.org/nelsonic/esta)
+[![Node version](https://img.shields.io/node/v/esta.svg?style=flat)](http://nodejs.org/download/)
+[![NPM Version](https://img.shields.io/npm/v/esta.svg?style=flat)](https://npmjs.org/package/esta) [![Dependency Status](https://david-dm.org/nelsonic/esta.svg)](https://david-dm.org/nelsonic/esta)
+[![Beginner Friendly](https://img.shields.io/badge/shoshin-passing-brightgreen.svg?style=flat)](http://en.wikipedia.org/wiki/Shoshin)
 
 
 **The *Simplest* ElasticSearch Node.js Module**
+
+## Why?
+
+**Q**: There is *already* an "*official*" ElasticSearch module, why create a *new* one...?  
+**A**: Have you *tried* ***using*** the *official* client...? Did you *enjoy* the *experience*?
+
+We needed an ***easy*** way to create, read, update and search our ElasticSearch
+records from node.js. All the *available* modules were *way too complicated*
+to use for *beginners*. So we decided to *invest* the time to create something
+***much simpler***!
+
+Creating a record in ElasticSearch from your **node.js** app using **esta** is *this* simple:
+
+```js
+var es = require('esta'); // the simplest way to use ElasticSearch in node.js!
+es.create({'message':'ElasticSearch is awesome!'}, function(response){
+  console.log('record created '+ response.created); // record created true
+})
+```
+
+As you are about to *discover*, there is a ***much easier*** way to
+use ElasticSearch!
+
 
 ##Guide to _esta_ Documentation
 
@@ -320,42 +346,6 @@ see: [#31](https://github.com/nelsonic/esta/issues/31) for *complete* STATS outp
 
 <br />
 
-<a name="error-handling"/>
-### Error Handling
-
-#### *Warning*: Contains *Opinion* (based on *experience*)
-
-Most of the Node.js developers I've worked with, don't handle errors well.  
-A typical (*bad*) example:
-```js
-if(error) {
-  console.log(error); // this is worse than useless!
-}
-```
-So instead of having of having code full of `if(err) ...`
-we have *deliberately* cut out errors
-from callback functions *completely*.
-
-Thus, *all* the methods in this module have the *simplified* signature:
-```js
-ES.METHOD(record, function(response){
-  // do something with response
-});
-```
-
-Instead, we propose using a *central* error catcher. e.g:
-```js
-process.on('uncaughtException', function(err) {
-  console.log('ERROR: ' + err); // preferably handle errors appropriately
-});
-```
-or, if you are using [**Hapi.js**](http://hapijs.com/) use https://github.com/hapijs/poop
-
-For more on Errors, please read: https://www.joyent.com/developers/node/design/errors
-
-<br />
-<br />
-
 ## "Just Works" (Defaults to 127.0.0.1:9200) [![12 Factor App](https://img.shields.io/badge/twelve%20factor-passing-brightgreen.svg?style=flat)](http://12factor.net/config)
 
 To help you get started as *fast* as possible,
@@ -368,25 +358,32 @@ for ElasticSearch.
 Provided you already have ElasticSearch *installed* (we recommend using Vagrant, see below),
 there is ***nothing to setup or configure*** to use **esta** on your local machine!
 
-### Heroku
+### Heroku [![Heroku Compatible](https://img.shields.io/badge/heroku-yes-brightgreen.svg?style=flat)](https://travis-ci.org/nelsonic/esta/jobs/58582216#L270)
 
-If you are using a ElasticSearch-as-a-Service provider
-such as SearchBox or Found
-simply set the above to:
-```sh
-export ES_HOST="https://ocweo8gq:6ekcklvyca0xp2m7@dogwood-8420631.eu-west-1.bonsai.io"
-export ES_PORT=443
-```
+If you are deploying your App to Heroku there are ***two*** ElasticSearch-as-a-Service providers
+that offer ***Free*** entry level service:
+
++ Bonsai: https://addons.heroku.com/bonsai
++ SearchBox: https://addons.heroku.com/searchbox
+
+![heroku-addons-free](https://cloud.githubusercontent.com/assets/194400/7158013/25be8f78-e36d-11e4-8ade-8ab1ade0bb07.png)
+
+**esta** ***supports both*** of these providers **out-of-the-box**!
+as soon as you add the "addon" to your heroku app it "***just works***!"
+
+Our Travis Build Process includes checks for both Bonsai and SearchBox:
+See: https://travis-ci.org/nelsonic/esta/jobs/58582216#L270
 
 <a name="CI"/>
 ### (Travis) CI
 
-Sample .travis.yml file:
+Speaking of Travis-CI, if you are using their fine build tool, here's a
+**sample .travis.yml** file:
 
 ```sh
 language: node_js
 node_js:
-  - 0.10
+  - 0.12
 services:
   - elasticsearch
 ```
@@ -427,7 +424,6 @@ We wanted a way of
 records (i.e. *avoiding data loss*.)
 If you *like* the idea of being able to * **recover accidentally deleted** data*,
 you will love our **DELETE** method see: **lib/delete.js**
-
 
 
 <a name="core-only"/>
@@ -484,6 +480,43 @@ If you are looking for a module you can *trust*, these are the
 If anything is unclear please create an issue:
 https://github.com/nelsonic/esta/issues
 
+
+<a name="error-handling"/>
+### Error Handling
+
+#### *Warning*: Contains *Opinion* (based on *experience*)
+
+Most of the Node.js developers I've worked with, don't handle errors well.  
+A typical (*bad*) example:
+```js
+if(error) {
+  console.log(error); // this is worse than useless!
+}
+```
+So instead of having of having code full of `if(err) ...`
+we have *deliberately* cut out errors
+from callback functions *completely*.
+
+Thus, *all* the methods in this module have the *simplified* signature:
+```js
+ES.METHOD(record, function(response){
+  // do something with response
+});
+```
+
+Instead, we propose using a *central* error catcher. e.g:
+```js
+process.on('uncaughtException', function(err) {
+  console.log('ERROR: ' + err); // preferably handle errors appropriately
+});
+```
+or, if you are using [**Hapi.js**](http://hapijs.com/) we recommend using https://github.com/hapijs/poop
+
+For more on Errors, please read: https://www.joyent.com/developers/node/design/errors
+
+<br />
+<br />
+
 ## ALLCAPS MEHTOD NAMES?
 
 ![all caps](http://i.imgur.com/KMZQhDL.png)
@@ -506,16 +539,3 @@ The choice of module name was the *answer* to the question:
 ## License
 
 [MIT](LICENSE)
-
-[npm-image]: https://img.shields.io/npm/v/esta.svg?style=flat
-[npm-url]: https://npmjs.org/package/esta
-[node-version-image]: https://img.shields.io/node/v/esta.svg?style=flat
-[node-version-url]: http://nodejs.org/download/
-[downloads-image]: https://img.shields.io/npm/dm/esta.svg?style=flat
-[downloads-url]: https://npmjs.org/package/esta
-[travis-image]: https://img.shields.io/travis/nelsonic/esta.svg?style=flat
-[travis-url]: https://travis-ci.org/nelsonic/esta
-[coveralls-image]: https://img.shields.io/coveralls/nelsonic/esta.svg?style=flat
-[coveralls-url]: https://coveralls.io/r/nelsonic/esta?branch=master
-[dependencies-url]: https://david-dm.org/nelsonic/esta
-[dependencies-image]: https://david-dm.org/nelsonic/esta.svg

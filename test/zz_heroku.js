@@ -17,6 +17,17 @@ test(chalk.cyan('CONNECT to SearchBox on HEROKU!'), function (t) {
   });
 });
 
+test(chalk.cyan('CREATE a record on HEROKU/SearchBox'), function (t) {
+  process.env.SEARCHBOX_SSL_URL = 'https://paas:177117314d80d98671aaffd7fb9a314b@kili-eu-west-1.searchly.com'
+  var ES = require('../lib/index');
+  var record = require('./fake_record.js')(); // fake record
+  ES.CREATE(record, function (res) {
+    console.log(res)
+    t.equal(res.created, true, chalk.green("✓ Record Created"));
+    t.end();
+  });
+});
+
 test(chalk.cyan('CONNECT to Bonsai on HEROKU!'), function (t) {
   // please don't spam this Bonsai ElasticSearch account with Records!
   // Its JUST for Testing this module! thanks! :-)
