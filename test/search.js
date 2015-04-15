@@ -40,7 +40,7 @@ test(chalk.cyan('Query ES for string: "amazing"'), function (t) {
         chalk.green("✓ Search results found: "+ res.hits.total));
       t.end();
     });
-  },500)
+  },800)
 });
 
 test(chalk.cyan('Query ES for string that is NOT in the index'), function (t) {
