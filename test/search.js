@@ -16,6 +16,7 @@ test(chalk.cyan('Query ES for string: "amazing"'), function (t) {
     }
 
     ES.READ(record, function(rec){
+      // console.log(rec);
       console.log(rec._source.text);
       t.equal(rec._source.text.indexOf('amazing') > 0, true, chalk.green.bold("✓ Record is amazing!"));
       t.end();
@@ -32,13 +33,14 @@ test(chalk.cyan('Query ES for string: "amazing"'), function (t) {
     field: 'text',
     text:  'amazing'
   };
-
-  SEARCH(query, function(res) {
-    // console.log(res);
-    t.equal(res.hits.total > 0, true,
-      chalk.green("✓ Search results found: "+ res.hits.total));
-    t.end();
-  });
+  setTimeout(function(){
+    SEARCH(query, function(res) {
+      // console.log(res);
+      t.equal(res.hits.total > 0, true,
+        chalk.green("✓ Search results found: "+ res.hits.total));
+      t.end();
+    });
+  },1200)
 });
 
 test(chalk.cyan('Query ES for string that is NOT in the index'), function (t) {
@@ -64,9 +66,17 @@ test(chalk.cyan('Search without supplying any params'), function (t) {
   var query = {}; // this will look for the string "hello" (default)
 
   SEARCH(query, function(res) {
-    // console.log(res);
-    t.equal(res.hits.total > 0, true,
+    console.log(res);
+    t.equal(res.hits.total === 0, true,
       chalk.green("✓ Found: "+ res.hits.total));
+    t.end();
+  });
+});
+
+test(chalk.cyan('Simulate actual usage: search for "Thanks"'), function (t) {
+  SEARCH({"text":"thanks"}, function(res) {
+    t.equal(res.hits.total > 0, true,
+      chalk.green("✓ Search results found: "+ res.hits.total ));
     t.end();
   });
 });
