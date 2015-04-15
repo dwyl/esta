@@ -47,7 +47,7 @@ npm install esta --save
 <a name="connect"/>
 #### CONNECT to ElasticSearch Cluster using  `ES.CONNECT(calback(response))`
 
-If you need to check the connection status to the ElasticSearch Instance/Cluster
+If you need to *check* the connection status to the ElasticSearch Instance/Cluster
 we expose the handy `ES.CONNECT` method:
 
 ```js
@@ -72,8 +72,6 @@ example `ES.CONNECT` [response](https://travis-ci.org/nelsonic/esta/jobs/5353361
      lucene_version: '4.10.2' },
   tagline: 'You Know, for Search' }
 ```
-***Note***: **Esta** *expects* you to have environment variables set up for
-**ES_HOST** and **ES_PORT** (see below)
 
 <br />
 
@@ -88,9 +86,7 @@ Creating a new record is *easy*:
 ```js
 // define the record you want to store:
 var record = {
-  index: 'twitter',
-  type: 'tweet',
-  id: Math.floor(Math.random() * (100000)), // or what ever GUID you want
+  date: new Date().toISOString(),
   message: 'Your amazing message goes here'
 };
 ES.CREATE(record, function(response) {
@@ -99,14 +95,14 @@ ES.CREATE(record, function(response) {
 ```
 A typical *successful* `ES.CREATE` response:
 ```js
-{ _index: 'twitter',
-  _type: 'tweet',
+{ _index: 'index',
+  _type: 'type',
   _id: '112669114721',
   _version: 1,
   created: true }
 ```
 
-##### *Required Fields* for a *New Record*:
+##### *Optional Fields* for a *New Record*:
 
 - `index` can be compared to a ***Database*** in **SQL**
 see: http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/glossary.html#glossary-index
