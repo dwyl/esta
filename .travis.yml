@@ -5,5 +5,3 @@ node_js:
   - iojs
 services:
   - elasticsearch
-env:
-  - ES_URL="127.0.0.1:9200"
