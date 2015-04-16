@@ -3,6 +3,7 @@ var test  = require('tape');
 var chalk = require('chalk');
 var uncache = require('./uncache').uncache;
 
+// var searchbox_index = 'bonsai'+new Date().getTime();
 test(chalk.cyan('CONNECT to SearchBox on HEROKU!'), function (t) {
   // please don't spam this SearchBox ElasticSearch account with Records!
   // Its JUST for Testing this module! thanks! :-)
@@ -10,7 +11,7 @@ test(chalk.cyan('CONNECT to SearchBox on HEROKU!'), function (t) {
   // https://nodejs.org/docs/latest/api/globals.html#globals_require_cache
   uncache('../lib/index'); // reload http_request sans SSL! (localhost)
   var ES = require('../lib/index');
-  ES.CONNECT(function (res) {
+  ES.CONNECT('twitter', function (res) {
     console.log(res);
     t.equal(res.status, 200, chalk.green("✓ Status 200 - OK"));
     t.end();
@@ -36,6 +37,7 @@ test(chalk.cyan('CONNECT to Bonsai on HEROKU!'), function (t) {
   // https://nodejs.org/docs/latest/api/globals.html#globals_require_cache
   uncache('../lib/index'); // reload http_request sans SSL! (localhost)
   var ES = require('../lib/index');
+  // don't specify the index
   ES.CONNECT(function (res) {
     console.log(res);
     t.equal(res.status, 200, chalk.green("✓ Status 200 - OK"));

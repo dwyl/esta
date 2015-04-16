@@ -79,11 +79,14 @@ we expose the handy `ES.CONNECT` method:
 ```js
 var ES = require('esta');
 
-ES.CONNECT(function (response) {
+ES.CONNECT(index, function (response) {
   console.log(response);
   // for more detailed stats see: STATS method below
 });
 ```
+Pass in the index name as the first argument if you have not
+set an **ES_INDEX** environment variable.
+
 example `ES.CONNECT` [response](https://travis-ci.org/nelsonic/esta/jobs/53533613#L158):
 
 ```js
@@ -421,9 +424,12 @@ If you have any questions, just ***ask***!
 
 ## Why Create a New Library?
 
-We wanted something simpler.  
-Easier to understand (under 300 lines of code!)
-and thus *much* easier to extend if you need to!
+We wanted something *simpler* and thus *much* easier to extend if you need to!  
+**esta** is ***easy*** to understand. The *entire* module is 134 lines of clear/DRY code;
+you can read & *understand* it *all* in 30mins!  
+Dive in at /**lib**. Each method has a corresponding file in /**test**
+
+![esta-coverate-summary-134-lines](https://cloud.githubusercontent.com/assets/194400/7174873/e3a8a288-e405-11e4-99d0-80f21ed59a03.png)
 
 ## *Practical* Feature: *Recover Accidentally Deleted Data*
 

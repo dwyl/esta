@@ -55,14 +55,16 @@ function handler (filename, t) {
 
 test(chalk.cyan("READ Performance test"), function(t) {
   // read the fixtures directory and get all records
-  fs.readdir(fixtures, function(err, files) {
-    // filecount = files.length;
-    GLOBAL_COUNTER = FILECOUNT = files.length;
-    console.log(' >> '+GLOBAL_COUNTER);
-    for(var i in files) {
-      var filename = fixtures +'/' +files[i];
-      // open the file and extract contents
-      handler(filename, t);
-    }
-  });
+  setTimeout(function() { // give TRAVIS ES time to index the documents!
+    fs.readdir(fixtures, function(err, files) {
+      // filecount = files.length;
+      GLOBAL_COUNTER = FILECOUNT = files.length;
+      console.log(' >> '+GLOBAL_COUNTER);
+      for(var i in files) {
+        var filename = fixtures +'/' +files[i];
+        // open the file and extract contents
+        handler(filename, t);
+      }
+    });
+  }, 500);
 });
