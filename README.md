@@ -5,7 +5,7 @@
 [![Code Climate](https://codeclimate.com/github/nelsonic/esta/badges/gpa.svg)](https://codeclimate.com/github/nelsonic/esta)
 [![Node version](https://img.shields.io/node/v/esta.svg?style=flat)](http://nodejs.org/download/)
 [![NPM Version](https://img.shields.io/npm/v/esta.svg?style=flat)](https://npmjs.org/package/esta) [![Dependency Status](https://david-dm.org/nelsonic/esta.svg)](https://david-dm.org/nelsonic/esta)
-[![Beginner Friendly](https://img.shields.io/badge/shoshin-passing-brightgreen.svg?style=flat)](http://en.wikipedia.org/wiki/Shoshin)
+[![Beginner Friendly](https://img.shields.io/badge/shoshin-yes-brightgreen.svg?style=flat)](http://en.wikipedia.org/wiki/Shoshin)
 
 
 **The *Simplest* ElasticSearch Node.js Module**
@@ -403,6 +403,14 @@ incompatibility. Learn more at: https://github.com/nelsonic/learn-vagrant
 
 I've included a **Vagrantfile** in this repo which will get you
 up-and-running with Ubuntu, Node.js & ElasticSearch with a single command: [**vagrant up**](https://github.com/nelsonic/learn-vagrant)
+
+all you need to do is run the following commands in your terminal:
+
+```sh
+vagrant up
+vagrant ssh
+sudo service elasticsearch start
+```
 
 If you have any questions, just ***ask***!
 
