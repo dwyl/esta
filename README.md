@@ -6,7 +6,6 @@
 [![Dependency Status](https://david-dm.org/nelsonic/esta.svg)](https://david-dm.org/nelsonic/esta)
 [![Node version](https://img.shields.io/node/v/esta.svg?style=flat)](http://nodejs.org/download/)
 [![NPM Version](https://badge.fury.io/js/esta.svg?style=flat)](https://npmjs.org/package/esta)
-[![Beginner Friendly](https://img.shields.io/badge/shoshin-yes-brightgreen.svg?style=flat)](http://en.wikipedia.org/wiki/Shoshin "Beginner Friendly")
 
 
 **The *Simplest* ElasticSearch Node.js Module**
@@ -357,7 +356,7 @@ To help you get started as *fast* as possible,
 for ElasticSearch.
 
 <a name="local"/>
-### Local/Dev Machine [![Beginner Friendly](https://img.shields.io/badge/beginner%20friendly-yes-brightgreen.svg?style=flat)](http://en.wikipedia.org/wiki/Shoshin)
+### Local/Dev Machine [![Beginner Friendly](https://img.shields.io/badge/shoshin-yes-brightgreen.svg?style=flat)](http://en.wikipedia.org/wiki/Shoshin "Beginner Friendly")
 
 Provided you already have ElasticSearch *installed* (we recommend using Vagrant, see below),
 there is ***nothing to setup or configure*** to use **esta** on your local machine!
