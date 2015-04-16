@@ -43,12 +43,6 @@ test(chalk.cyan('CREATE a record with process.env.ES_INDEX'), function (t) {
   uncache('../lib/http_request');
   var CREATE = require('../lib/create.js'); // re-require it
 
-  // var OPTIONS = require('../lib/options');
-  // var opts = OPTIONS(record, 'POST');
-  // console.log(" - - - - - - - - ")
-  // console.log(opts);
-  // console.log(" - - - - - - - - ")
-
   CREATE(record, function (res) {
     console.log(res);
     t.equal(res.created, true, chalk.green("✓ Record Created using ES_INDEX"));

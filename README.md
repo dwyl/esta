@@ -5,7 +5,7 @@
 [![Code Climate](https://codeclimate.com/github/nelsonic/esta/badges/gpa.svg)](https://codeclimate.com/github/nelsonic/esta)
 [![Node version](https://img.shields.io/node/v/esta.svg?style=flat)](http://nodejs.org/download/)
 [![NPM Version](https://img.shields.io/npm/v/esta.svg?style=flat)](https://npmjs.org/package/esta) [![Dependency Status](https://david-dm.org/nelsonic/esta.svg)](https://david-dm.org/nelsonic/esta)
-[![Beginner Friendly](https://img.shields.io/badge/shoshin-passing-brightgreen.svg?style=flat)](http://en.wikipedia.org/wiki/Shoshin)
+[![Beginner Friendly](https://img.shields.io/badge/shoshin-yes-brightgreen.svg?style=flat)](http://en.wikipedia.org/wiki/Shoshin)
 
 
 **The *Simplest* ElasticSearch Node.js Module**
@@ -79,11 +79,14 @@ we expose the handy `ES.CONNECT` method:
 ```js
 var ES = require('esta');
 
-ES.CONNECT(function (response) {
+ES.CONNECT(index, function (response) {
   console.log(response);
   // for more detailed stats see: STATS method below
 });
 ```
+Pass in the index name as the first argument if you have not
+set an **ES_INDEX** environment variable.
+
 example `ES.CONNECT` [response](https://travis-ci.org/nelsonic/esta/jobs/53533613#L158):
 
 ```js
@@ -404,6 +407,14 @@ incompatibility. Learn more at: https://github.com/nelsonic/learn-vagrant
 I've included a **Vagrantfile** in this repo which will get you
 up-and-running with Ubuntu, Node.js & ElasticSearch with a single command: [**vagrant up**](https://github.com/nelsonic/learn-vagrant)
 
+all you need to do is run the following commands in your terminal:
+
+```sh
+vagrant up
+vagrant ssh
+sudo service elasticsearch start
+```
+
 If you have any questions, just ***ask***!
 
 <br />
@@ -413,9 +424,12 @@ If you have any questions, just ***ask***!
 
 ## Why Create a New Library?
 
-We wanted something simpler.  
-Easier to understand (under 300 lines of code!)
-and thus *much* easier to extend if you need to!
+We wanted something *simpler* and thus *much* easier to extend if you need to!  
+**esta** is ***easy*** to understand. The *entire* module is 129 lines of clear/clean/commented/DRY code;
+you can read & *understand* it *all* before breakfast!  
+Dive in at /**lib**. Each method has a corresponding file in /**test**
+
+![esta-coverage-summary-129](https://cloud.githubusercontent.com/assets/194400/7179628/e41c37f8-e431-11e4-87d2-afd68cd12097.png)
 
 ## *Practical* Feature: *Recover Accidentally Deleted Data*
 

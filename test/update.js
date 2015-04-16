@@ -14,36 +14,27 @@ test(chalk.cyan('UPDATE a Non-Existant Record (>>UPSERT<<)'), function (t) {
 
 test(chalk.cyan('UPDATE a record'), function (t) {
   record.id = 1234
-  var rec = {}, bak = {}; // make a copy of record for later.
-  for(var key in record) {
-    if(record.hasOwnProperty(key)) {
-      rec[key] = record[key];
-      bak[key] = record[key];
-    }
-  }
-  CREATE(record, function(res) {
-    t.equal(res.created, true, chalk.green("✓ Record Created " +rec.id));
+  var bak = {
+    index: record.index,
+    type: record.type + "_bak",
+    id: record.id   + "_1"
+  };
 
-    READ(rec, function (res2) {
+  CREATE(record, function(res) {
+    t.equal(res.created, true, chalk.green("✓ Record Created " +record.id));
+
+    READ(record, function (res2) {
       var newmsg = "my new message"
-      rec.message = newmsg; // change message
+      record.message = newmsg; // change message
       // update record in ES
-      UPDATE(rec, function(res3) {
+      UPDATE(record, function(res3) {
         t.equal(res3._version, 2, chalk.green("✓ Record updated (version: "+res3._version +")"));
-        // restore rec from backup
-        for(var key in bak) {
-          if(bak.hasOwnProperty(key)) {
-            rec[key] = bak[key];
-          }
-        }
-        bak.type = rec.type + "_bak"; // look up the backup record
-        bak.id   = rec.id   + "_1";   // with backup id
 
         READ(bak, function (res5) {
           t.equal(res5.found, true, chalk.green("✓ Record (backup) exists"));
         });
 
-        READ(rec, function(res4) {
+        READ(record, function(res4) {
           t.equal(res4._source.message, newmsg,
             chalk.green("✓ Record message updated to: ")+chalk.cyan(res4._source.message));
           t.end();
