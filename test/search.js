@@ -14,13 +14,15 @@ test(chalk.cyan('Query ES for string: "amazing"'), function (t) {
       index: 'twitter',
       id: 559464234510471200
     }
+    setTimeout(function(){
+      ES.READ(record, function(rec){
+        // console.log(rec);
+        console.log(rec._source.text);
+        t.equal(rec._source.text.indexOf('amazing') > 0, true, chalk.green.bold("✓ Record is amazing!"));
+        t.end();
+      });
+    },1200)
 
-    ES.READ(record, function(rec){
-      // console.log(rec);
-      console.log(rec._source.text);
-      t.equal(rec._source.text.indexOf('amazing') > 0, true, chalk.green.bold("✓ Record is amazing!"));
-      t.end();
-    });
   });
 });
 

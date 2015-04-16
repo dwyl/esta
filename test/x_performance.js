@@ -59,7 +59,7 @@ test(chalk.cyan("READ Performance test"), function(t) {
     fs.readdir(fixtures, function(err, files) {
       // filecount = files.length;
       GLOBAL_COUNTER = FILECOUNT = files.length;
-      console.log(' >> '+GLOBAL_COUNTER);
+      // console.log(' >> '+GLOBAL_COUNTER);
       for(var i in files) {
         var filename = fixtures +'/' +files[i];
         // open the file and extract contents

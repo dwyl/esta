@@ -425,11 +425,11 @@ If you have any questions, just ***ask***!
 ## Why Create a New Library?
 
 We wanted something *simpler* and thus *much* easier to extend if you need to!  
-**esta** is ***easy*** to understand. The *entire* module is 134 lines of clear/DRY code;
-you can read & *understand* it *all* in 30mins!  
+**esta** is ***easy*** to understand. The *entire* module is 129 lines of clear/clean/commented/DRY code;
+you can read & *understand* it *all* before breakfast!  
 Dive in at /**lib**. Each method has a corresponding file in /**test**
 
-![esta-coverate-summary-134-lines](https://cloud.githubusercontent.com/assets/194400/7174873/e3a8a288-e405-11e4-99d0-80f21ed59a03.png)
+![esta-coverage-summary-129](https://cloud.githubusercontent.com/assets/194400/7179628/e41c37f8-e431-11e4-87d2-afd68cd12097.png)
 
 ## *Practical* Feature: *Recover Accidentally Deleted Data*
 
