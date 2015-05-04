@@ -5,5 +5,5 @@ var REQUEST = require('../lib/http_request');
 module.exports = function(record, callback) { //!
   var options = OPTIONS(record, 'DELETE');    //!
   options.path = "/_all"; // DELETEs EVERYTHING!!
-  return REQUEST(options, callback).end();    //!
+  return REQUEST(options, callback);    //!
 } // *ONLY* USE THIS IN YOUR *TESTS*! SERIOUSLY!!
