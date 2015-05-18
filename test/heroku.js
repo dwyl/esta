@@ -40,7 +40,7 @@ test(chalk.cyan('CONNECT to Bonsai on HEROKU!'), function (t) {
   // please don't spam this Bonsai ElasticSearch account with Records!
   // Its JUST for Testing this module! thanks! :-)
   delete process.env.SEARCHBOX_SSL_URL; // unset SearchBox so we can test Bonsai
-  process.env.BONSAI_URL = 'https://e8um0j3p:qgmc5osvvjbzdp3a@birch-5096132.eu-west-1.bonsai.io'
+  process.env.BONSAI_URL = 'https://8py6wr37:ehq7m0yasuz446rd@ginkgo-5930963.eu-west-1.bonsai.io'
   // https://nodejs.org/docs/latest/api/globals.html#globals_require_cache
   uncache('../lib/index'); // reload http_request sans SSL! (localhost)
   var ES = require('../lib/index');
@@ -53,7 +53,7 @@ test(chalk.cyan('CONNECT to Bonsai on HEROKU!'), function (t) {
 });
 
 test(chalk.cyan('CREATE a record on HEROKU/Bonsai'), function (t) {
-  process.env.BONSAI_URL = 'https://e8um0j3p:qgmc5osvvjbzdp3a@birch-5096132.eu-west-1.bonsai.io'
+  process.env.BONSAI_URL = 'https://8py6wr37:ehq7m0yasuz446rd@ginkgo-5930963.eu-west-1.bonsai.io'
   var ES = require('../lib/index');
   var record = require('./fake_record.js')(); // fake record
   ES.CREATE(record, function (res) {

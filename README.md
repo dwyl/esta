@@ -441,7 +441,7 @@ you will love our **DELETE** method see: **lib/delete.js**
 
 
 <a name="core-only"/>
-## *Only* Core Modules [![Dependency Status](https://david-dm.org/nelsonic/esta.svg)](https://david-dm.org/nelsonic/esta)
+## *Only* Core Modules [![Dependency Status](https://david-dm.org/dwyl/esta.svg)](https://david-dm.org/dwyl/esta)
 
 ***Zero external dependencies*** (3rd party modules).
 
@@ -464,10 +464,10 @@ so we *never* have to *think* about upgrading - it also makes it a
 *invites contribution* from the community.  
 Given that ElasticSearch has a **REST API** we are *only* using Node's **http** (*core*) module.
 and this is kept [**DRY**](http://en.wikipedia.org/wiki/Don%27t_repeat_yourself) (only in one file)
-see: [**lib/http_request.js**](https://github.com/nelsonic/esta/blob/master/lib/http_request.js)
+see: [**lib/http_request.js**](https://github.com/dwyl/esta/blob/master/lib/http_request.js)
 
 <a name="dev-dependencies"/>
-### Dev Dependencies [![devDependency Status](https://david-dm.org/nelsonic/esta/dev-status.svg)](https://david-dm.org/nelsonic/esta#info=devDependencies)
+### Dev Dependencies [![devDependency Status](https://david-dm.org/dwyl/esta/dev-status.svg)](https://david-dm.org/dwyl/esta#info=devDependencies)
 
 We *carefully* select and only use *well-maintained* "*pure*" JavaScript modules
 in our development toolchain:
@@ -482,17 +482,17 @@ https://github.com/nelsonic/learn-jshint
 https://github.com/nelsonic/learn-codeclimate
 
 <a name="code-quality"/>
-## Code Quality [![Build Status](https://travis-ci.org/nelsonic/esta.svg)](https://travis-ci.org/nelsonic/esta) [![Test Coverage](https://codeclimate.com/github/nelsonic/esta/badges/coverage.svg)](https://codeclimate.com/github/nelsonic/esta) [![Code Climate](https://codeclimate.com/github/nelsonic/esta/badges/gpa.svg)](https://codeclimate.com/github/nelsonic/esta)
+## Code Quality [![Build Status](https://travis-ci.org/dwyl/esta.svg)](https://travis-ci.org/dwyl/esta) [![Test Coverage](https://codeclimate.com/github/dwyl/esta/badges/coverage.svg)](https://codeclimate.com/github/dwyl/esta) [![Code Climate](https://codeclimate.com/github/dwyl/esta/badges/gpa.svg)](https://codeclimate.com/github/dwyl/esta)
 
 If you are looking for a module you can *trust*, these are the
 "badges" you are looking for.
 
 <a name="contributing"/>
-## Contributing [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/nelsonic/esta/fork)
+## Contributing [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/dwyl/esta/issues)
 
 ***All*** *contributions* are *welcome*.  
 If anything is unclear please create an issue:
-https://github.com/nelsonic/esta/issues
+https://github.com/dwyl/esta/issues
 
 
 <a name="error-handling"/>
