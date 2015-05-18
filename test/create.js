@@ -3,6 +3,7 @@ var chalk = require('chalk');
 var record = require('./fake_record.js')(); // fake record
 var uncache = require('./uncache').uncache; // so we can re-load lib/options.js
 var CREATE = require('../lib/create.js');
+var ES_INDEX = process.env.ES_INDEX; // save the env var for later
 
 test(chalk.cyan('CREATE a record'), function (t) {
   CREATE(record, function (res) {
@@ -16,6 +17,7 @@ test(chalk.cyan('CREATE a record without specifying index, type or id (fallback)
   delete record.index;
   delete record.type;
   delete record.id;
+  delete process.env.ES_INDEX;
 
   uncache('../lib/options');
   uncache('../lib/create.js');
@@ -35,8 +37,7 @@ test(chalk.cyan('CREATE a record without specifying index, type or id (fallback)
 test(chalk.cyan('CREATE a record with process.env.ES_INDEX'), function (t) {
   var record = require('./fake_record.js')();
   delete record.index;
-  process.env.ES_INDEX = 'testindex';
-
+  process.env.ES_INDEX = ES_INDEX;
 
   uncache('../lib/options');
   uncache('../lib/create.js');

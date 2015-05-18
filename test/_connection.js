@@ -2,6 +2,7 @@ var test  = require('tape');
 var chalk = require('chalk');
 
 delete process.env.SEARCHBOX_SSL_URL; // ensure we load http (NOT https)!
+delete process.env.BONSAI_URL;        // don't use Bonsai ES for bulk tests
 var ES_URL = '127.0.0.1:9200';
 var ES = require('../lib/index');
 
