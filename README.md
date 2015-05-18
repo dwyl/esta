@@ -1,9 +1,9 @@
 *esta*  
 ====
-[![Build Status](https://travis-ci.org/nelsonic/esta.png?branch=master)](https://travis-ci.org/nelsonic/esta)
-[![Test Coverage](https://codeclimate.com/github/nelsonic/esta/badges/coverage.svg)](https://codeclimate.com/github/nelsonic/esta)
-[![Code Climate](https://codeclimate.com/github/nelsonic/esta/badges/gpa.svg)](https://codeclimate.com/github/nelsonic/esta)
-[![Dependency Status](https://david-dm.org/nelsonic/esta.svg)](https://david-dm.org/nelsonic/esta)
+[![Build Status](https://travis-ci.org/dwyl/esta.svg?branch=master)](https://travis-ci.org/dwyl/esta)
+[![Test Coverage](https://codeclimate.com/github/dwyl/esta/badges/coverage.svg)](https://codeclimate.com/github/nelsonic/esta)
+[![Code Climate](https://codeclimate.com/github/dwyl/esta/badges/gpa.svg)](https://codeclimate.com/github/nelsonic/esta)
+[![Dependency Status](https://david-dm.org/dwyl/esta.svg)](https://david-dm.org/nelsonic/esta)
 [![Node version](https://img.shields.io/node/v/esta.svg?style=flat)](http://nodejs.org/download/)
 [![NPM Version](https://badge.fury.io/js/esta.svg?style=flat)](https://npmjs.org/package/esta)
 
