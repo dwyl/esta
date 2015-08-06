@@ -449,7 +449,7 @@ We wanted something *simpler* and thus *much* easier to extend if you need to!
 you can read & *understand* it *all* before breakfast!  
 Dive in at /**lib**. Each method has a corresponding file in /**test**
 
-![esta-coverage-summary-129](https://cloud.githubusercontent.com/assets/194400/7179628/e41c37f8-e431-11e4-87d2-afd68cd12097.png)
+![esta-coverage-summary-140](http://i.imgur.com/6PhYexr.png)
 
 ## *Practical* Feature: *Recover Accidentally Deleted Data*
 
