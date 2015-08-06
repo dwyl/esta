@@ -502,7 +502,7 @@ https://github.com/nelsonic/learn-jshint
 https://github.com/nelsonic/learn-codeclimate
 
 <a name="code-quality"/>
-## Code Quality [![Build Status](https://travis-ci.org/dwyl/esta.svg)](https://travis-ci.org/dwyl/esta) [![Test Coverage](https://codeclimate.com/github/dwyl/esta/badges/coverage.svg)](https://codeclimate.com/github/dwyl/esta) [![Code Climate](https://codeclimate.com/github/dwyl/esta/badges/gpa.svg)](https://codeclimate.com/github/dwyl/esta)
+## Code Quality [![Build Status](https://travis-ci.org/dwyl/esta.svg)](https://travis-ci.org/dwyl/esta) [![Test Coverage](https://codeclimate.com/github/dwyl/esta/badges/coverage.svg)](https://codeclimate.com/github/dwyl/esta) [![Code Climate](https://codeclimate.com/github/dwyl/esta/badges/gpa.svg)](https://codeclimate.com/github/dwyl/esta) [![bitHound Score](https://www.bithound.io/github/dwyl/esta/badges/score.svg?)](https://www.bithound.io/github/dwyl/esta)
 
 If you are looking for a module you can *trust*, these are the
 "badges" you are looking for.
