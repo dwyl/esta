@@ -139,6 +139,9 @@ see: http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/gloss
 see: http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/glossary.html#glossary-type
 - `id` is the ***unique key*** for your record. equivalent to the primary-key in a **SQL**-world
 
+While its optional to set these on your record before asking **esta** to create it,
+we highly recommend using `index`, `type` and `id` to organise your records.
+
 <br />
 
 <a name="read"/>
@@ -215,6 +218,7 @@ A typical *successful* `ES.UPDATE` response:
 ```
 Notice how the **_version** gets incremented to **2**
 
+
 ##### *Required Fields* for a *Updating* an *Existing Record*:
 
 - `index` we need to know which "[database](http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/glossary.html#glossary-index)" our record is in
@@ -267,6 +271,15 @@ In that case, the response look like this: (**found** is ***false***)
   _id: '951078315032',
   _version: 1 }
 ```
+
+
+##### Versioning Records
+
+ElasticSearch does not store revisions of your documents by default,
+we made a "BACKUP" method which stores previous versions of records,
+when ever they are updated or deleted.
+
+If you prefer not to have this functionality, please let us know in an issue!
 
 
 <br />
