@@ -279,8 +279,15 @@ ElasticSearch does not store revisions of your documents by default,
 we made a "BACKUP" method which stores previous versions of records,
 when ever they are updated or deleted.
 
-If you prefer not to have this functionality, please let us know in an issue!
+The old versions are stored as different `type` to avoid polluting
+the main "table" with copies this type is named: `{typename}_bak`
 
+For example, if a document has an id `abc` and its  ***current version***
+is **2** we can find the ***previous version*** (v1) of the document by issuing the following `read` query:
+
+```js
+var backup = { index: 'twitter', type: 'tweets_bak', id: 'abc_1'}
+```
 
 <br />
 
