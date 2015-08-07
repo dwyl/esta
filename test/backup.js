@@ -59,6 +59,39 @@ test(chalk.cyan('BACKUP a Record (*Twice*!)'), function (t) {
   });
 });
 
+test(chalk.magenta('UPDATE KEY Without BACKUP!'), function(t){
+  var record = require('./fake_record')();
+  record.me = 'ow!'
+  CREATE(record, function(res) {
+    t.ok(res.created === true, "record created");
+    console.log(' - - - - - - - - - - - - - - - - - - - - record:');
+    console.log(res);
+    READ(record, function(res1){
+      t.ok(res1._source.me === record.me, "record created");
+    })
+    record.hello = 'world'; // set the value of a new key
+    UPDATE(record, function(res2){
+      t.ok(res2.created === false, "Record was updated (created is false)");
+      READ(record, function(res3){
+        console.log(' - - - - - - - - - - - - - - - - - - - - RES3 :');
+        t.ok(res3._source.hello === 'world', "new key was added to record");
+        t.ok(res3._version === 2, "Version is "+res3._version);
+      })
+
+      // CONFIRM a Backup was NOT created:
+      record.type  = res2._type + "_bak" // http://en.wikipedia.org/wiki/Bak_file
+      record.id    = res2._id +"_1";
+      READ(record, function(res){
+        console.log(' - - - - - - - - - - - - - - - - - - - - RES BACKUP??');
+        console.log(res)
+        console.log(res.found === false, "NO Backup Found! (Only a new k/v was set)");
+        // t.ok(true === true, '>>>>>>>>>>>>>>>>>>>>> TRUE!');
+        t.end();
+      }); // end READ inside UPDATE
+    }) // end UPDATE
+  }); // end CREATE
+}); // close test
+
 process.on('uncaughtException', function(err) {
   console.log('ERROR: BACKUP Error ' + err);
   // console.log("\uD83D\uDCA1  Tip: Remember to start the Vagrant VM and Elasticsearch DB!")

@@ -139,6 +139,9 @@ see: http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/gloss
 see: http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/glossary.html#glossary-type
 - `id` is the ***unique key*** for your record. equivalent to the primary-key in a **SQL**-world
 
+While its optional to set these on your record before asking **esta** to create it,
+we highly recommend using `index`, `type` and `id` to organise your records.
+
 <br />
 
 <a name="read"/>
@@ -215,6 +218,7 @@ A typical *successful* `ES.UPDATE` response:
 ```
 Notice how the **_version** gets incremented to **2**
 
+
 ##### *Required Fields* for a *Updating* an *Existing Record*:
 
 - `index` we need to know which "[database](http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/glossary.html#glossary-index)" our record is in
@@ -268,6 +272,22 @@ In that case, the response look like this: (**found** is ***false***)
   _version: 1 }
 ```
 
+
+##### Versioning Records
+
+ElasticSearch does not store revisions of your documents by default,
+we made a "BACKUP" method which stores previous versions of records,
+when ever they are updated or deleted.
+
+The old versions are stored as different `type` to avoid polluting
+the main "table" with copies this type is named: `{typename}_bak`
+
+For example, if a document has an id `abc` and its  ***current version***
+is **2** we can find the ***previous version*** (v1) of the document by issuing the following `read` query:
+
+```js
+var backup = { index: 'twitter', type: 'tweets_bak', id: 'abc_1'}
+```
 
 <br />
 
@@ -429,7 +449,7 @@ We wanted something *simpler* and thus *much* easier to extend if you need to!
 you can read & *understand* it *all* before breakfast!  
 Dive in at /**lib**. Each method has a corresponding file in /**test**
 
-![esta-coverage-summary-129](https://cloud.githubusercontent.com/assets/194400/7179628/e41c37f8-e431-11e4-87d2-afd68cd12097.png)
+![esta-coverage-summary-140](http://i.imgur.com/6PhYexr.png)
 
 ## *Practical* Feature: *Recover Accidentally Deleted Data*
 
@@ -482,7 +502,7 @@ https://github.com/nelsonic/learn-jshint
 https://github.com/nelsonic/learn-codeclimate
 
 <a name="code-quality"/>
-## Code Quality [![Build Status](https://travis-ci.org/dwyl/esta.svg)](https://travis-ci.org/dwyl/esta) [![Test Coverage](https://codeclimate.com/github/dwyl/esta/badges/coverage.svg)](https://codeclimate.com/github/dwyl/esta) [![Code Climate](https://codeclimate.com/github/dwyl/esta/badges/gpa.svg)](https://codeclimate.com/github/dwyl/esta)
+## Code Quality [![Build Status](https://travis-ci.org/dwyl/esta.svg)](https://travis-ci.org/dwyl/esta) [![Test Coverage](https://codeclimate.com/github/dwyl/esta/badges/coverage.svg)](https://codeclimate.com/github/dwyl/esta) [![Code Climate](https://codeclimate.com/github/dwyl/esta/badges/gpa.svg)](https://codeclimate.com/github/dwyl/esta) [![bitHound Score](https://www.bithound.io/github/dwyl/esta/badges/score.svg?)](https://www.bithound.io/github/dwyl/esta)
 
 If you are looking for a module you can *trust*, these are the
 "badges" you are looking for.
