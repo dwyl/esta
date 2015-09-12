@@ -87,7 +87,7 @@ ES.CONNECT(index, function (response) {
 Pass in the index name as the first argument if you have not
 set an **ES_INDEX** environment variable.
 
-example `ES.CONNECT` [response](https://travis-ci.org/nelsonic/esta/jobs/53533613#L158):
+example `ES.CONNECT` [response](https://travis-ci.org/dwyl/esta/jobs/53533613#L158):
 
 ```js
 { status: 200,
@@ -381,7 +381,7 @@ for ElasticSearch.
 Provided you already have ElasticSearch *installed* (we recommend using Vagrant, see below),
 there is ***nothing to setup or configure*** to use **esta** on your local machine!
 
-### Heroku [![Heroku Compatible](https://img.shields.io/badge/heroku-yes-brightgreen.svg?style=flat)](https://travis-ci.org/nelsonic/esta/jobs/58582216#L270)
+### Heroku [![Heroku Compatible](https://img.shields.io/badge/heroku-yes-brightgreen.svg?style=flat)](https://travis-ci.org/dwyl/esta/jobs/58582216#L270)
 
 If you are deploying your App to Heroku there are ***two*** ElasticSearch-as-a-Service providers
 that offer ***Free*** entry level service:
@@ -395,7 +395,7 @@ that offer ***Free*** entry level service:
 as soon as you add the "addon" to your heroku app it "***just works***!"
 
 Our Travis Build Process includes checks for both Bonsai and SearchBox:
-See: https://travis-ci.org/nelsonic/esta/jobs/58582216#L270
+See: https://travis-ci.org/dwyl/esta/jobs/58582216#L270
 
 <a name="CI"/>
 ### (Travis) CI
