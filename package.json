@@ -18,7 +18,7 @@
     "url": "https://github.com/dwyl/esta.git"
   },
   "engines": {
-    "node": ">= 0.10"
+    "node": ">= 4.2.3"
   },
   "keywords": [
     "ElasticSearch",
