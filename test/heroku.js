@@ -1,17 +1,17 @@
 var test  = require('tape');
 var chalk = require('chalk');
 var uncache = require('./uncache').uncache;
-console.log(' - - - - - - - - - - - - - - - - - - - - - - - - process.env.SEARCHBOX_SSL_URL:');
-console.log(process.env.SEARCHBOX +' || ' + process.env.SEARCHBOX_SSL_URL);
+// console.log(' - - - - - - - - - - - - - - - - - - - - - - - - process.env.SEARCHBOX_SSL_URL:');
+// console.log(process.env.SEARCHBOX +' || ' + process.env.SEARCHBOX_SSL_URL);
 process.env.SEARCHBOX = process.env.SEARCHBOX || process.env.SEARCHBOX_SSL_URL;
-console.log(process.env.SEARCHBOX +' || ' + process.env.SEARCHBOX_SSL_URL);
+// console.log(process.env.SEARCHBOX +' || ' + process.env.SEARCHBOX_SSL_URL);
 
 test(chalk.cyan('Force HTTP Error with bad UN:PW'), function (t) {
   // process.env.SEARCHBOX = process.env.SEARCHBOX_SSL_URL;
   process.env.SEARCHBOX_SSL_URL = 'https://un:pw@kili-eu-west-1.searchly.com'
-  console.log(' - - - - - - - - - - - - - - - - - - - - - res:');
-  console.log(process.env.SEARCHBOX_SSL_URL);
-  console.log(' - - - - - - - - - - - - - - - - - - - - - - - - ');
+  // console.log(' - - - - - - - - - - - - - - - - - - - - - res:');
+  // console.log(process.env.SEARCHBOX_SSL_URL);
+  // console.log(' - - - - - - - - - - - - - - - - - - - - - - - - ');
   // var ES_URL = process.env.SEARCHBOX_SSL_URL || '127.0.0.1:9200';
   // https://nodejs.org/docs/latest/api/globals.html#globals_require_cache
   uncache('../lib/index'); // reload http_request sans SSL! (localhost)
@@ -90,7 +90,9 @@ test(chalk.cyan('CREATE a record on HEROKU/SearchBox'), function (t) {
   var ES = require('../lib/index');
   var record = require('./fake_record.js')(); // fake record
   ES.CREATE(record, function (res) {
-    console.log(res)
+    console.log(' - - - - - - - - - - - - - - - - - - - - - res:');
+    console.log(res);
+    console.log(' - - - - - - - - - - - - - - - - - - - - - - - - ');
     t.equal(res.created, true, chalk.green("✓ Record Created "+res._id));
     t.end();
   });
