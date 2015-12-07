@@ -73,7 +73,7 @@ test(chalk.cyan('Exercise http_request req.on("error") handler'), function (t) {
 // var searchbox_index = 'bonsai'+new Date().getTime();
 test(chalk.cyan('CONNECT to SearchBox on HEROKU!'), function (t) {
   process.env.SEARCHBOX_SSL_URL = process.env.SEARCHBOX || process.env.SEARCHBOX_SSL_URL; // see _connection.js
-  console.log(process.env.SEARCHBOX_SSL_URL);
+  // console.log(process.env.SEARCHBOX_SSL_URL);
   uncache('../lib/index'); // see: https://github.com/dwyl/decache
   var ES = require('../lib/index');
   ES.CONNECT('twitter', function (res) {

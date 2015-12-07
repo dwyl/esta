@@ -9,11 +9,11 @@ var record = { // fake record
   id: 1
 }
 
-test( chalk.yellow.bgRed.bold(' - DROP ALL INDEXes so ES is Clean for Next Time - '), function (t) {
-  DROP(record, function (res) {
-    STATS(function (res) {
-      t.deepEqual(res._all.primaries, {}, chalk.green.bold("✓ ALL ES Indexes DELETED - Tests Pass. Standard."));
-      t.end();
-    });
-  });
-});
+// test( chalk.yellow.bgRed.bold(' - DROP ALL INDEXes so ES is Clean for Next Time - '), function (t) {
+//   DROP(record, function (res) {
+//     STATS(function (res) {
+//       t.deepEqual(res._all.primaries, {}, chalk.green.bold("✓ ALL ES Indexes DELETED - Tests Pass. Standard."));
+//       t.end();
+//     });
+//   });
+// });
