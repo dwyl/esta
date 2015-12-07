@@ -1,15 +1,18 @@
 var test  = require('tape');
 var chalk = require('chalk');
 
+process.env.SEARCHBOX = process.env.SEARCHBOX_SSL_URL;
 delete process.env.SEARCHBOX_SSL_URL; // ensure we load http (NOT https)!
-delete process.env.BONSAI_URL;        // don't use Bonsai ES for bulk tests
 var ES_URL = '127.0.0.1:9200';
 var ES = require('../lib/index');
 
 test(chalk.cyan('CONNECT to ES on ' +ES_URL), function (t) {
   // console.log('process.env.SEARCHBOX_SSL_URL: '+process.env.SEARCHBOX_SSL_URL)
   ES.CONNECT('twitter', function (res) {
+    
+    console.log(' - - - - - - - - - - - - - - - - - - - - - res:');
     console.log(res);
+    console.log(' - - - - - - - - - - - - - - - - - - - - - - - - ');
     t.equal(res.status, 200, chalk.green("✓ Status 200 - OK"));
     t.end();
   });
