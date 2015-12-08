@@ -8,12 +8,12 @@ var record = { // fake record
   index: 'twitter',
   id: 1
 }
-
-// test( chalk.yellow.bgRed.bold(' - DROP ALL INDEXes so ES is Clean for Next Time - '), function (t) {
-//   DROP(record, function (res) {
-//     STATS(function (res) {
-//       t.deepEqual(res._all.primaries, {}, chalk.green.bold("✓ ALL ES Indexes DELETED - Tests Pass. Standard."));
-//       t.end();
-//     });
-//   });
-// });
+// equivalent to: curl -XDELETE 'http://localhost:9200/_all'
+test( chalk.yellow.bgRed.bold(' - DROP ALL INDEXes so ES is Clean for Next Time - '), function (t) {
+  DROP(record, function (res) {
+    STATS(function (res) {
+      t.deepEqual(res._all.primaries, {}, chalk.green.bold("✓ ALL ES Indexes DELETED - Tests Pass. Standard."));
+      t.end();
+    });
+  });
+});
