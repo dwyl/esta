@@ -8,7 +8,7 @@ var record = { // fake record
   index: 'twitter',
   id: 1
 }
-
+// equivalent to: curl -XDELETE 'http://localhost:9200/_all'
 test( chalk.yellow.bgRed.bold(' - DROP ALL INDEXes so ES is Clean for Next Time - '), function (t) {
   DROP(record, function (res) {
     STATS(function (res) {
