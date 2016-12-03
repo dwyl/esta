@@ -406,7 +406,7 @@ Speaking of Travis-CI, if you are using their fine build tool, here's a
 ```sh
 language: node_js
 node_js:
-  - 0.12
+  - 6
 services:
   - elasticsearch
 ```
