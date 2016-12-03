@@ -27,20 +27,22 @@
     "Zero Dependencies"
   ],
   "author": "nelsonic <contact.nelsonic@gmail.com> (https://github.com/nelsonic)",
-  "contributors": [{
-    "name": "FilWisher"
-  }],
+  "contributors": [
+    {
+      "name": "FilWisher"
+    }
+  ],
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/dwyl/esta/issues"
   },
   "homepage": "https://github.com/dwyl/esta",
   "devDependencies": {
-    "chalk": "^1.1.0",
-    "codeclimate-test-reporter": "0.1.0",
-    "istanbul": "^0.3.17",
+    "chalk": "^1.1.3",
+    "codeclimate-test-reporter": "^0.4.0",
+    "istanbul": "^0.4.5",
     "jshint": "^2.8.0",
-    "pre-commit": "1.1.1",
+    "pre-commit": "^1.1.3",
     "tape": "^4.0.2"
   },
   "pre-commit": [
