@@ -6,16 +6,16 @@ delete process.env.BONSAI_URL;        // don't use Bonsai ES for bulk tests
 var ES_URL = '127.0.0.1:9200';
 var ES = require('../lib/index');
 
-test(chalk.cyan('CONNECT to ES on ' +ES_URL), function (t) {
+test(chalk.cyan('_connection.js -> CONNECT to ES on ' +ES_URL), function (t) {
   // console.log('process.env.SEARCHBOX_SSL_URL: '+process.env.SEARCHBOX_SSL_URL)
   ES.CONNECT('twitter', function (res) {
     console.log(res);
-    t.equal(res.status, 200, chalk.green("✓ Status 200 - OK"));
+    t.equal(res.tagline, 'You Know, for Search', chalk.green("✓ Status 200 - OK"));
     t.end();
   });
 });
 
-test(chalk.cyan('Create a RANDOM index to exercies index creation!'), function (t) {
+test(chalk.cyan('_connection.js -> Create a RANDOM index to exercies index creation!'), function (t) {
   var index = new Date().getTime();
   var record = {
     index: index,
@@ -24,7 +24,7 @@ test(chalk.cyan('Create a RANDOM index to exercies index creation!'), function (
   }
   ES.CONNECT(index, function(res) {
     console.log(res);
-    t.equal(res.status, 200, chalk.green("✓ Status 200 - OK"));
+    t.equal(res.tagline, 'You Know, for Search', chalk.green("✓ Status 200 - OK"));
     t.end();
   });
 });
