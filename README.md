@@ -1,4 +1,4 @@
-*esta*  
+*esta*
 ====
 [![Build Status](https://travis-ci.org/dwyl/esta.svg?branch=master)](https://travis-ci.org/dwyl/esta)
 [![Test Coverage](https://codeclimate.com/github/dwyl/esta/badges/coverage.svg)](https://codeclimate.com/github/dwyl/esta)
@@ -12,7 +12,7 @@
 
 ## Why?
 
-**Q**: There is *already* an "*official*" ElasticSearch module, why create a *new* one...?  
+**Q**: There is *already* an "*official*" ElasticSearch module, why create a *new* one...?
 **A**: Have you *tried* ***using*** the *official* client...? Did you *enjoy* the *experience*?
 
 We needed an ***easy*** way to create, read, update and search our ElasticSearch
@@ -225,7 +225,7 @@ Notice how the **_version** gets incremented to **2**
 - `type` "[table](http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/glossary.html#glossary-type)"
 - `id` the ***unique key*** for the record you are updating.
 
-***Note***: **UPDATE** actually performs an [**UPSERT**](http://en.wiktionary.org/wiki/upsert)  
+***Note***: **UPDATE** actually performs an [**UPSERT**](http://en.wiktionary.org/wiki/upsert)
 **UP**date record if already *exists* or in**SERT** (create) if its new.
 
 <br />
@@ -305,11 +305,11 @@ var query = {
   text:  'amazing'   // string we are searching for
 };
 
-SEARCH(query, function(response) {
-  // console.log(res);
-  t.equal(res.hits.total > 0, true,
-    chalk.green("✓ Search results found: "+ res.hits.total));
-  t.end();
+ES.SEARCH(query, function(response) {
+  // console.log(response);
+  if(response.hits.total > 0){
+    console.log("✓ Search results found: "+ response.hits.total);
+  }
 });
 ```
 A typical *successful* `ES.SEARCH` response:
@@ -346,7 +346,7 @@ When ***NO RECORDS*** are **FOUND** the **response** will look this:
   _shards: { total: 5, successful: 5, failed: 0 },
   hits: { total: 0, max_score: null, hits: [] } }
 ```
-We check for `if(response.hits.total > 0) { /* use/display results */ } else { /* show sad face */}`  
+We check for `if(response.hits.total > 0) { /* use display results */ } else { /* show sad face */}`
 Here's the image we use:
 
 ![no results](http://i.imgur.com/zHuBUbs.png)
@@ -444,9 +444,9 @@ If you have any questions, just ***ask***!
 
 ## Why Create a New Library?
 
-We wanted something *simpler* and thus *much* easier to extend if you need to!  
+We wanted something *simpler* and thus *much* easier to extend if you need to!
 **esta** is ***easy*** to understand. The *entire* module is 129 lines of clear/clean/commented/DRY code;
-you can read & *understand* it *all* before breakfast!  
+you can read & *understand* it *all* before breakfast!
 Dive in at /**lib**. Each method has a corresponding file in /**test**
 
 ![esta-coverage-summary-140](http://i.imgur.com/6PhYexr.png)
@@ -481,7 +481,7 @@ Our aim is to build something that only uses ***core*** modules with
 [***Stable APIs***](https://nodejs.org/api/documentation.html#documentation_stability_index),
 so we *never* have to *think* about upgrading - it also makes it a
 *lot* easier for others to learn how the module works, which
-*invites contribution* from the community.  
+*invites contribution* from the community.
 Given that ElasticSearch has a **REST API** we are *only* using Node's **http** (*core*) module.
 and this is kept [**DRY**](http://en.wikipedia.org/wiki/Don%27t_repeat_yourself) (only in one file)
 see: [**lib/http_request.js**](https://github.com/dwyl/esta/blob/master/lib/http_request.js)
@@ -510,7 +510,7 @@ If you are looking for a module you can *trust*, these are the
 <a name="contributing"/>
 ## Contributing [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/dwyl/esta/issues)
 
-***All*** *contributions* are *welcome*.  
+***All*** *contributions* are *welcome*.
 If anything is unclear please create an issue:
 https://github.com/dwyl/esta/issues
 
@@ -520,7 +520,7 @@ https://github.com/dwyl/esta/issues
 
 #### *Warning*: Contains *Opinion* (based on *experience*)
 
-Most of the Node.js developers I've worked with, don't handle errors well.  
+Most of the Node.js developers I've worked with, don't handle errors well.
 A typical (*bad*) example:
 ```js
 if(error) {
@@ -566,7 +566,7 @@ If you feel they are a bit "[*shouty*](http://www.newrepublic.com/article/117390
 
 The choice of module name was the *answer* to the question:
 
-**Q**: Which ElasticSearch Node Module should I use...?  
+**Q**: Which ElasticSearch Node Module should I use...?
 **A**: https://translate.google.com/#auto/en/esta
 
 <a name="license"/>
